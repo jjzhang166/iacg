@@ -3,5 +3,7 @@
         <file>UI/main.qml</file>
         <file>UI/TopFrame.qml</file>
         <file>UI/RightFrame.qml</file>
+        <file>UI/MsgDialog.qml</file>
+        <file>pic/error.png</file>
     </qresource>
 </RCC>

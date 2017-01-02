@@ -2,6 +2,7 @@
 import QtQuick.Controls 1.4
 
 Rectangle {
+    property var serialInstance: null
     height: 460
     width: 525
     x: 200
@@ -13,7 +14,8 @@ Rectangle {
         y: 86
         width: 198
         height: 23
-        text: qsTr("Button")
+        text: qsTr("WriteA")
+        onClicked: serialInstance.writeChar('a')
     }
 
     Button {
@@ -22,7 +24,11 @@ Rectangle {
         y: 186
         width: 164
         height: 23
-        text: qsTr("Button")
+        text: qsTr("WriteB")
+        onClicked: {
+            serialInstance.writeChar('b')
+            console.log("write B")
+        }
     }
 
     Button {
@@ -31,7 +37,8 @@ Rectangle {
         y: 252
         width: 140
         height: 23
-        text: qsTr("Button")
+        text: qsTr("WriteC")
+        onClicked: serialInstance.writeChar("c");
     }
 
     Button {
@@ -40,6 +47,7 @@ Rectangle {
         y: 374
         width: 210
         height: 23
-        text: qsTr("Button")
+        text: qsTr("WriteByte")
+        onClicked: serialInstance.writeByte("f1");
     }
 }

@@ -4,6 +4,8 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
+import qt.SerialConnect 1.0
+
 Window {
     id: window1
     visible: true
@@ -11,6 +13,10 @@ Window {
     height: 495
     color: "transparent"
     flags: 0x0800 | 0x0001
+
+    SerialConnect {
+        id: sc
+    }
 
     DropShadow {
         anchors.fill: centerFrame
@@ -54,6 +60,9 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text1.bottom
             anchors.topMargin: 10
+            model: ["COM0","COM1","COM2","COM3","COM4",
+            "COM5","COM6","COM7","COM8","COM9","COM10",
+            "COM11","COM12","COM13","COM14","COM15"]
         }
 
         Text {
@@ -73,6 +82,9 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text2.bottom
             anchors.topMargin: 10
+            currentIndex: 3
+            model: [1200,2400,4800,9600,
+            19200,38400,57600,115200]
         }
 
         Text {
@@ -92,6 +104,8 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text3.bottom
             anchors.topMargin: 10
+            currentIndex: 3
+            model: [5,6,7,8]
         }
 
         Text {
@@ -111,6 +125,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text4.bottom
             anchors.topMargin: 10
+            model: ["1","1.5","2"]
         }
 
         Text {
@@ -130,11 +145,12 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text5.bottom
             anchors.topMargin: 10
+            model: ["No","Odd","Even"]
         }
 
         Button {
             property var rightFrame: null
-            property bool isClicked: false
+            property bool isConnected: false
             id: button1
             width: 160
             text: qsTr("Connect")
@@ -143,17 +159,39 @@ Window {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 20
             onClicked: {
-                if(!isClicked) {
-                    window1.width = 730
-                    isClicked = true
-                    var com = Qt.createComponent("qrc:/UI/RightFrame.qml")
-                    if (com.status === Component.Ready)
-                        rightFrame = com.createObject(window1)
+                if(!isConnected) {
+                    sc.portName = comboBox1.currentText
+                    sc.setBaudRate(Number(comboBox2.currentText))
+                    sc.setDataBits(Number(comboBox3.currentText))
+                    sc.setStopBits(comboBox4.currentIndex == 0?SerialConnect.OneStop:
+                                    comboBox4.currentIndex == 1?SerialConnect.OneAndHalfStop:
+                                        SerialConnect.TwoStop)
+                    sc.setParity(comboBox5.currentIndex == 0?SerialConnect.NoParity:
+                                    comboBox5.currentIndex == 1?SerialConnect.OddParity:
+                                        SerialConnect.EvenParity)
+                    if(sc.connectSart()) {
+                        window1.width = 730
+                        isConnected = true
+                        button1.text = qsTr("DisConnect")
+                        var com = Qt.createComponent("qrc:/UI/RightFrame.qml")
+                        if (com.status === Component.Ready) {
+                            rightFrame = com.createObject(window1)
+                            rightFrame.serialInstance = sc
+                        }
+                    }
+                    else {
+                        var comDialog = Qt.createComponent("qrc:/UI/MsgDialog.qml")
+                        if(comDialog.status === Component.Ready)
+                            comDialog.createObject(window1)
+                        return
+                    }
                 }
                 else {
                     window1.width = 200
-                    isClicked = false
+                    isConnected = false
                     rightFrame.destroy()
+                    button1.text = qsTr("Connect")
+                    sc.connectStop()
                 }
             }
         }

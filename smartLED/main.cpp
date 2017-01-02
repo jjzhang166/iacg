@@ -2,7 +2,10 @@
 #include <QQmlApplicationEngine>
 #include <QString>
 #include <QVariant>
+#include <QtQml>
 #include <Windows.h>
+
+#include "serialconnect.h"
 
 LONG WINAPI UnExceptionFilter(PEXCEPTION_POINTERS pExInfo) {
     QVariant code((quint32)pExInfo->ExceptionRecord->ExceptionCode);
@@ -14,7 +17,7 @@ LONG WINAPI UnExceptionFilter(PEXCEPTION_POINTERS pExInfo) {
     wcscpy_s(szCmdLine,_countof(szCmdLine),cmdline.toStdWString().c_str());
     STARTUPINFO si = { sizeof(si) };
     PROCESS_INFORMATION pi;
-    BOOL ok = CreateProcess(NULL,                             //pAppName
+    CreateProcess(NULL,                             //pAppName
                   szCmdLine,   //cmdLine
                   NULL,                             //psaProc
                   NULL,                             //psaThread
@@ -26,10 +29,7 @@ LONG WINAPI UnExceptionFilter(PEXCEPTION_POINTERS pExInfo) {
                   &pi                               //processInfo
                 );
 
-    if(ok)
-        return EXCEPTION_EXECUTE_HANDLER;
-    else
-        return EXCEPTION_CONTINUE_SEARCH;
+    ExitProcess(-1);
 }
 
 int main(int argc, char *argv[])
@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
     SetUnhandledExceptionFilter(UnExceptionFilter);
 
     QGuiApplication app(argc, argv);
+    qmlRegisterType<serialConnect>("qt.SerialConnect",1,0,"SerialConnect");
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
 
