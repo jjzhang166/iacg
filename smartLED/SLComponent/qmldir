@@ -1,0 +1,8 @@
+#time:      2017/1/3
+#author:    linuxlike
+#email:     linuxlike@foxmail.com
+
+module  SLComponent
+
+SLComboBox 1.0      ./SLComboBox.qml
+SLFlatButton 1.0    ./SLFlatButton.qml

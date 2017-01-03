@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
     qmlRegisterType<serialConnect>("qt.SerialConnect",1,0,"SerialConnect");
     QQmlApplicationEngine engine;
+    engine.addImportPath("D:/QMLStudy/smartLED");
     engine.load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
 
     return app.exec();

@@ -5,6 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
 import qt.SerialConnect 1.0
+import SLComponent 1.0
 
 Window {
     id: window1
@@ -53,7 +54,7 @@ Window {
             font.pixelSize: 13
         }
 
-        ComboBox {
+        SLComboBox {
             id: comboBox1
             width: 170
             anchors.left: parent.left
@@ -75,7 +76,7 @@ Window {
             font.pixelSize: 13
         }
 
-        ComboBox {
+        SLComboBox {
             id: comboBox2
             width: 170
             anchors.left: parent.left
@@ -97,7 +98,7 @@ Window {
             font.pixelSize: 13
         }
 
-        ComboBox {
+        SLComboBox {
             id: comboBox3
             width: 170
             anchors.left: parent.left
@@ -118,7 +119,7 @@ Window {
             font.pixelSize: 13
         }
 
-        ComboBox {
+        SLComboBox {
             id: comboBox4
             width: 170
             anchors.left: parent.left
@@ -138,7 +139,7 @@ Window {
             font.pixelSize: 13
         }
 
-        ComboBox {
+        SLComboBox {
             id: comboBox5
             width: 170
             anchors.left: parent.left
@@ -148,7 +149,7 @@ Window {
             model: ["No","Odd","Even"]
         }
 
-        Button {
+        SLFlatButton {
             property var rightFrame: null
             property bool isConnected: false
             id: button1
@@ -173,9 +174,9 @@ Window {
                         window1.width = 730
                         isConnected = true
                         button1.text = qsTr("DisConnect")
-                        var com = Qt.createComponent("qrc:/UI/RightFrame.qml")
-                        if (com.status === Component.Ready) {
-                            rightFrame = com.createObject(window1)
+                        var comRf = Qt.createComponent("qrc:/UI/RightFrame.qml")
+                        if (comRf.status === Component.Ready) {
+                            rightFrame = comRf.createObject(window1)
                             rightFrame.serialInstance = sc
                         }
                     }

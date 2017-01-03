@@ -5,5 +5,9 @@
         <file>UI/RightFrame.qml</file>
         <file>UI/MsgDialog.qml</file>
         <file>pic/error.png</file>
+        <file>pic/Close.png</file>
+        <file>pic/CloseHover.png</file>
+        <file>pic/Minimize.png</file>
+        <file>pic/MinimizeHover.png</file>
     </qresource>
 </RCC>
