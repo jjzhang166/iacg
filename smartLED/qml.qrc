@@ -9,5 +9,10 @@
         <file>pic/CloseHover.png</file>
         <file>pic/Minimize.png</file>
         <file>pic/MinimizeHover.png</file>
+        <file>UI/CollPanel.qml</file>
+        <file>pic/light_h.png</file>
+        <file>pic/light_l.png</file>
+        <file>pic/light_m.png</file>
+        <file>pic/light_mh.png</file>
     </qresource>
 </RCC>

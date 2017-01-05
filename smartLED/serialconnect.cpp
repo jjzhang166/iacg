@@ -3,6 +3,20 @@
 
 serialConnect::serialConnect(QObject *parent) : QObject(parent) {
     linkPort = new QSerialPort;
+    QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
+         QByteArray data = linkPort->readAll();
+         if(data.left(1).toHex() != "ff" || data.length() != 6)
+             goto exit;
+         this->m_humidity = data.mid(1,2).toHex();
+         this->m_temperature = data.mid(3,2).toHex();
+         this->m_light = data.right(1).toHex();
+         emit dataChanged(this->m_light,this->m_temperature,this->m_humidity);
+         //qDebug() << "light:" << this->m_light;
+         //qDebug() << "temperature:" << this->m_temperature;
+         //qDebug() << "humidity:" << this->m_humidity;
+         exit:
+         linkPort->clear();
+    });
 }
 
 serialConnect::~serialConnect() {
@@ -46,6 +60,30 @@ QString serialConnect::portName() const {
 
 void serialConnect::setPortName(const QString &port_name) {
     this->m_portName = port_name;
+}
+
+QString serialConnect::light() const {
+    return this->m_light;
+}
+
+void serialConnect::setLight(const QString &lg) {
+    this->m_light = lg;
+}
+
+QString serialConnect::temperature() const {
+    return this->m_temperature;
+}
+
+void serialConnect::setTemperature(const QString &tem) {
+    this->m_temperature = tem;
+}
+
+QString serialConnect::humidity() const {
+    return this->m_humidity;
+}
+
+void serialConnect::setHumidity(const QString &hum) {
+    this->m_humidity = hum;
 }
 
 QSerialPort::BaudRate serialConnect::baudRate() const {

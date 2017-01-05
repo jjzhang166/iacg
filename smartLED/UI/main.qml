@@ -17,6 +17,14 @@ Window {
 
     SerialConnect {
         id: sc
+        signal lightChanged(string lg)
+        signal tempChanged(string tm)
+        signal humiChanged(string hm)
+        onDataChanged: {
+            lightChanged(lg)
+            tempChanged(tm)
+            humiChanged(hm)
+        }
     }
 
     DropShadow {

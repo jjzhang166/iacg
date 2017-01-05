@@ -6,3 +6,4 @@ module  SLComponent
 
 SLComboBox 1.0      ./SLComboBox.qml
 SLFlatButton 1.0    ./SLFlatButton.qml
+SLTabView 1.0       ./SLTabView.qml
