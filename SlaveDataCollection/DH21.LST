@@ -1,0 +1,130 @@
+C51 COMPILER V9.52.0.0   DH21                                                              01/05/2017 20:31:07 PAGE 1   
+
+
+C51 COMPILER V9.52.0.0, COMPILATION OF MODULE DH21
+OBJECT MODULE PLACED IN DH21.OBJ
+COMPILER INVOKED BY: D:\Keil\C51\BIN\C51.EXE DH21.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <DH21.h>
+   2          
+   3          //数据定义
+   4          U8  U8FLAG,k;
+   5          U8  U8count,U8temp;
+   6          U8  U8T_data_H,U8T_data_L,U8RH_data_H,U8RH_data_L,U8checkdata;
+   7          U8  U8T_data_H_temp,U8T_data_L_temp,U8RH_data_H_temp,U8RH_data_L_temp,U8checkdata_temp;
+   8          U8  U8comdata;
+   9          U8  outdata[6];  //定义发送的字节数        
+  10          U8  count;
+  11          U16 U16temp1,U16temp2;
+  12          
+  13          void DH21_sendData(U8* a) {
+  14   1              outdata[0] = a[0]; 
+  15   1              outdata[1] = a[1];
+  16   1              outdata[2] = a[2];
+  17   1              outdata[3] = a[3];
+  18   1              outdata[4] = a[4];
+  19   1              outdata[5] = a[5];
+  20   1              count = 1;
+  21   1              SBUF=outdata[0];
+  22   1      }
+  23          
+  24          void DH21_COM(void) {
+  25   1              U8 i;
+  26   1              for(i=0;i<8;i++) {
+  27   2                      U8FLAG=2;       
+  28   2                      while((!P2_0)&&U8FLAG++);
+  29   2                      Delay_10us();
+  30   2                      Delay_10us();
+  31   2                      Delay_10us();
+  32   2                      U8temp=0;
+  33   2                      if(P2_0)U8temp=1;
+  34   2                              U8FLAG=2;
+  35   2                      while((P2_0)&&U8FLAG++);
+  36   2                      //超时则跳出for循环               
+  37   2                      if(U8FLAG==1)break;
+  38   2                      //判断数据位是0还是1     
+  39   2                         
+  40   2                      // 如果高电平高过预定0高电平值则数据位为 1 
+  41   2                      U8comdata<<=1;
+  42   2                      U8comdata|=U8temp;
+  43   2               }
+  44   1      }
+  45          
+  46          void DH21_collData(void) {
+  47   1              //主机拉低18ms 
+  48   1              P2_0=0;
+  49   1              Delay(180);
+  50   1              P2_0=1;
+  51   1              //总线由上拉电阻拉高 主机延时20us
+  52   1              Delay_10us();
+  53   1              Delay_10us();
+  54   1              Delay_10us();
+  55   1              Delay_10us();
+C51 COMPILER V9.52.0.0   DH21                                                              01/05/2017 20:31:07 PAGE 2   
+
+  56   1              //主机设为输入 判断从机响应信号 
+  57   1              P2_0=1;
+  58   1              //判断从机是否有低电平响应信号 如不响应则跳出，响应则向下运行     
+  59   1              if(!P2_0) {
+  60   2                      U8FLAG=2;
+  61   2                      //判断从机是否发出 80us 的低电平响应信号是否结束         
+  62   2                      while((!P2_0)&&U8FLAG++);
+  63   2                      U8FLAG=2;
+  64   2                      //判断从机是否发出 80us 的高电平，如发出则进入数据接收状态
+  65   2                      while((P2_0)&&U8FLAG++);
+  66   2                      //数据接收状态           
+  67   2                      DH21_COM();
+  68   2                      U8RH_data_H_temp=U8comdata;
+  69   2                      DH21_COM();
+  70   2                      U8RH_data_L_temp=U8comdata;
+  71   2                      DH21_COM();
+  72   2                      U8T_data_H_temp=U8comdata;
+  73   2                      DH21_COM();
+  74   2                      U8T_data_L_temp=U8comdata;
+  75   2                      DH21_COM();
+  76   2                      U8checkdata_temp=U8comdata;
+  77   2                      P2_0=1;
+  78   2                      //数据校验 
+  79   2                      U8temp=(U8T_data_H_temp+U8T_data_L_temp+U8RH_data_H_temp+U8RH_data_L_temp);
+  80   2                      if(U8temp==U8checkdata_temp) {
+  81   3                              U8RH_data_H=U8RH_data_H_temp;
+  82   3                              U8RH_data_L=U8RH_data_L_temp;
+  83   3                              U8T_data_H=U8T_data_H_temp;
+  84   3                              U8T_data_L=U8T_data_L_temp;
+  85   3                              U8checkdata=U8checkdata_temp;
+  86   3                      }
+  87   2         }
+  88   1      }
+  89          
+  90          void Delay(U16 j) {
+  91   1              U8 i;
+  92   1              for(;j>0;j--) {         
+  93   2                      for(i=0;i<27;i++);
+  94   2              }
+  95   1      }
+  96          
+  97          void  Delay_10us(void) {
+  98   1              U8 i;
+  99   1              i--;
+ 100   1              i--;
+ 101   1              i--;
+ 102   1              i--;
+ 103   1              i--;
+ 104   1              i--;
+ 105   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    276    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     26       2
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

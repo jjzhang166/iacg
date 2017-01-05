@@ -1,0 +1,6 @@
+"STARTUP.obj",
+"main.obj",
+"I2C.obj",
+"DH21.obj" 
+TO "dataColl" 
+RAMSIZE(256) 
