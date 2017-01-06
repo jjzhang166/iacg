@@ -4,7 +4,6 @@ import QtQuick.Controls 1.4
 import SLComponent 1.0
 
 Rectangle {
-    property var serialInstance
     height: 460
     width: 525
     x: 200
@@ -17,12 +16,14 @@ Rectangle {
         Tab {
             title: "mainMenu"
             CollPanel {
-                serial_instance: serialInstance
+                id: cp
             }
         }
         Tab {
             title: "about"
-            Rectangle { color: "green" }
+            AboutPage {
+                id: ap
+            }
         }
     }
 }

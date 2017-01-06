@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
     SetUnhandledExceptionFilter(UnExceptionFilter);
 
     QGuiApplication app(argc, argv);
-    qmlRegisterType<serialConnect>("qt.SerialConnect",1,0,"SerialConnect");
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("sc",new serialConnect);
     engine.addImportPath("D:/QMLStudy/smartLED");
     engine.load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
 

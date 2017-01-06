@@ -4,7 +4,6 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
-import qt.SerialConnect 1.0
 import SLComponent 1.0
 
 Window {
@@ -14,18 +13,6 @@ Window {
     height: 495
     color: "transparent"
     flags: 0x0800 | 0x0001
-
-    SerialConnect {
-        id: sc
-        signal lightChanged(string lg)
-        signal tempChanged(string tm)
-        signal humiChanged(string hm)
-        onDataChanged: {
-            lightChanged(lg)
-            tempChanged(tm)
-            humiChanged(hm)
-        }
-    }
 
     DropShadow {
         anchors.fill: centerFrame
@@ -172,21 +159,20 @@ Window {
                     sc.portName = comboBox1.currentText
                     sc.setBaudRate(Number(comboBox2.currentText))
                     sc.setDataBits(Number(comboBox3.currentText))
-                    sc.setStopBits(comboBox4.currentIndex == 0?SerialConnect.OneStop:
-                                    comboBox4.currentIndex == 1?SerialConnect.OneAndHalfStop:
-                                        SerialConnect.TwoStop)
-                    sc.setParity(comboBox5.currentIndex == 0?SerialConnect.NoParity:
-                                    comboBox5.currentIndex == 1?SerialConnect.OddParity:
-                                        SerialConnect.EvenParity)
+                    sc.setStopBits(comboBox4.currentIndex == 0?sc.OneStop:
+                                    comboBox4.currentIndex == 1?sc.OneAndHalfStop:
+                                        sc.TwoStop)
+                    sc.setParity(comboBox5.currentIndex == 0?sc.NoParity:
+                                    comboBox5.currentIndex == 1?sc.OddParity:
+                                        sc.EvenParity)
                     if(sc.connectSart()) {
                         window1.width = 730
                         isConnected = true
                         button1.text = qsTr("DisConnect")
                         var comRf = Qt.createComponent("qrc:/UI/RightFrame.qml")
-                        if (comRf.status === Component.Ready) {
+                        if (comRf.status === Component.Ready)
                             rightFrame = comRf.createObject(window1)
-                            rightFrame.serialInstance = sc
-                        }
+
                     }
                     else {
                         var comDialog = Qt.createComponent("qrc:/UI/MsgDialog.qml")

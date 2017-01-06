@@ -10,7 +10,9 @@ serialConnect::serialConnect(QObject *parent) : QObject(parent) {
          this->m_humidity = data.mid(1,2).toHex();
          this->m_temperature = data.mid(3,2).toHex();
          this->m_light = data.right(1).toHex();
-         emit dataChanged(this->m_light,this->m_temperature,this->m_humidity);
+         emit humiChanged(m_humidity);
+         emit tempChanged(m_temperature);
+         emit lightChanged(m_light);
          //qDebug() << "light:" << this->m_light;
          //qDebug() << "temperature:" << this->m_temperature;
          //qDebug() << "humidity:" << this->m_humidity;
@@ -20,7 +22,7 @@ serialConnect::serialConnect(QObject *parent) : QObject(parent) {
 }
 
 serialConnect::~serialConnect() {
-
+    linkPort->close();
 }
 
 void serialConnect::writeChar(const QString &cc) {

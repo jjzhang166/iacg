@@ -16,7 +16,9 @@ class serialConnect : public QObject {
 
 signals:
     void portNameChanged(const QString &port_name);
-    void dataChanged(const QString &lg,const QString &tm,const QString &hm);
+    void tempChanged(const QString &tm);
+    void humiChanged(const QString &hm);
+    void lightChanged(const QString &lg);
 
 public:
     serialConnect(QObject *parent = 0);

@@ -14,5 +14,7 @@
         <file>pic/light_l.png</file>
         <file>pic/light_m.png</file>
         <file>pic/light_mh.png</file>
+        <file>UI/AboutPage.qml</file>
+        <file>pic/project_logo.png</file>
     </qresource>
 </RCC>
