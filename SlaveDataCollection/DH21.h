@@ -25,8 +25,10 @@ extern U8  U8count,U8temp;
 extern U8  U8T_data_H,U8T_data_L,U8RH_data_H,U8RH_data_L,U8checkdata;
 extern U8  U8T_data_H_temp,U8T_data_L_temp,U8RH_data_H_temp,U8RH_data_L_temp,U8checkdata_temp;
 extern U8  U8comdata;
-extern U8  outdata[6];  //定义发送的字节数	   
-extern U8  count;
+extern U8  outdata[6];  //定义发送的字节数
+extern U8  indata[3];	   
+extern volatile U8 count;
+extern volatile U8 count_r;
 extern U16 U16temp1,U16temp2;
 
 //函数签名

@@ -6,8 +6,10 @@ U8  U8count,U8temp;
 U8  U8T_data_H,U8T_data_L,U8RH_data_H,U8RH_data_L,U8checkdata;
 U8  U8T_data_H_temp,U8T_data_L_temp,U8RH_data_H_temp,U8RH_data_L_temp,U8checkdata_temp;
 U8  U8comdata;
-U8  outdata[6];  //定义发送的字节数	   
-U8  count;
+U8  outdata[6];  //定义发送的字节数
+U8	indata[3];	   
+volatile U8 count;
+volatile U8 count_r;
 U16 U16temp1,U16temp2;
 
 void DH21_sendData(U8* a) {
