@@ -14,13 +14,13 @@ Rectangle {
         tab_width: 130
         anchors.fill: parent
         Tab {
-            title: "mainMenu"
+            title: qsTr("mainMenu")
             CollPanel {
                 id: cp
             }
         }
         Tab {
-            title: "about"
+            title: qsTr("about")
             AboutPage {
                 id: ap
             }

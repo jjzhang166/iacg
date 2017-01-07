@@ -1,6 +1,6 @@
 ﻿import QtQuick 2.4
 import SLComponent 1.0
-
+import QtQuick.Controls 1.4
 Rectangle {
     property string bg_color: "#fafafa"
     id: rectangle1
@@ -25,7 +25,6 @@ Rectangle {
 
         onLightChanged: {
             lg = parseInt("0x"+lg)
-            console.log("light:" + lg)
             if(lg > 230)
                 light_img.source = "qrc:/pic/light_l.png"
             else if(lg > 140)
@@ -153,7 +152,6 @@ Rectangle {
         }
 
         Text {
-            id: text1
             x: 118
             y: 60
             text: qsTr("%RH")
@@ -170,6 +168,68 @@ Rectangle {
         anchors.leftMargin: 0
         anchors.top: temp_panel.bottom
         anchors.topMargin: 0
+        Text {
+            id: setting_label
+            text: qsTr("CurrentSetting:")
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            anchors.top: parent.top
+            anchors.topMargin: 25
+            font.pixelSize: 15
+        }
+
+        SLCheckBox {
+            id: checkBox1
+            text: qsTr("AutoLight")
+            checked: true
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            anchors.top: setting_label.bottom
+            anchors.topMargin: 20
+        }
+
+        Text {
+            id: text1
+            enabled: !checkBox1.checked
+            text: qsTr("lightLevel:")
+            color: text1.enabled?"black":"gray"
+            anchors.left: parent.left
+            anchors.leftMargin: 15
+            anchors.top: checkBox1.bottom
+            anchors.topMargin: 15
+            font.pixelSize: 13
+        }
+
+        SLComboBox {
+            id: comboBox1
+            enabled: !checkBox1.checked
+            width: 135
+            anchors.left: text1.right
+            anchors.leftMargin: 10
+            anchors.top: checkBox1.bottom
+            anchors.topMargin: 11
+            model: ["Level0","Level1","Level2",
+                    "Level3","Level4"]
+        }
+
+        SLFlatButton {
+            id: button1
+            width: 220
+            height: 23
+            text: qsTr("OK")
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.top: comboBox1.bottom
+            anchors.topMargin: 27
+            onClicked: {
+                var byte1 = "ff"
+                var byte2 = checkBox1.checked? "01":"00"
+                var byte3 = comboBox1.currentText == "Level0"? "00":
+                            comboBox1.currentText == "Level1"? "0a":
+                            comboBox1.currentText == "Level2"? "14":
+                            comboBox1.currentText == "Level3"? "1e":"28"
+                sc.writeByte(byte1+byte2+byte3)
+            }
+        }
     }
 
     Canvas {

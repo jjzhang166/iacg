@@ -16,5 +16,6 @@
         <file>pic/light_mh.png</file>
         <file>UI/AboutPage.qml</file>
         <file>pic/project_logo.png</file>
+        <file>locale/zh_CN.qm</file>
     </qresource>
 </RCC>

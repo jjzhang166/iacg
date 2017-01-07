@@ -29,3 +29,12 @@ LIBS += "-LD:\Microsoft Visual Studio 14.0\VC\lib\amd64"    \
 
 HEADERS += \
     serialconnect.h
+
+TRANSLATIONS += locale/zh_CN.ts \
+                    locale/en_US.ts
+
+lupdate_only{
+    SOURCES += UI/*.qml
+}
+
+RC_ICONS = sl.ico

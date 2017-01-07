@@ -3,6 +3,7 @@
 #include <QString>
 #include <QVariant>
 #include <QtQml>
+#include <QTranslator>
 #include <Windows.h>
 
 #include "serialconnect.h"
@@ -18,7 +19,7 @@ LONG WINAPI UnExceptionFilter(PEXCEPTION_POINTERS pExInfo) {
     STARTUPINFO si = { sizeof(si) };
     PROCESS_INFORMATION pi;
     CreateProcess(NULL,                             //pAppName
-                  szCmdLine,   //cmdLine
+                  szCmdLine,                        //cmdLine
                   NULL,                             //psaProc
                   NULL,                             //psaThread
                   FALSE,                            //InheritHandles
@@ -37,10 +38,12 @@ int main(int argc, char *argv[])
     SetUnhandledExceptionFilter(UnExceptionFilter);
 
     QGuiApplication app(argc, argv);
+    QTranslator ts;
+    ts.load(":/locale/zh_CN.qm");
+    app.installTranslator(&ts);
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("sc",new serialConnect);
-    engine.addImportPath("D:/QMLStudy/smartLED");
+    engine.addImportPath(QDir::currentPath());
     engine.load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
-
     return app.exec();
 }
