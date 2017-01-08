@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>pic/bugreport_background.png</file>
-        <file>pic/errmsg.png</file>
-        <file>UI/bug_report.qml</file>
-    </qresource>
-</RCC>
