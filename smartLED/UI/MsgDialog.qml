@@ -1,6 +1,8 @@
-﻿import QtQuick 2.0
+import QtQuick 2.0
 import QtQuick.Window 2.0
 import QtQuick.Controls 1.4
+
+import SLComponent 1.0
 
 Window {
     id: msgdia
@@ -41,7 +43,7 @@ Window {
         font.pixelSize: 15
     }
 
-    Button {
+    SLFlatButton {
         id: button1
         width: 160
         height: 23
