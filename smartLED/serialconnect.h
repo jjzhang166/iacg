@@ -13,18 +13,21 @@ class serialConnect : public QObject {
     Q_PROPERTY(QString light READ light WRITE setLight)
     Q_PROPERTY(QString temperature READ temperature WRITE setTemperature)
     Q_PROPERTY(QString humidity READ humidity WRITE setHumidity)
+    Q_PROPERTY(QStringList portList READ portList NOTIFY portListChanged)
 
 signals:
     void portNameChanged(const QString &port_name);
     void tempChanged(const QString &tm);
     void humiChanged(const QString &hm);
     void lightChanged(const QString &lg);
-
+    void portListChanged();
 public:
     serialConnect(QObject *parent = 0);
     ~serialConnect();
 
 public:
+    QStringList portList() const;
+
     QString portName() const;
     void    setPortName(const QString &port_name);
 
@@ -65,6 +68,7 @@ private:
     QString m_light;
     QString m_temperature;
     QString m_humidity;
+    QStringList m_portList;
 
 private:
     QByteArray QString2Hex(QString str);

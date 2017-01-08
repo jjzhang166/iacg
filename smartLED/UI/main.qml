@@ -56,9 +56,9 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text1.bottom
             anchors.topMargin: 10
-            model: ["COM0","COM1","COM2","COM3","COM4",
-            "COM5","COM6","COM7","COM8","COM9","COM10",
-            "COM11","COM12","COM13","COM14","COM15"]
+            model: [sc.portList[0],sc.portList[1],sc.portList[2],
+            sc.portList[3],sc.portList[4],sc.portList[5],
+            sc.portList[6],sc.portList[7]]
         }
 
         Text {

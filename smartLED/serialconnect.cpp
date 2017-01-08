@@ -2,6 +2,25 @@
 #include <QDebug>
 
 serialConnect::serialConnect(QObject *parent) : QObject(parent) {
+#ifdef Q_OS_LINUX
+    m_portList.append(QString("ttyUSB0"));
+    m_portList.append(QString("ttyUSB1"));
+    m_portList.append(QString("ttyUSB2"));
+    m_portList.append(QString("ttyUSB3"));
+    m_portList.append(QString("ttyS0"));
+    m_portList.append(QString("ttyS1"));
+    m_portList.append(QString("ttyS2"));
+    m_portList.append(QString("ttyS3"));
+#elif
+    m_portList.append(QString("COM0"));
+    m_portList.append(QString("COM1"));
+    m_portList.append(QString("COM2"));
+    m_portList.append(QString("COM3"));
+    m_portList.append(QString("COM4"));
+    m_portList.append(QString("COM5"));
+    m_portList.append(QString("COM6"));
+    m_portList.append(QString("COM7"));
+#endif
     linkPort = new QSerialPort;
     QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
          QByteArray data = linkPort->readAll();
@@ -54,6 +73,10 @@ bool serialConnect::connectSart() {
 
 void serialConnect::connectStop() {
     linkPort->close();
+}
+
+QStringList serialConnect::portList() const {
+    return this->m_portList;
 }
 
 QString serialConnect::portName() const {
