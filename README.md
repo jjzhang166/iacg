@@ -19,3 +19,7 @@
 
 ##项目截图
 ![项目截图fedora25](http://git.oschina.net/uploads/images/2017/0108/193108_a1eea984_1178850.png "在这里输入图片标题")
+
+##FAQ
+1. Linux下已经安装了相应驱动，为什么还是无法打开串口？
+linux下打开串口需要su权限，终端使用sudo启动相应程序即可正常打开串口
