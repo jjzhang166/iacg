@@ -1,6 +1,5 @@
 #smartLED
 ##日志
-- 2016/12/30 完成"BugReport.exe"程序
 - 2016/12/31 更新上位机部分UI
 - 2017/1/1   更新上位机部分UI，串口连接部分程序
 - 2017/1/3   更新上位机部分UI，QML控件定制(combobox,button,tabview)
@@ -21,5 +20,5 @@
 ![项目截图fedora25](http://git.oschina.net/uploads/images/2017/0108/193108_a1eea984_1178850.png "在这里输入图片标题")
 
 ##FAQ
-1. Linux下已经安装了相应驱动，为什么还是无法打开串口？
-linux下打开串口需要su权限，终端使用sudo启动相应程序即可正常打开串口
+1. Linux下已经安装了相应驱动，为什么还是无法打开串口？ 
+Linux下打开串口需要su权限，终端使用sudo启动相应程序即可正常打开串口
