@@ -1,30 +1,137 @@
 ﻿import QtQuick 2.4
 import SLComponent 1.0
 import QtQuick.Controls 1.4
+import QtQuick.Dialogs 1.2
+
 Rectangle {
     property string bg_color: "#fafafa"
+    property int humi_time: 0
+    property int temp_time: 0
+    property int delay_time: 60
     id: rectangle1
     width: 525
     height: 430
 
+/*    Dialog {
+        property string _t: "error dialog"
+        property string _c: "an error occurred"
+        id: dia
+        title: _t
+        modality: Qt.ApplicationModal
+        contentItem: Rectangle {
+            color: "#fafafa"
+            implicitWidth: 300
+            implicitHeight: 100
+            Text {
+                text: dia._c
+                color: "black"
+                anchors.centerIn: parent
+                anchors.verticalCenterOffset: -15
+            }
+
+            Button {
+                text: qsTr("OK")
+                anchors.right: parent.right
+                anchors.rightMargin: 15
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 15
+                onClicked: dia.close()
+            }
+        }
+    }
+
+
+    function sndMailWithError(t) {
+        console.log("on send mail func")
+        var ret = maildata.sendMail(t)
+        switch(ret) {
+        case -1:
+            dia._t = qsTr("connet error")
+            dia._c = qsTr("can not connet smtp server")
+            dia.open()
+            break
+        case -2:
+            dia._t = qsTr("login error")
+            dia._c = qsTr("login error,please check your user and pwd")
+            dia.open()
+            break
+        case -3:
+            dia._t = qsTr("send mail error")
+            dia._c = qsTr("send mail,please check your mailbox setting")
+            dia.open()
+            break
+        default:
+            break
+        }
+    }*/
+
     Connections {
+        target: maildata
+        onCollData: {
+            con.temp_busy = true
+            con.humi_busy = true
+        }
+        onCollTempEnd: {
+            if(res == 1) {
+                console.log("coll temp end,and send mail stand by")
+                con.temp_busy = false
+            }
+        }
+        onCollHumiEnd: {
+            if(res == 1) {
+                console.log("coll humi end,and send mail stand by")
+                con.humi_busy =false
+            }
+        }
+    }
+
+    Connections {
+        id: con
+        property bool temp_busy: false
+        property bool humi_busy: false
         target: sc
         onTempChanged: {
             tm = parseInt("0x"+tm)
-            if(tm > 30)
-                temp_value.color = "red"
+            if(!con.temp_busy) {
+                if(maildata.tmpAlert != -1 && tm > maildata.tmpAlert) {
+                    if(temp_time == 0) {
+                        temp_time = maildata.getCurTimeSec()
+                        maildata.sendMail(0)
+                        return
+                    }
+                    if(maildata.getCurTimeSec() - temp_time > delay_time) {
+                        temp_time = maildata.getCurTimeSec()
+                        maildata.sendMail(0)
+                    }
+                }
+            }
             temp_value.text = tm
             temp_gauge.value = tm
         }
 
         onHumiChanged: {
             hm = parseInt("0x"+hm)
+            if(!con.humi_busy) {
+                if(maildata.humiAlert != -1 && hm > maildata.humiAlert) {
+                    if(humi_time == 0) {
+                        humi_time = maildata.getCurTimeSec()
+                        maildata.sendMail(1)
+                        return
+                    }
+                    if(maildata.getCurTimeSec() - humi_time > delay_time) {
+                        humi_time = maildata.getCurTimeSec()
+                        maildata.sendMail(1)
+                    }
+                }
+            }
             humi_value.text = hm
             humi_gauge.value = hm
         }
 
         onLightChanged: {
             lg = parseInt("0x"+lg)
+            if(maildata.lightAlert != -1 && lg > maildata.lightAlert)
+                maildata.sendMail(2)
             if(lg > 230)
                 light_img.source = "qrc:/pic/light_l.png"
             else if(lg > 140)
@@ -170,7 +277,7 @@ Rectangle {
         anchors.topMargin: 0
         Text {
             id: setting_label
-            text: qsTr("CurrentSetting:")
+            text: qsTr("SendDelay:")
             anchors.left: parent.left
             anchors.leftMargin: 15
             anchors.top: parent.top
@@ -180,7 +287,7 @@ Rectangle {
 
         SLCheckBox {
             id: checkBox1
-            text: qsTr("AutoLight")
+            text: qsTr("Default Time")
             checked: true
             anchors.left: parent.left
             anchors.leftMargin: 15
@@ -191,7 +298,7 @@ Rectangle {
         Text {
             id: text1
             enabled: !checkBox1.checked
-            text: qsTr("lightLevel:")
+            text: qsTr("Custom Time:")
             color: text1.enabled?"black":"gray"
             anchors.left: parent.left
             anchors.leftMargin: 15
@@ -208,8 +315,8 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.top: checkBox1.bottom
             anchors.topMargin: 11
-            model: ["Level0","Level1","Level2",
-                    "Level3","Level4"]
+            model: [qsTr("5 minute"),qsTr("15 minutes"),
+                qsTr("1 hour"),qsTr("10 hours"),qsTr("24 hours")]
         }
 
         SLFlatButton {
@@ -221,13 +328,17 @@ Rectangle {
             anchors.top: comboBox1.bottom
             anchors.topMargin: 27
             onClicked: {
-                var byte1 = "ff"
-                var byte2 = checkBox1.checked? "01":"00"
-                var byte3 = comboBox1.currentText == "Level0"? "00":
-                            comboBox1.currentText == "Level1"? "0a":
-                            comboBox1.currentText == "Level2"? "14":
-                            comboBox1.currentText == "Level3"? "1e":"28"
-                sc.writeByte(byte1+byte2+byte3)
+                if(checkBox1.checked)
+                    rectangle1.delay_time = 60
+                else {
+                    rectangle1.delay_time =
+                            comboBox1.currentIndex == 0? 300:
+                            comboBox1.currentIndex == 1? 900:
+                            comboBox1.currentIndex == 2? 3600:
+                            comboBox1.currentIndex == 3? 36000:
+                                                         86400
+                    console.log("cur delay time:"+rectangle1.delay_time)
+                }
             }
         }
     }

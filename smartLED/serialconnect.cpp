@@ -11,7 +11,7 @@ serialConnect::serialConnect(QObject *parent) : QObject(parent) {
     m_portList.append(QString("ttyS1"));
     m_portList.append(QString("ttyS2"));
     m_portList.append(QString("ttyS3"));
-#elif
+#else
     m_portList.append(QString("COM0"));
     m_portList.append(QString("COM1"));
     m_portList.append(QString("COM2"));

@@ -4,7 +4,8 @@ QT += qml quick serialport
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    serialconnect.cpp
+    serialconnect.cpp \
+    maildata.cpp
 
 RESOURCES += qml.qrc
 
@@ -15,13 +16,21 @@ QML_IMPORT_PATH = .
 include(deployment.pri)
 
 HEADERS += \
-    serialconnect.h
+    serialconnect.h \
+    maildata.h \
+    SmtpClient/SmtpMime
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts
 
 lupdate_only{
-    SOURCES += UI/*.qml
+    SOURCES += UI/*.qml \
+                UI/SettingPanelItem/*.qml
 }
 
 RC_ICONS = sl.ico
+
+win32: LIBS += -L$$PWD/./ -lSMTPEmail
+
+INCLUDEPATH += $$PWD/.
+DEPENDPATH += $$PWD/.

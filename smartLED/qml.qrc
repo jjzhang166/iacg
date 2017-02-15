@@ -16,6 +16,12 @@
         <file>pic/light_mh.png</file>
         <file>UI/AboutPage.qml</file>
         <file>pic/project_logo.png</file>
+        <file>UI/SettingPanel.qml</file>
+        <file>UI/SettingPanelItem/AutoLight.qml</file>
+        <file>UI/SettingPanelItem/MailSetting.qml</file>
+        <file>UI/SettingPanelItem/TmpSetting.qml</file>
+        <file>UI/SettingPanelItem/HumiSetting.qml</file>
+        <file>UI/SettingPanelItem/ButtonPanel.qml</file>
         <file>locale/zh_CN.qm</file>
     </qresource>
 </RCC>

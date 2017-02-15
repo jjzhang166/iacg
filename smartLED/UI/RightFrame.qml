@@ -20,6 +20,13 @@ Rectangle {
             }
         }
         Tab {
+            title: qsTr("setting")
+            SettingPanel {
+                id: sp
+            }
+        }
+
+        Tab {
             title: qsTr("about")
             AboutPage {
                 id: ap

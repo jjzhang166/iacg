@@ -9,3 +9,6 @@ SLFlatButton 1.0    ./SLFlatButton.qml
 SLTabView 1.0       ./SLTabView.qml
 SLGauge 1.0         ./SLGauge.qml
 SLCheckBox 1.0      ./SLCheckBox.qml
+SLGroupBox 1.0      ./SLGroupBox.qml
+SLTextInput 1.0     ./SLTextInput.qml
+SLMsgDialog 1.0		./SLMsgDialog.qml
