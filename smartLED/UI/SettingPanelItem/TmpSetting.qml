@@ -10,6 +10,7 @@ Item {
         width: parent.width
         height: 280
         title: qsTr("TmpSetting")
+        fontfamily: fontmanager.curfont
         content: Rectangle {
 
             Connections {
@@ -39,6 +40,7 @@ Item {
             SLCheckBox {
                 id: check1
                 text: qsTr("AutoSendMail")
+                fontfamily: fontmanager.curfont
                 checked: false
                 anchors.top: parent.top
                 anchors.topMargin: 20
@@ -51,6 +53,7 @@ Item {
                 anchors.left: check1.right
                 anchors.leftMargin: 40
                 anchors.verticalCenter: check1.verticalCenter
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_alertvalue
@@ -59,6 +62,8 @@ Item {
                 anchors.verticalCenter: t1.verticalCenter
                 width: 30
                 inputMask: "99"
+                font.family: fontmanager.curfont
+                tooltip_fontfamily: fontmanager.curfont
             }
             SLTextInput {
                 id: input_title
@@ -68,6 +73,8 @@ Item {
                 anchors.leftMargin: 60
                 width: 220
                 tooltip: qsTr("No Title")
+                tooltip_fontfamily: fontmanager.curfont
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_content
@@ -78,6 +85,8 @@ Item {
                 width: 270
                 height: 142
                 tooltip: qsTr("Test Message")
+                tooltip_fontfamily: fontmanager.curfont
+                font.family: fontmanager.curfont
             }
         }
     }

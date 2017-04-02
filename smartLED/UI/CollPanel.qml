@@ -155,6 +155,7 @@ Rectangle {
             anchors.leftMargin: 15
             anchors.top: parent.top
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
 
@@ -184,6 +185,7 @@ Rectangle {
             anchors.leftMargin: 15
             anchors.top: parent.top
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
 
@@ -194,6 +196,7 @@ Rectangle {
             anchors.leftMargin: 65
             anchors.top: temp_label.bottom
             anchors.topMargin: 30
+            font.family: fontmanager.curfont
             font.pixelSize: 75
         }
 
@@ -212,6 +215,7 @@ Rectangle {
             x: 135
             y: 65
             text: qsTr("℃")
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
     }
@@ -230,6 +234,7 @@ Rectangle {
             anchors.leftMargin: 15
             anchors.top: parent.top
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
 
@@ -240,6 +245,7 @@ Rectangle {
             anchors.leftMargin: 45
             anchors.top: humi_label.bottom
             anchors.topMargin: 30
+            font.family: fontmanager.curfont
             font.pixelSize: 75
         }
 
@@ -262,6 +268,7 @@ Rectangle {
             x: 118
             y: 60
             text: qsTr("%RH")
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
     }
@@ -282,12 +289,14 @@ Rectangle {
             anchors.leftMargin: 15
             anchors.top: parent.top
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 15
         }
 
         SLCheckBox {
             id: checkBox1
             text: qsTr("Default Time")
+            fontfamily: fontmanager.curfont
             checked: true
             anchors.left: parent.left
             anchors.leftMargin: 15
@@ -304,6 +313,7 @@ Rectangle {
             anchors.leftMargin: 15
             anchors.top: checkBox1.bottom
             anchors.topMargin: 15
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -315,6 +325,7 @@ Rectangle {
             anchors.leftMargin: 10
             anchors.top: checkBox1.bottom
             anchors.topMargin: 11
+            fontfamily: fontmanager.curfont
             model: [qsTr("5 minute"),qsTr("15 minutes"),
                 qsTr("1 hour"),qsTr("10 hours"),qsTr("24 hours")]
         }
@@ -327,6 +338,7 @@ Rectangle {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: comboBox1.bottom
             anchors.topMargin: 27
+            fontfamily: fontmanager.curfont
             onClicked: {
                 if(checkBox1.checked)
                     rectangle1.delay_time = 60

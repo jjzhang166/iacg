@@ -7,6 +7,7 @@
 
 #include "serialconnect.h"
 #include "maildata.h"
+#include "fontmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +16,7 @@ int main(int argc, char *argv[])
     ts.load(":/locale/zh_CN.qm");
     app.installTranslator(&ts);
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("fontmanager",new FontManager);
     engine.rootContext()->setContextProperty("maildata",new MailData);
     engine.rootContext()->setContextProperty("sc",new serialConnect);
     engine.addImportPath(QDir::currentPath());

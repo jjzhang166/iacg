@@ -14,7 +14,10 @@ ComboBox {
     implicitWidth: 160
     implicitHeight: 25
     
+	property string fontfamily: "Times New Roman"
+	
     style: ComboBoxStyle {
+		font: fontfamily
         background: Rectangle {
             implicitWidth: 160
             implicitHeight: 25

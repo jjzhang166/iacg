@@ -41,6 +41,7 @@ Window {
         anchors.leftMargin: 17
         anchors.verticalCenter: image1.verticalCenter
         font.pixelSize: 15
+        font.family: fontmanager.curfont
     }
 
     SLFlatButton {
@@ -52,6 +53,7 @@ Window {
         anchors.leftMargin: 111
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 28
+        fontfamily: fontmanager.curfont
         onClicked: msgdia.close()
     }
 }

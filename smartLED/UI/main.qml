@@ -25,6 +25,18 @@ Window {
         source: centerFrame
     }
 
+    //handle font changed
+    Connections {
+        target: fontmanager
+        onCurfontChanged: {
+            text1.font.family = fontmanager.curfont
+            text2.font.family = fontmanager.curfont
+            text3.font.family = fontmanager.curfont
+            text4.font.family = fontmanager.curfont
+            text5.font.family = fontmanager.curfont
+        }
+    }
+
     TopFrame {
         id: tf
         z: 10
@@ -46,6 +58,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: parent.top
             anchors.topMargin: 45
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -56,6 +69,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text1.bottom
             anchors.topMargin: 10
+            fontfamily: fontmanager.curfont
             model: [sc.portList[0],sc.portList[1],sc.portList[2],
             sc.portList[3],sc.portList[4],sc.portList[5],
             sc.portList[6],sc.portList[7]]
@@ -68,6 +82,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: comboBox1.bottom
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -79,6 +94,7 @@ Window {
             anchors.top: text2.bottom
             anchors.topMargin: 10
             currentIndex: 3
+            fontfamily: fontmanager.curfont
             model: [1200,2400,4800,9600,
             19200,38400,57600,115200]
         }
@@ -90,6 +106,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: comboBox2.bottom
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -101,6 +118,7 @@ Window {
             anchors.top: text3.bottom
             anchors.topMargin: 10
             currentIndex: 3
+            fontfamily: fontmanager.curfont
             model: [5,6,7,8]
         }
 
@@ -111,6 +129,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: comboBox3.bottom
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -121,6 +140,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text4.bottom
             anchors.topMargin: 10
+            fontfamily: fontmanager.curfont
             model: ["1","1.5","2"]
         }
 
@@ -131,6 +151,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: comboBox4.bottom
             anchors.topMargin: 25
+            font.family: fontmanager.curfont
             font.pixelSize: 13
         }
 
@@ -141,6 +162,7 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text5.bottom
             anchors.topMargin: 10
+            fontfamily: fontmanager.curfont
             model: ["No","Odd","Even"]
         }
 
@@ -149,11 +171,13 @@ Window {
             property bool isConnected: false
             id: button1
             width: 160
+            height: 28
             text: qsTr("Connect")
             anchors.left: parent.left
             anchors.leftMargin: 12
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 20
+            fontfamily: fontmanager.curfont
             onClicked: {
                 if(!isConnected) {
                     sc.portName = comboBox1.currentText

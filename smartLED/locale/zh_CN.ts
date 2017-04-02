@@ -9,17 +9,17 @@
         <translation>作者：linuxlike</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="29"/>
+        <location filename="../UI/AboutPage.qml" line="30"/>
         <source>EMail:linuxlike@foxmail.com</source>
         <translation>作者邮箱：linuxlike@foxmail.com</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="38"/>
+        <location filename="../UI/AboutPage.qml" line="40"/>
         <source>ProjectHome:</source>
         <translation>项目主页：</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="68"/>
+        <location filename="../UI/AboutPage.qml" line="72"/>
         <source>Author&apos;s School Home:</source>
         <translation>作者学校：</translation>
     </message>
@@ -32,17 +32,17 @@
         <translation>补光设置</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="25"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="27"/>
         <source>AutoLight</source>
         <translation>自动调整光照</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="37"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="40"/>
         <source>LightLevel:</source>
         <translation>补光级别:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="51"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="55"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -164,68 +164,68 @@
         <translation>当前亮度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="182"/>
+        <location filename="../UI/CollPanel.qml" line="183"/>
         <source>CurrentTemp:</source>
         <translation>当前温度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="192"/>
-        <location filename="../UI/CollPanel.qml" line="238"/>
+        <location filename="../UI/CollPanel.qml" line="194"/>
+        <location filename="../UI/CollPanel.qml" line="243"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="214"/>
+        <location filename="../UI/CollPanel.qml" line="217"/>
         <source>℃</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="228"/>
+        <location filename="../UI/CollPanel.qml" line="232"/>
         <source>CurrentHumi:</source>
         <translation>当前湿度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="264"/>
+        <location filename="../UI/CollPanel.qml" line="270"/>
         <source>%RH</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="280"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>SendDelay:</source>
         <translation>发信间隔：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="290"/>
+        <location filename="../UI/CollPanel.qml" line="298"/>
         <source>Default Time</source>
         <translation>默认时间</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="301"/>
+        <location filename="../UI/CollPanel.qml" line="310"/>
         <source>Custom Time:</source>
         <translation>配置时间:</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="318"/>
+        <location filename="../UI/CollPanel.qml" line="329"/>
         <source>5 minute</source>
         <translation>5分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="318"/>
+        <location filename="../UI/CollPanel.qml" line="329"/>
         <source>15 minutes</source>
         <translation>15分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="319"/>
+        <location filename="../UI/CollPanel.qml" line="330"/>
         <source>1 hour</source>
         <translation>1小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="319"/>
+        <location filename="../UI/CollPanel.qml" line="330"/>
         <source>10 hours</source>
         <translation>10小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="319"/>
+        <location filename="../UI/CollPanel.qml" line="330"/>
         <source>24 hours</source>
         <translation>24小时</translation>
     </message>
@@ -242,9 +242,22 @@
         <translation type="vanished">光照等级：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="326"/>
+        <location filename="../UI/CollPanel.qml" line="337"/>
         <source>OK</source>
         <translation>确定</translation>
+    </message>
+</context>
+<context>
+    <name>FontSetting</name>
+    <message>
+        <location filename="../UI/SettingPanelItem/FontSetting.qml" line="11"/>
+        <source>FontSetting</source>
+        <translation>字体设置</translation>
+    </message>
+    <message>
+        <location filename="../UI/SettingPanelItem/FontSetting.qml" line="19"/>
+        <source>Available Fonts:</source>
+        <translation>提供的字体:</translation>
     </message>
 </context>
 <context>
@@ -255,22 +268,22 @@
         <translation>湿度设置</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="40"/>
+        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="41"/>
         <source>AutoSendMail</source>
         <translation>自动发送邮件</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="49"/>
+        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="51"/>
         <source>AlertValue:</source>
         <translation>阈值:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="69"/>
+        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="74"/>
         <source>No Title</source>
         <translation>没有标题</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="79"/>
+        <location filename="../UI/SettingPanelItem/HumiSetting.qml" line="86"/>
         <source>Test Message</source>
         <translation>测试信息</translation>
     </message>
@@ -316,62 +329,62 @@
         <translation>邮箱配置</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="34"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="35"/>
         <source>SmtpServer:</source>
         <translation>SMTP服务器:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="43"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="45"/>
         <source>smtp server address</source>
         <translation>SMTP服务器的地址</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="50"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="54"/>
         <source>Port:</source>
         <translation>端口:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="58"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="63"/>
         <source>smtp port</source>
         <translation>端口号</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="66"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="73"/>
         <source>User:</source>
         <translation>用户名:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="74"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="82"/>
         <source>user name</source>
         <translation>你的邮箱地址</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="83"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="93"/>
         <source>Password:</source>
         <translation>密码:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="91"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="102"/>
         <source>password</source>
         <translation>你的邮箱密码</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="100"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="113"/>
         <source>SendBox:</source>
         <translation>发件箱:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="108"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="122"/>
         <source>sending mailbox&apos;s address</source>
         <translation>发送邮件的邮箱地址</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="117"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="133"/>
         <source>RecvBox:</source>
         <translation>收件箱:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="125"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="142"/>
         <source>recv mailbox&apos;s address</source>
         <translation>接受邮件的邮箱地址</translation>
     </message>
@@ -384,7 +397,7 @@
         <translation>串口无法连接，请选择一个正确的串口号</translation>
     </message>
     <message>
-        <location filename="../UI/MsgDialog.qml" line="50"/>
+        <location filename="../UI/MsgDialog.qml" line="51"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -392,17 +405,17 @@
 <context>
     <name>RightFrame</name>
     <message>
-        <location filename="../UI/RightFrame.qml" line="17"/>
+        <location filename="../UI/RightFrame.qml" line="18"/>
         <source>mainMenu</source>
         <translation>主选单</translation>
     </message>
     <message>
-        <location filename="../UI/RightFrame.qml" line="23"/>
+        <location filename="../UI/RightFrame.qml" line="24"/>
         <source>setting</source>
         <translation>设置</translation>
     </message>
     <message>
-        <location filename="../UI/RightFrame.qml" line="30"/>
+        <location filename="../UI/RightFrame.qml" line="31"/>
         <source>about</source>
         <translation>关于</translation>
     </message>
@@ -415,22 +428,22 @@
         <translation>温度设置</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="41"/>
+        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="42"/>
         <source>AutoSendMail</source>
         <translation>自动发送邮件</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="50"/>
+        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="52"/>
         <source>AlertValue:</source>
         <translation>阈值:</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="70"/>
+        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="75"/>
         <source>No Title</source>
         <translation>没有标题</translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="80"/>
+        <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="87"/>
         <source>Test Message</source>
         <translation>测试信息</translation>
     </message>
@@ -438,38 +451,38 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../UI/main.qml" line="44"/>
+        <location filename="../UI/main.qml" line="56"/>
         <source>SerialPort:</source>
         <translation>串口号：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="66"/>
+        <location filename="../UI/main.qml" line="80"/>
         <source>BaudRate:</source>
         <translation>波特率：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="88"/>
+        <location filename="../UI/main.qml" line="104"/>
         <source>DataBit:</source>
         <translation>数据位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="109"/>
+        <location filename="../UI/main.qml" line="127"/>
         <source>StopBit:</source>
         <translation>停止位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="129"/>
+        <location filename="../UI/main.qml" line="149"/>
         <source>CheckBit:</source>
         <translation>校验位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="152"/>
-        <location filename="../UI/main.qml" line="188"/>
+        <location filename="../UI/main.qml" line="175"/>
+        <location filename="../UI/main.qml" line="212"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="171"/>
+        <location filename="../UI/main.qml" line="195"/>
         <source>DisConnect</source>
         <translation>断开</translation>
     </message>

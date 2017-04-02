@@ -10,6 +10,7 @@ Item {
         width: parent.width
         height: 235
         title: qsTr("MailSetting")
+        fontfamily: fontmanager.curfont
         content: Rectangle {
             Connections {
                 target: maildata
@@ -32,6 +33,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 40
                 text: qsTr("SmtpServer:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_server
@@ -41,6 +43,8 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 120
                 tooltip: qsTr("smtp server address")
+                tooltip_fontfamily: fontmanager.curfont
+                font.family: fontmanager.curfont
             }
             Text {
                 id: t2
@@ -48,6 +52,7 @@ Item {
                 anchors.leftMargin: 40
                 anchors.verticalCenter: t1.verticalCenter
                 text: qsTr("Port:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_port
@@ -56,6 +61,8 @@ Item {
                 anchors.verticalCenter: t2.verticalCenter
                 anchors.verticalCenterOffset: 2
                 tooltip: qsTr("smtp port")
+                tooltip_fontfamily: fontmanager.curfont
+                font.family: fontmanager.curfont
             }
             Text {
                 id: t3
@@ -64,6 +71,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 40
                 text: qsTr("User:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_user
@@ -72,7 +80,9 @@ Item {
                 anchors.verticalCenter: t3.verticalCenter
                 anchors.verticalCenterOffset: 2
                 tooltip: qsTr("user name")
+                tooltip_fontfamily: fontmanager.curfont
                 width: 240
+                font.family: fontmanager.curfont
             }
             Text {
                 id: t4
@@ -81,6 +91,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 40
                 text: qsTr("Password:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_psw
@@ -89,7 +100,9 @@ Item {
                 anchors.verticalCenter: t4.verticalCenter
                 anchors.verticalCenterOffset: 2
                 tooltip: qsTr("password")
+                tooltip_fontfamily: fontmanager.curfont
                 width: 240
+                font.family: fontmanager.curfont
             }
             Text {
                 id: t5
@@ -98,6 +111,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 40
                 text: qsTr("SendBox:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_snd
@@ -106,7 +120,9 @@ Item {
                 anchors.verticalCenter: t5.verticalCenter
                 anchors.verticalCenterOffset: 2
                 tooltip: qsTr("sending mailbox's address")
+                tooltip_fontfamily: fontmanager.curfont
                 width: 240
+                font.family: fontmanager.curfont
             }
             Text {
                 id: t6
@@ -115,6 +131,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 40
                 text: qsTr("RecvBox:")
+                font.family: fontmanager.curfont
             }
             SLTextInput {
                 id: input_recv
@@ -123,7 +140,9 @@ Item {
                 anchors.verticalCenter: t6.verticalCenter
                 anchors.verticalCenterOffset: 2
                 tooltip: qsTr("recv mailbox's address")
+                tooltip_fontfamily: fontmanager.curfont
                 width: 240
+                font.family: fontmanager.curfont
             }
         }
     }

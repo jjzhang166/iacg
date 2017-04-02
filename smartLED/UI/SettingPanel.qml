@@ -31,6 +31,11 @@ Rectangle {
                 }
 
                 ListElement {
+                  com_source: "qrc:/UI/SettingPanelItem/FontSetting.qml"
+                  ref_height: 100
+                }
+
+                ListElement {
                     com_source: "qrc:/UI/SettingPanelItem/AutoLight.qml"
                     ref_height: 170
                 }

@@ -15,6 +15,7 @@ Item {
         width: parent.width
         height: 170
         title: qsTr("AutoLightSetting")
+        fontfamily: fontmanager.curfont
         content: Rectangle {
             SLCheckBox {
                 id: check1
@@ -22,6 +23,7 @@ Item {
                 anchors.topMargin: 10
                 anchors.left: parent.left
                 anchors.leftMargin: 40
+                fontfamily: fontmanager.curfont
                 text: qsTr("AutoLight")
                 checked: true
             }
@@ -34,6 +36,7 @@ Item {
                 anchors.topMargin: 18
                 anchors.left: parent.left
                 anchors.leftMargin: 45
+                font.family: fontmanager.curfont
                 text: qsTr("LightLevel:")
             }
 
@@ -43,6 +46,7 @@ Item {
                 anchors.verticalCenter: t1.verticalCenter
                 anchors.left: t1.right
                 anchors.leftMargin: 25
+                fontfamily: fontmanager.curfont
                 model: ["Level0","Level1","Level2",
                     "Level3","Level4"]
             }
@@ -51,6 +55,7 @@ Item {
                 text: qsTr("OK")
                 width: 240
                 height: 20
+                fontfamily: fontmanager.curfont
                 anchors.top: t1.bottom
                 anchors.topMargin: 27
                 anchors.left: parent.left

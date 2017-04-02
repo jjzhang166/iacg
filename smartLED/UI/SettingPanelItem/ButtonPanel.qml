@@ -75,6 +75,7 @@ Item {
             anchors.rightMargin: 80
             anchors.verticalCenter: parent.verticalCenter
             text: qsTr("SaveSettings")
+            fontfamily: fontmanager.curfont
             width: 150
             onClicked:
                 maildata.collDataStart()

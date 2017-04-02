@@ -23,5 +23,6 @@
         <file>UI/SettingPanelItem/HumiSetting.qml</file>
         <file>UI/SettingPanelItem/ButtonPanel.qml</file>
         <file>locale/zh_CN.qm</file>
+        <file>UI/SettingPanelItem/FontSetting.qml</file>
     </qresource>
 </RCC>

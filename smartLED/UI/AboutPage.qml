@@ -20,6 +20,7 @@ Rectangle {
         x: 54
         y: 133
         text: qsTr("Author:linuxlike")
+        font.family: fontmanager.curfont
         font.pointSize: 13
     }
 
@@ -27,6 +28,7 @@ Rectangle {
         id: text2
         x: 54
         text: qsTr("EMail:linuxlike@foxmail.com")
+        font.family: fontmanager.curfont
         font.pointSize: 13
         anchors.top: text1.bottom
         anchors.topMargin: 30
@@ -39,6 +41,7 @@ Rectangle {
         anchors.top: text2.bottom
         anchors.topMargin: 30
         font.pointSize: 13
+        font.family: fontmanager.curfont
     }
 
     Text {
@@ -50,6 +53,7 @@ Rectangle {
                 </html>"
         anchors.left: text3.right
         anchors.leftMargin: 6
+        font.family: fontmanager.curfont
         font.pointSize: 13
         onLinkActivated: Qt.openUrlExternally(link)
         MouseArea {
@@ -69,6 +73,7 @@ Rectangle {
         anchors.top: text4.bottom
         anchors.topMargin: 30
         font.pointSize: 13
+        font.family: fontmanager.curfont
     }
 
     Text {
@@ -80,6 +85,7 @@ Rectangle {
                 </html>"
         anchors.left: text5.right
         anchors.leftMargin: 6
+        font.family: fontmanager.curfont
         font.pointSize: 13
         onLinkActivated: Qt.openUrlExternally(link)
         MouseArea {

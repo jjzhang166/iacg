@@ -10,6 +10,8 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 CheckBox {
+	property string fontfamily: "Times New Roman"
+	
     style: CheckBoxStyle {
         spacing: 15
         background: Rectangle {
@@ -19,6 +21,7 @@ CheckBox {
         label: Text {
             text: control.text
             color: "black"
+			font.family: fontfamily
         }
         
         indicator: Rectangle {

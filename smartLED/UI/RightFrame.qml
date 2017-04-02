@@ -12,6 +12,7 @@ Rectangle {
     SLTabView {
         id: tv
         tab_width: 130
+        fontfamily: fontmanager.curfont
         anchors.fill: parent
         Tab {
             title: qsTr("mainMenu")

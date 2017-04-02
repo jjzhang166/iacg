@@ -15,6 +15,7 @@ Rectangle {
     property int titleTopMargin: 10
     property int titleLeftMargin: 25
     property int titleFontSize: 25
+	property string fontfamily: ""
     property Component content: Rectangle {
         anchors.fill: parent
         color: "gray"
@@ -30,6 +31,7 @@ Rectangle {
         anchors.leftMargin: parent.titleLeftMargin
         anchors.top: parent.top
         anchors.topMargin: parent.titleTopMargin
+		font.family: fontfamily
         font.pixelSize: parent.titleFontSize
         color: parent.titleColor
     }

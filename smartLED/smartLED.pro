@@ -1,11 +1,12 @@
 TEMPLATE = app
 
-QT += qml quick serialport
+QT += gui qml quick serialport
 CONFIG += c++11
 
 SOURCES += main.cpp \
     serialconnect.cpp \
-    maildata.cpp
+    maildata.cpp \
+    fontmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -18,7 +19,8 @@ include(deployment.pri)
 HEADERS += \
     serialconnect.h \
     maildata.h \
-    SmtpClient/SmtpMime
+    SmtpClient/SmtpMime \
+    fontmanager.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts

@@ -20,3 +20,6 @@
 *plg
 *.admin
 *.bak
+
+#QML files
+*.qmlc

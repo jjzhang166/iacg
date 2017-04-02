@@ -13,7 +13,8 @@ TabView {
     id: tv
     property int tab_width: 110
     property int tab_height: 30
-    
+    property string fontfamily: "Times New Roman"
+	
     style: TabViewStyle {
       frameOverlap: 1
       tab: Rectangle {
@@ -26,6 +27,7 @@ TabView {
             id: text
             anchors.centerIn: parent
             text: styleData.title
+			font.family: fontfamily
             color: styleData.selected ? "white" : "black"
         }
       }

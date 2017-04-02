@@ -10,6 +10,8 @@ import QtQuick.Controls 1.4
 
 TextInput {
     property string tooltip: "text"
+	property string tooltip_fontfamily: ""
+	
     id: textInput
     width: 80
     height: 15
@@ -34,6 +36,7 @@ TextInput {
         id: tooltip
         anchors.fill: parent
         text: qsTr(parent.tooltip)
+		font.family: tooltip_fontfamily
         font.pixelSize: 14
         opacity: 0.7
         color: "gray"
