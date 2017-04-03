@@ -1,15 +1,26 @@
 #include "maildata.h"
 #include <QDebug>
 
-MailData::MailData(QObject *parent) : QObject(parent)
+MailData::MailData(DataManager *dm,QObject *parent) : QObject(parent)
+    ,datamanager(dm)
     ,alert_tmp(-1)
     ,alert_humi(-1)
     ,alert_light(-1) {
-
+    m_user = dm->ReadMailData("User").toString();
+    m_passwd = dm->ReadMailData("Password").toString();
+    m_sndaddr = dm->ReadMailData("SendAddr").toString();
+    m_recvaddr = dm->ReadMailData("RecvAddr").toString();
+    m_servaddr = dm->ReadMailData("ServerAddr").toString();
+    m_port = dm->ReadMailData("Port").toString();
 }
 
 MailData::~MailData() {
-
+    datamanager->WriteMailData("User", m_user);
+    datamanager->WriteMailData("Password", m_passwd);
+    datamanager->WriteMailData("SendAddr", m_sndaddr);
+    datamanager->WriteMailData("RecvAddr", m_recvaddr);
+    datamanager->WriteMailData("ServerAddr", m_servaddr);
+    datamanager->WriteMailData("Port", m_port);
 }
 
 int MailData::tmpAlert() const {

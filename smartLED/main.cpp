@@ -8,6 +8,7 @@
 #include "serialconnect.h"
 #include "maildata.h"
 #include "fontmanager.h"
+#include "datamanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -15,11 +16,18 @@ int main(int argc, char *argv[])
     QTranslator ts;
     ts.load(":/locale/zh_CN.qm");
     app.installTranslator(&ts);
+    DataManager dm("cfg.ini");
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("fontmanager",new FontManager);
-    engine.rootContext()->setContextProperty("maildata",new MailData);
-    engine.rootContext()->setContextProperty("sc",new serialConnect);
+    FontManager *fontmanager = new FontManager(&dm);
+    engine.rootContext()->setContextProperty("fontmanager",fontmanager);
+    MailData *maildata = new MailData(&dm);
+    engine.rootContext()->setContextProperty("maildata",maildata);
+    serialConnect *sc = new serialConnect(&dm);
+    engine.rootContext()->setContextProperty("sc",sc);
     engine.addImportPath(QDir::currentPath());
     engine.load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
-    return app.exec();
+    app.exec();
+    delete sc;
+    delete maildata;
+    delete fontmanager;
 }

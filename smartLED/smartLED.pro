@@ -6,7 +6,8 @@ CONFIG += c++11
 SOURCES += main.cpp \
     serialconnect.cpp \
     maildata.cpp \
-    fontmanager.cpp
+    fontmanager.cpp \
+    datamanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -20,7 +21,8 @@ HEADERS += \
     serialconnect.h \
     maildata.h \
     SmtpClient/SmtpMime \
-    fontmanager.h
+    fontmanager.h \
+    datamanager.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts

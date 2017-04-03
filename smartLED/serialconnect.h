@@ -3,6 +3,8 @@
 #include <QObject>
 #include <QSerialPort>
 
+#include "datamanager.h"
+
 class serialConnect : public QObject {
     Q_OBJECT
     Q_ENUMS(QSerialPort::DataBits)
@@ -23,6 +25,12 @@ class serialConnect : public QObject {
     Q_PROPERTY(QString humidity READ humidity WRITE setHumidity)
     Q_PROPERTY(QStringList portList READ portList NOTIFY portListChanged)
 
+    Q_PROPERTY(QString curPortName READ curPortName)
+    Q_PROPERTY(int curBaudRate READ curBaudRate)
+    Q_PROPERTY(int curDataBit READ curDataBit)
+    Q_PROPERTY(QString curStopBit READ curStopBit)
+    Q_PROPERTY(QString curParity READ curParity)
+
 signals:
     /*
      * 以下为类的信号声明:
@@ -38,10 +46,17 @@ signals:
     void lightChanged(const QString &lg);
     void portListChanged();
 public:
-    serialConnect(QObject *parent = 0);
+//    serialConnect(QObject *parent = 0);
+    serialConnect(DataManager *dm, QObject *parent = 0);
     ~serialConnect();
 
 public:
+    QString curPortName() const;
+    int curBaudRate() const;
+    int curDataBit() const;
+    QString curStopBit() const;
+    QString curParity() const;
+
     QStringList portList() const;
 
     QString portName() const;
@@ -112,6 +127,7 @@ public:
 
 private:
     QSerialPort *linkPort;
+    DataManager *dataManager;
     QSerialPort::BaudRate m_baudRate;
     QSerialPort::DataBits m_dataBits;
     QSerialPort::StopBits m_stopBits;
@@ -121,6 +137,12 @@ private:
     QString m_temperature;
     QString m_humidity;
     QStringList m_portList;
+
+    QString m_CurPortName;
+    int m_CurBaudRate;
+    int m_CurDataBit;
+    QString m_CurStopBit;
+    QString m_CurParity;
 
 private:
     /*

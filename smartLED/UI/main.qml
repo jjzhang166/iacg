@@ -73,6 +73,8 @@ Window {
             model: [sc.portList[0],sc.portList[1],sc.portList[2],
             sc.portList[3],sc.portList[4],sc.portList[5],
             sc.portList[6],sc.portList[7]]
+            Component.onCompleted:
+                currentIndex = find(sc.curPortName)
         }
 
         Text {
@@ -93,10 +95,11 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text2.bottom
             anchors.topMargin: 10
-            currentIndex: 3
             fontfamily: fontmanager.curfont
             model: [1200,2400,4800,9600,
             19200,38400,57600,115200]
+            Component.onCompleted:
+                currentIndex=find(String(sc.curBaudRate))
         }
 
         Text {
@@ -117,9 +120,10 @@ Window {
             anchors.leftMargin: 5
             anchors.top: text3.bottom
             anchors.topMargin: 10
-            currentIndex: 3
             fontfamily: fontmanager.curfont
             model: [5,6,7,8]
+            Component.onCompleted:
+                currentIndex=find(String(sc.curDataBit))
         }
 
         Text {
@@ -142,6 +146,8 @@ Window {
             anchors.topMargin: 10
             fontfamily: fontmanager.curfont
             model: ["1","1.5","2"]
+            Component.onCompleted:
+                currentIndex=find(sc.curStopBit)
         }
 
         Text {
@@ -164,6 +170,8 @@ Window {
             anchors.topMargin: 10
             fontfamily: fontmanager.curfont
             model: ["No","Odd","Even"]
+            Component.onCompleted:
+                currentIndex=find(sc.curParity)
         }
 
         SLFlatButton {
@@ -183,12 +191,12 @@ Window {
                     sc.portName = comboBox1.currentText
                     sc.setBaudRate(Number(comboBox2.currentText))
                     sc.setDataBits(Number(comboBox3.currentText))
-                    sc.setStopBits(comboBox4.currentIndex == 0?sc.OneStop:
-                                    comboBox4.currentIndex == 1?sc.OneAndHalfStop:
-                                        sc.TwoStop)
-                    sc.setParity(comboBox5.currentIndex == 0?sc.NoParity:
-                                    comboBox5.currentIndex == 1?sc.OddParity:
-                                        sc.EvenParity)
+                    sc.setStopBits(comboBox4.currentIndex == 0? 1:
+                                    comboBox4.currentIndex == 1?3:
+                                        2)
+                    sc.setParity(comboBox5.currentIndex == 0? 0:
+                                    comboBox5.currentIndex == 3?sc.OddParity:
+                                        2)
                     if(sc.connectSart()) {
                         window1.width = 730
                         isConnected = true

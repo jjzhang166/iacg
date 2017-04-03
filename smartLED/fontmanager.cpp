@@ -1,8 +1,8 @@
 #include "fontmanager.h"
 #include <QDebug>
 
-FontManager::FontManager(QObject *parent)
-    : QObject(parent) {
+FontManager::FontManager(DataManager *dm,QObject *parent)
+    : QObject(parent),datamanager(dm) {
     QString path = QDir::currentPath() + "/ttf";
     qDebug() << "ttf root:" << path;
     ttf_root = new QDir(path);
@@ -22,10 +22,18 @@ FontManager::FontManager(QObject *parent)
             }
         }
     }
-    if(!family_list.isEmpty())
-        current_font = family_list.at(0);
-    else
-        current_font = "Times New Roman";
+
+    current_font = datamanager->ReadFontfamilyData().toString();
+    if(current_font.isEmpty()) {
+        if(!family_list.isEmpty())
+            current_font = family_list.at(0);
+        else
+            current_font = "Times New Roman";
+    }
+}
+
+FontManager::~FontManager() {
+    datamanager->WriteFontfamilyData(current_font);
 }
 
 QStringList FontManager::familylist() const {

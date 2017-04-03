@@ -42,6 +42,7 @@ Item {
                 anchors.verticalCenterOffset: 2
                 anchors.left: parent.left
                 anchors.leftMargin: 120
+                text: maildata.servaddr
                 tooltip: qsTr("smtp server address")
                 tooltip_fontfamily: fontmanager.curfont
                 font.family: fontmanager.curfont
@@ -60,6 +61,7 @@ Item {
                 anchors.leftMargin: 13
                 anchors.verticalCenter: t2.verticalCenter
                 anchors.verticalCenterOffset: 2
+                text: maildata.port
                 tooltip: qsTr("smtp port")
                 tooltip_fontfamily: fontmanager.curfont
                 font.family: fontmanager.curfont
@@ -79,6 +81,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t3.verticalCenter
                 anchors.verticalCenterOffset: 2
+                text: maildata.user
                 tooltip: qsTr("user name")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -99,6 +102,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t4.verticalCenter
                 anchors.verticalCenterOffset: 2
+                text: maildata.passwd
                 tooltip: qsTr("password")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -119,6 +123,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t5.verticalCenter
                 anchors.verticalCenterOffset: 2
+                text: maildata.sndaddr
                 tooltip: qsTr("sending mailbox's address")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -139,6 +144,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t6.verticalCenter
                 anchors.verticalCenterOffset: 2
+                text: maildata.recvaddr
                 tooltip: qsTr("recv mailbox's address")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240

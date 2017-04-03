@@ -6,6 +6,7 @@
 #include <QDateTime>
 
 #include "smtpClient/SmtpMime"
+#include "datamanager.h"
 
 class MailData : public QObject {
     Q_OBJECT
@@ -79,7 +80,7 @@ public:
         ERR_CONTENT_EMPTY = -12         //邮件没有内容
     };
 
-    MailData(QObject *parent = 0);
+    MailData(DataManager *dm,QObject *parent = 0);
     ~MailData();
 
 public:
@@ -168,6 +169,8 @@ public:
     Q_INVOKABLE uint getCurTimeSec();
 
 private:
+    DataManager *datamanager;
+
     enum _timeout{
         TIME_OUT_LOW = 2000,
         TIME_OUT_MIDDLE = 5000,
