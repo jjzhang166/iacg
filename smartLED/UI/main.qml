@@ -5,6 +5,7 @@ import QtQuick.Controls.Styles 1.4
 import QtGraphicalEffects 1.0
 
 import SLComponent 1.0
+import Manager.Serialport 1.0
 
 Window {
     id: window1
@@ -74,7 +75,7 @@ Window {
             sc.portList[3],sc.portList[4],sc.portList[5],
             sc.portList[6],sc.portList[7]]
             Component.onCompleted:
-                currentIndex = find(sc.curPortName)
+                currentIndex = find(sc.portName)
         }
 
         Text {
@@ -99,7 +100,7 @@ Window {
             model: [1200,2400,4800,9600,
             19200,38400,57600,115200]
             Component.onCompleted:
-                currentIndex=find(String(sc.curBaudRate))
+                currentIndex = find(String(sc.baudRate))
         }
 
         Text {
@@ -123,7 +124,7 @@ Window {
             fontfamily: fontmanager.curfont
             model: [5,6,7,8]
             Component.onCompleted:
-                currentIndex=find(String(sc.curDataBit))
+                currentIndex = find(String(sc.dataBits))
         }
 
         Text {
@@ -147,7 +148,17 @@ Window {
             fontfamily: fontmanager.curfont
             model: ["1","1.5","2"]
             Component.onCompleted:
-                currentIndex=find(sc.curStopBit)
+                switch(sc.stopBits) {
+                case SerialportManager.OneStop:
+                    currentIndex = 0
+                    break
+                case SerialportManager.OneAndHalfStop:
+                    currentIndex = 1
+                    break
+                case SerialportManager.TwoStop:
+                    currentIndex = 2
+                    break
+                }
         }
 
         Text {
@@ -171,7 +182,17 @@ Window {
             fontfamily: fontmanager.curfont
             model: ["No","Odd","Even"]
             Component.onCompleted:
-                currentIndex=find(sc.curParity)
+                switch(sc.parity) {
+                case SerialportManager.NoParity:
+                    currentIndex = 0
+                    break
+                case SerialportManager.OddParity:
+                    currentIndex = 1
+                    break
+                case SerialportManager.EvenParity:
+                    currentIndex = 2
+                    break
+                }
         }
 
         SLFlatButton {
@@ -189,14 +210,14 @@ Window {
             onClicked: {
                 if(!isConnected) {
                     sc.portName = comboBox1.currentText
-                    sc.setBaudRate(Number(comboBox2.currentText))
-                    sc.setDataBits(Number(comboBox3.currentText))
-                    sc.setStopBits(comboBox4.currentIndex == 0? 1:
-                                    comboBox4.currentIndex == 1?3:
-                                        2)
-                    sc.setParity(comboBox5.currentIndex == 0? 0:
-                                    comboBox5.currentIndex == 3?sc.OddParity:
-                                        2)
+                    sc.baudRate = Number(comboBox2.currentText)
+                    sc.dataBits = Number(comboBox3.currentText)
+                    sc.stopBits = (comboBox4.currentIndex == 0? SerialportManager.OneStop:
+                                    comboBox4.currentIndex == 1? SerialportManager.OneAndHalfStop:
+                                        SerialportManager.TwoStop)
+                    sc.parity = (comboBox5.currentIndex == 0? SerialportManager.NoParity:
+                                    comboBox5.currentIndex == 1?SerialportManager.OddParity:
+                                        SerialportManager.EvenParity)
                     if(sc.connectSart()) {
                         window1.width = 730
                         isConnected = true

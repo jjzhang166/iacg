@@ -1,7 +1,9 @@
 ﻿import QtQuick 2.4
-import SLComponent 1.0
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
+
+import SLComponent 1.0
+import Manager.Mail 1.0
 
 Rectangle {
     property string bg_color: "#fafafa"
@@ -72,13 +74,13 @@ Rectangle {
             con.humi_busy = true
         }
         onCollTempEnd: {
-            if(res == 1) {
+            if(res == MailManager.ERR_SUCCESS) {
                 console.log("coll temp end,and send mail stand by")
                 con.temp_busy = false
             }
         }
         onCollHumiEnd: {
-            if(res == 1) {
+            if(res == MailManager.ERR_SUCCESS) {
                 console.log("coll humi end,and send mail stand by")
                 con.humi_busy =false
             }
@@ -96,12 +98,12 @@ Rectangle {
                 if(maildata.tmpAlert != -1 && tm > maildata.tmpAlert) {
                     if(temp_time == 0) {
                         temp_time = maildata.getCurTimeSec()
-                        maildata.sendMail(0)
+                        maildata.sendMail(MailManager.MAIL_TMP)
                         return
                     }
                     if(maildata.getCurTimeSec() - temp_time > delay_time) {
                         temp_time = maildata.getCurTimeSec()
-                        maildata.sendMail(0)
+                        maildata.sendMail(MailManager.MAIL_TMP)
                     }
                 }
             }
@@ -115,12 +117,12 @@ Rectangle {
                 if(maildata.humiAlert != -1 && hm > maildata.humiAlert) {
                     if(humi_time == 0) {
                         humi_time = maildata.getCurTimeSec()
-                        maildata.sendMail(1)
+                        maildata.sendMail(MailManager.MAIL_HUMI)
                         return
                     }
                     if(maildata.getCurTimeSec() - humi_time > delay_time) {
                         humi_time = maildata.getCurTimeSec()
-                        maildata.sendMail(1)
+                        maildata.sendMail(MailManager.MAIL_HUMI)
                     }
                 }
             }

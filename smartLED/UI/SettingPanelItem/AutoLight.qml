@@ -6,11 +6,6 @@ Item {
     implicitWidth: 525
     implicitHeight: 430
 
-    Connections {
-        target: maildata
-        onCollData: console.log("AutoLight:recv sig")
-    }
-
     SLGroupBox {
         width: parent.width
         height: 170

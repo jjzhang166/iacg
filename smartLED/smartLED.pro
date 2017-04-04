@@ -4,10 +4,10 @@ QT += gui qml quick serialport
 CONFIG += c++11
 
 SOURCES += main.cpp \
-    serialconnect.cpp \
-    maildata.cpp \
-    fontmanager.cpp \
-    datamanager.cpp
+    app/fontmanager.cpp \
+    app/datamanager.cpp \
+    app/serialportmanager.cpp \
+    app/mailmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -18,11 +18,11 @@ QML_IMPORT_PATH = .
 include(deployment.pri)
 
 HEADERS += \
-    serialconnect.h \
-    maildata.h \
-    SmtpClient/SmtpMime \
-    fontmanager.h \
-    datamanager.h
+    app/SmtpClient/SmtpMime \
+    app/fontmanager.h \
+    app/datamanager.h \
+    app/serialportmanager.h \
+    app/mailmanager.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts
@@ -36,5 +36,5 @@ RC_ICONS = sl.ico
 
 win32: LIBS += -L$$PWD/./ -lSMTPEmail
 
-INCLUDEPATH += $$PWD/.
-DEPENDPATH += $$PWD/.
+INCLUDEPATH += $$PWD/app/.
+DEPENDPATH += $$PWD/app/.
