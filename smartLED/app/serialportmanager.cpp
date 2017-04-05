@@ -40,11 +40,13 @@
 SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
     QObject(parent),
     dataManager(dm),
-    m_portName("COM0"),
     m_baudRate(QSerialPort::BaudRate::Baud9600),
     m_dataBits(QSerialPort::DataBits::Data8),
     m_stopBits(QSerialPort::StopBits::OneStop),
     m_parity(QSerialPort::Parity::NoParity) {
+
+    InitPortlist();
+
     QString pn  = dm->ReadSerialportData("PortName").toString();
     if(!pn.isEmpty())
         m_portName = pn;
@@ -72,14 +74,6 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
             m_parity = QSerialPort::Parity::EvenParity;
     }
 
-    m_portList.append(QString("COM0"));
-    m_portList.append(QString("COM1"));
-    m_portList.append(QString("COM2"));
-    m_portList.append(QString("COM3"));
-    m_portList.append(QString("COM4"));
-    m_portList.append(QString("COM5"));
-    m_portList.append(QString("COM6"));
-    m_portList.append(QString("COM7"));
     linkPort = new QSerialPort;
     QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
          QByteArray data = linkPort->readAll();
@@ -118,6 +112,16 @@ SerialportManager::~SerialportManager() {
     case QSerialPort::Parity::EvenParity:
         dataManager->WriteSerialportData("Parity",QVariant("Even"));
     }
+}
+
+void SerialportManager::InitPortlist() {
+    foreach (QSerialPortInfo port, QSerialPortInfo::availablePorts()) {
+        m_portList.push_back(port.portName());
+    }
+    if(!m_portList.isEmpty())
+        m_portName = m_portList.at(0);
+    else
+        m_portName = "";
 }
 
 void SerialportManager::writeChar(const QString &cc) {

@@ -3,7 +3,6 @@
         <file>UI/main.qml</file>
         <file>UI/TopFrame.qml</file>
         <file>UI/RightFrame.qml</file>
-        <file>UI/MsgDialog.qml</file>
         <file>pic/error.png</file>
         <file>pic/Close.png</file>
         <file>pic/CloseHover.png</file>
@@ -24,5 +23,7 @@
         <file>UI/SettingPanelItem/ButtonPanel.qml</file>
         <file>locale/zh_CN.qm</file>
         <file>UI/SettingPanelItem/FontSetting.qml</file>
+        <file>sl.ico</file>
+        <file>splash.png</file>
     </qresource>
 </RCC>

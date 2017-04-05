@@ -13,16 +13,19 @@ Window {
     width: 200
     height: 495
     color: "transparent"
-    flags: 0x0800 | 0x0001
+    flags: Qt.FramelessWindowHint |
+           Qt.Window |
+           Qt.WindowMinimizeButtonHint
 
     DropShadow {
         anchors.fill: centerFrame
         fast: true
-        horizontalOffset: 3
-        verticalOffset: 3
+        horizontalOffset: 0
+        verticalOffset: 0
         radius: 8
         samples: 17
-        color: "#80000000"
+        spread: 0
+        color: "#aa000000"
         source: centerFrame
     }
 
@@ -40,15 +43,30 @@ Window {
 
     TopFrame {
         id: tf
+        x: 5
         z: 10
-        width: parent.width - 5
+        width: parent.width - 10
         height: 30
         win_instance: window1
+        title_opacity: 0
+        onWidthChanged:
+          title_opacity = width > 600 ? 1 : 0
+    }
+
+    property alias err_dia: _err_dia
+    SLMsgDialog {
+        id: _err_dia
+        dia_title: qsTr("error")
+        dia_icon_type: 1
+        dia_text_leftmargin: 15
+        dia_width: 270
+        dia_content: qsTr("connect error")
     }
 
     Rectangle {
         id: centerFrame
-        width: parent.width - 5
+        x: 5
+        width: parent.width - 10
         height: parent.height - 5
         color: "#f6f6f8"
 
@@ -71,9 +89,7 @@ Window {
             anchors.top: text1.bottom
             anchors.topMargin: 10
             fontfamily: fontmanager.curfont
-            model: [sc.portList[0],sc.portList[1],sc.portList[2],
-            sc.portList[3],sc.portList[4],sc.portList[5],
-            sc.portList[6],sc.portList[7]]
+            model: sc.portList
             Component.onCompleted:
                 currentIndex = find(sc.portName)
         }
@@ -228,9 +244,7 @@ Window {
 
                     }
                     else {
-                        var comDialog = Qt.createComponent("qrc:/UI/MsgDialog.qml")
-                        if(comDialog.status === Component.Ready)
-                            comDialog.createObject(window1)
+                        window1.err_dia.open()
                         return
                     }
                 }

@@ -3,6 +3,8 @@ import QtQuick.Controls 1.4
 
 Item {
     property var win_instance: null
+    property alias title_opacity: topFrame.app_title_opacity
+
     Rectangle {
         id: topFrame
         anchors.fill: parent
@@ -17,6 +19,30 @@ Item {
                             win_instance.setX(win_instance.x+delta.x);
                             win_instance.setY(win_instance.y+delta.y);
             }
+        }
+
+        Image {
+            id: app_icon
+            width: 18
+            height: 18
+            anchors.left: parent.left
+            anchors.leftMargin: 7
+            anchors.verticalCenter: parent.verticalCenter
+            source: "qrc:/sl.ico"
+        }
+
+        property alias app_title_opacity: app_title.opacity
+        Text {
+            id: app_title
+            width: 30
+            height: 18
+            anchors.left: app_icon.right
+            anchors.leftMargin: 7
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.verticalCenterOffset: 3
+            font.family: fontmanager.curfont
+            color: "#ffffff"
+            text: "The SmartLED Project"
         }
 
         Image {

@@ -7,6 +7,7 @@ Item {
     implicitHeight: 430
 
     SLGroupBox {
+        id: sg
         width: parent.width
         height: 235
         title: qsTr("MailSetting")

@@ -28,18 +28,18 @@ class MailManager : public QObject {
      * 此值的时候发送温度邮件
      * humiAlert作用同上，lightAlert弃用
      */
-    Q_PROPERTY(QString user READ user WRITE setUser)
-    Q_PROPERTY(QString passwd READ passwd WRITE setPasswd)
-    Q_PROPERTY(QString sndaddr READ sndaddr WRITE setSndaddr)
-    Q_PROPERTY(QString recvaddr READ recvaddr WRITE setRecvaddr)
+    Q_PROPERTY(QString user READ user WRITE setUser NOTIFY userChanged)
+    Q_PROPERTY(QString passwd READ passwd WRITE setPasswd NOTIFY passwdChanged)
+    Q_PROPERTY(QString sndaddr READ sndaddr WRITE setSndaddr NOTIFY sndaddrChanged)
+    Q_PROPERTY(QString recvaddr READ recvaddr WRITE setRecvaddr NOTIFY recvaddrChanged)
     Q_PROPERTY(QString tmp_title READ tmp_title WRITE setTmp_title)
     Q_PROPERTY(QString tmp_content READ tmp_content WRITE setTmp_content)
     Q_PROPERTY(QString humi_title READ humi_title WRITE setHumi_title)
     Q_PROPERTY(QString humi_content READ humi_content WRITE setHumi_content)
     Q_PROPERTY(QString light_title READ light_title WRITE setLight_title)
     Q_PROPERTY(QString light_content READ light_content WRITE setLight_content)
-    Q_PROPERTY(QString servaddr READ servaddr WRITE setServaddr)
-    Q_PROPERTY(QString port READ port WRITE setPort)
+    Q_PROPERTY(QString servaddr READ servaddr WRITE setServaddr NOTIFY servaddrChanged)
+    Q_PROPERTY(QString port READ port WRITE setPort NOTIFY portChanged)
     Q_PROPERTY(int tmpAlert READ tmpAlert WRITE setTmpAlert)
     Q_PROPERTY(int humiAlert READ humiAlert WRITE setHumiAlert)
     Q_PROPERTY(int lightAlert READ lightAlert WRITE setLightAlert)
@@ -58,6 +58,13 @@ signals:
     void collMailEnd(const int &res);
     void collTempEnd(const int &res);
     void collHumiEnd(const int &res);
+
+    void userChanged(const QString &user);
+    void passwdChanged(const QString &passwd);
+    void sndaddrChanged(const QString &sndaddr);
+    void recvaddrChanged(const QString &recvaddr);
+    void servaddrChanged(const QString &servaddr);
+    void portChanged(const QString &port);
 
 public:
     //当前发送的邮件类型

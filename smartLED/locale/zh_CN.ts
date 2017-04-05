@@ -197,7 +197,7 @@
     <message>
         <location filename="../UI/CollPanel.qml" line="298"/>
         <source>Default Time</source>
-        <translation>默认时间</translation>
+        <translation>默认时间(1分钟)</translation>
     </message>
     <message>
         <location filename="../UI/CollPanel.qml" line="310"/>

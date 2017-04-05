@@ -10,7 +10,7 @@
 class FontManager : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QStringList familylist READ familylist)
+    Q_PROPERTY(QStringList familylist READ familylist CONSTANT)
     Q_PROPERTY(QString curfont READ curfont WRITE setCurfont NOTIFY curfontChanged)
 
 signals:

@@ -2,6 +2,7 @@
 #define SERIALCONNECT_H
 #include <QObject>
 #include <QSerialPort>
+#include <QSerialPortInfo>
 
 #include "datamanager.h"
 
@@ -21,7 +22,7 @@ class SerialportManager : public QObject {
      * humidity: 搜集到的湿度数据
      * portList: 用于保存系统可能用到的串口名
      */
-    Q_PROPERTY(QString portName READ portName WRITE setPortName NOTIFY portNameChanged)
+    Q_PROPERTY(QString portName READ portName WRITE setPortName)
     Q_PROPERTY(QSerialPort::BaudRate baudRate READ baudRate WRITE setBaudRate)
     Q_PROPERTY(QSerialPort::DataBits dataBits READ dataBits WRITE setDataBits)
     Q_PROPERTY(QSerialPort::StopBits stopBits READ stopBits WRITE setStopBits)
@@ -29,22 +30,19 @@ class SerialportManager : public QObject {
     Q_PROPERTY(QString light READ light WRITE setLight)
     Q_PROPERTY(QString temperature READ temperature WRITE setTemperature)
     Q_PROPERTY(QString humidity READ humidity WRITE setHumidity)
-    Q_PROPERTY(QStringList portList READ portList NOTIFY portListChanged)
+    Q_PROPERTY(QStringList portList READ portList CONSTANT)
 
 signals:
     /*
      * 以下为类的信号声明:
-     * portNameChanged(const QString &port_name) 暂未使用
-     * portListChanged() 暂未使用
      * tempChanged(const QString &tm) 温度改变时发送此信号
      * humiChanged(const QString &hm) 湿度改变时发送此信号
      * lightChanged(const QString &lg) 光照改变时发送此信号
      */
-    void portNameChanged(const QString &port_name);
     void tempChanged(const QString &tm);
     void humiChanged(const QString &hm);
     void lightChanged(const QString &lg);
-    void portListChanged();
+
 public:
     SerialportManager(DataManager *dm, QObject *parent = 0);
     ~SerialportManager();
@@ -116,6 +114,7 @@ private:
     QStringList m_portList;
 
 private:
+    void InitPortlist();
     /*
      * 名称：QString2Hex
      * 参数：QString, 十六进制的字符串，如"ff","01"

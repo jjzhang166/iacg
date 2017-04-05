@@ -25,13 +25,6 @@ TextInput {
             tooltip.opacity = 0.7
     }
 
-    onFocusChanged: {
-        if(focus)
-            frame.border.width = 2
-        else
-            frame.border.width = 1
-    }
-
     Text {
         id: tooltip
         anchors.fill: parent
