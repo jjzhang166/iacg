@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     app/datamanager.cpp \
     app/serialportmanager.cpp \
     app/mailmanager.cpp \
-    app/smartled.cpp
+    app/smartled.cpp \
+    app/bootmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -24,7 +25,8 @@ HEADERS += \
     app/datamanager.h \
     app/serialportmanager.h \
     app/mailmanager.h \
-    app/smartled.h
+    app/smartled.h \
+    app/bootmanager.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts
@@ -40,3 +42,6 @@ win32: LIBS += -L$$PWD/./ -lSMTPEmail
 
 INCLUDEPATH += $$PWD/app/.
 DEPENDPATH += $$PWD/app/.
+
+DISTFILES += \
+    UI/SettingPanelItem/BootSetting.qml

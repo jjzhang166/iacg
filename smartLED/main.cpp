@@ -1,4 +1,12 @@
-﻿#include <QApplication>
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+
+#include <QApplication>
 #include <QTranslator>
 #include "app/smartled.h"
 

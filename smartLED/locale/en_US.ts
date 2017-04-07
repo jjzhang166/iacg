@@ -27,95 +27,113 @@
 <context>
     <name>AutoLight</name>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="17"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="12"/>
         <source>AutoLightSetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="27"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="22"/>
         <source>AutoLight</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="40"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="35"/>
         <source>LightLevel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="55"/>
+        <location filename="../UI/SettingPanelItem/AutoLight.qml" line="50"/>
         <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BootSetting</name>
+    <message>
+        <location filename="../UI/SettingPanelItem/BootSetting.qml" line="11"/>
+        <source>BootSetting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/SettingPanelItem/BootSetting.qml" line="20"/>
+        <source>SmtpBoot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/SettingPanelItem/BootSetting.qml" line="30"/>
+        <source>SerialportBoot</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ButtonPanel</name>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="11"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="13"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="22"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="25"/>
         <source>server addr is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="25"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="29"/>
         <source>port is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="28"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="33"/>
         <source>user is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="31"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="37"/>
         <source>password is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="36"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="42"/>
         <source>info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="37"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="43"/>
         <source>client is already exist,reset all data</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="40"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="47"/>
         <source>connect error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="43"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="51"/>
         <source>login error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="58"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="68"/>
         <source>unexcepted error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="55"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="64"/>
         <source>set data ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="46"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="55"/>
         <source>send mail error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="77"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="86"/>
         <source>SaveSettings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="54"/>
+        <location filename="../UI/SettingPanelItem/ButtonPanel.qml" line="63"/>
         <source>success</source>
         <translation type="unfinished"></translation>
     </message>
@@ -123,78 +141,78 @@
 <context>
     <name>CollPanel</name>
     <message>
-        <location filename="../UI/CollPanel.qml" line="153"/>
+        <location filename="../UI/CollPanel.qml" line="100"/>
         <source>CurrentLight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="183"/>
+        <location filename="../UI/CollPanel.qml" line="130"/>
         <source>CurrentTemp:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="194"/>
-        <location filename="../UI/CollPanel.qml" line="243"/>
+        <location filename="../UI/CollPanel.qml" line="141"/>
+        <location filename="../UI/CollPanel.qml" line="190"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="217"/>
+        <location filename="../UI/CollPanel.qml" line="164"/>
         <source>℃</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="232"/>
+        <location filename="../UI/CollPanel.qml" line="179"/>
         <source>CurrentHumi:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="270"/>
+        <location filename="../UI/CollPanel.qml" line="217"/>
         <source>%RH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="287"/>
+        <location filename="../UI/CollPanel.qml" line="234"/>
         <source>SendDelay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="298"/>
+        <location filename="../UI/CollPanel.qml" line="245"/>
         <source>Default Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="310"/>
+        <location filename="../UI/CollPanel.qml" line="257"/>
         <source>Custom Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="329"/>
+        <location filename="../UI/CollPanel.qml" line="276"/>
         <source>5 minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="329"/>
+        <location filename="../UI/CollPanel.qml" line="276"/>
         <source>15 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="330"/>
+        <location filename="../UI/CollPanel.qml" line="277"/>
         <source>1 hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="330"/>
+        <location filename="../UI/CollPanel.qml" line="277"/>
         <source>10 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="330"/>
+        <location filename="../UI/CollPanel.qml" line="277"/>
         <source>24 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="337"/>
+        <location filename="../UI/CollPanel.qml" line="284"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -276,81 +294,68 @@
 <context>
     <name>MailSetting</name>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="12"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="13"/>
         <source>MailSetting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="35"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="36"/>
         <source>SmtpServer:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="45"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="47"/>
         <source>smtp server address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="54"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="56"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="63"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="66"/>
         <source>smtp port</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="73"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="76"/>
         <source>User:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="82"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="86"/>
         <source>user name</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="93"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="97"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="102"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="107"/>
         <source>password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="113"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="118"/>
         <source>SendBox:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="122"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="128"/>
         <source>sending mailbox&apos;s address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="133"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="139"/>
         <source>RecvBox:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="142"/>
+        <location filename="../UI/SettingPanelItem/MailSetting.qml" line="149"/>
         <source>recv mailbox&apos;s address</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>MsgDialog</name>
-    <message>
-        <location filename="../UI/MsgDialog.qml" line="37"/>
-        <source>ConnectError,Need a right SerialPort</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/MsgDialog.qml" line="51"/>
-        <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -403,38 +408,48 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../UI/main.qml" line="56"/>
+        <location filename="../UI/main.qml" line="60"/>
+        <source>error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/main.qml" line="64"/>
+        <source>connect error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/main.qml" line="76"/>
         <source>SerialPort:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="80"/>
+        <location filename="../UI/main.qml" line="100"/>
         <source>BaudRate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="104"/>
+        <location filename="../UI/main.qml" line="125"/>
         <source>DataBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="127"/>
+        <location filename="../UI/main.qml" line="149"/>
         <source>StopBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="149"/>
+        <location filename="../UI/main.qml" line="183"/>
         <source>CheckBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="175"/>
-        <location filename="../UI/main.qml" line="212"/>
+        <location filename="../UI/main.qml" line="247"/>
+        <location filename="../UI/main.qml" line="256"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="195"/>
+        <location filename="../UI/main.qml" line="234"/>
         <source>DisConnect</source>
         <translation type="unfinished"></translation>
     </message>

@@ -16,6 +16,8 @@ DataManager::DataManager(const QString &filename)
     ServerAddr = SetInifile->value("Mail/ServerAddr");
     Port = SetInifile->value("Mail/Port");
     FontFamily = SetInifile->value("Font/FontFamily");
+    SmtpBoot = SetInifile->value("Boot/SmtpBoot",QVariant(false));
+    SerialportBoot = SetInifile->value("Boot/SerialportBoot",QVariant(true));
     delete SetInifile;
 }
 
@@ -45,86 +47,98 @@ DataManager::~DataManager() {
         SetInifile->setValue("Mail/Port",Port);
     if(FontFamily.isValid() && !FontFamily.toString().isEmpty())
         SetInifile->setValue("Font/FontFamily",FontFamily);
+    if(SmtpBoot.isValid())
+        SetInifile->setValue("Boot/SmtpBoot",SmtpBoot);
+    if(SerialportBoot.isValid())
+        SetInifile->setValue("Boot/SerialportBoot",SerialportBoot);
     delete SetInifile;
 }
 
-QVariant DataManager::ReadSerialportData(const QString &key) {
-    if(key == "PortName")
+QVariant DataManager::ReadSerialportData(const SerialportData key) {
+    switch(key) {
+    case SERIALPORT_PORTNAME:
         return PortName;
-    if(key == "BaudRate")
+        break;
+    case SERIALPORT_BAUDRATE:
         return BaudRate;
-    if(key == "DataBits")
+        break;
+    case SERIALPORT_DATABITS:
         return DataBits;
-    if(key == "StopBits")
+        break;
+    case SERIALPORT_STOPBITS:
         return StopBits;
-    if(key == "Parity")
+        break;
+    case SERIALPORT_PARITY:
         return Parity;
+        break;
+    }
     return QVariant("");
 }
 
-void DataManager::WriteSerialportData(const QString &key, QVariant value) {
-    if(key == "PortName") {
+void DataManager::WriteSerialportData(const SerialportData key, QVariant value) {
+    switch(key) {
+    case SERIALPORT_PORTNAME:
         PortName = value;
-        return;
-    }
-    if(key == "BaudRate") {
+        break;
+    case SERIALPORT_BAUDRATE:
         BaudRate = value;
-        return;
-    }
-    if(key == "DataBits") {
+        break;
+    case SERIALPORT_DATABITS:
         DataBits = value;
-        return;
-    }
-    if(key == "StopBits") {
+        break;
+    case SERIALPORT_STOPBITS:
         StopBits = value;
-        return;
-    }
-    if(key == "Parity") {
+        break;
+    case SERIALPORT_PARITY:
         Parity = value;
-        return;
+        break;
     }
 }
 
-QVariant DataManager::ReadMailData(const QString &key) {
-    if(key == "User")
+QVariant DataManager::ReadMailData(const MailData key) {
+    switch(key) {
+    case MAIL_USER:
         return User;
-    if(key == "Password")
+        break;
+    case MAIL_PASSWORD:
         return Password;
-    if(key == "SendAddr")
+       break;
+    case MAIL_SENDADDR:
         return SendAddr;
-    if(key == "RecvAddr")
+        break;
+    case MAIL_RECVADDR:
         return RecvAddr;
-    if(key == "ServerAddr")
+        break;
+    case MAIL_SERVERADDR:
         return ServerAddr;
-    if(key == "Port")
+        break;
+    case MAIL_PORT:
         return Port;
+        break;
+    }
     return QVariant("");
 }
 
-void DataManager::WriteMailData(const QString &key, QVariant value) {
-    if(key == "User") {
+void DataManager::WriteMailData(const MailData key, QVariant value) {
+    switch(key) {
+    case MAIL_USER:
         User = value;
-        return;
-    }
-    if(key == "Password") {
+        break;
+    case MAIL_PASSWORD:
         Password = value;
-        return;
-    }
-    if(key == "SendAddr") {
+       break;
+    case MAIL_SENDADDR:
         SendAddr = value;
-        return;
-    }
-    if(key == "RecvAddr") {
+        break;
+    case MAIL_RECVADDR:
         RecvAddr = value;
-        return;
-    }
-    if(key == "ServerAddr") {
+        break;
+    case MAIL_SERVERADDR:
         ServerAddr = value;
-        return;
-    }
-    if(key == "Port") {
+        break;
+    case MAIL_PORT:
         Port = value;
-        return;
+        break;
     }
 }
 
@@ -136,3 +150,24 @@ void DataManager::WriteFontfamilyData(QVariant value) {
     FontFamily = value;
 }
 
+QVariant DataManager::ReadBootData(const BootData key) {
+    switch(key) {
+    case BOOT_SMTP:
+        return SmtpBoot;
+        break;
+    case BOOT_SERIALPORT:
+        return SerialportBoot;
+        break;
+    }
+}
+
+void DataManager::WriteBootData(const BootData key, QVariant value) {
+    switch(key) {
+    case BOOT_SMTP:
+        SmtpBoot = value;
+        break;
+    case BOOT_SERIALPORT:
+        SerialportBoot = value;
+        break;
+    }
+}

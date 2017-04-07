@@ -14,6 +14,7 @@
 #include "app/mailmanager.h"
 #include "app/fontmanager.h"
 #include "app/datamanager.h"
+#include "app/bootmanager.h"
 
 class SmartLED : public QObject
 {
@@ -26,6 +27,7 @@ public slots:
     void onObjectCreated(QObject* ,QUrl);
 
 private:
+    BootManager *bootmanager;
     DataManager *datamanager;
     FontManager *fontmanager;
     MailManager *mailmanager;

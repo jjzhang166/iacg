@@ -4,13 +4,14 @@
 FontManager::FontManager(DataManager *dm,QObject *parent)
     : QObject(parent),datamanager(dm) {
     QString path = QDir::currentPath() + "/ttf";
-    qDebug() << "ttf root:" << path;
+    //qDebug() << "ttf root:" << path;
     ttf_root = new QDir(path);
     if(!ttf_root->exists()) {
         current_font = "Times New Roman";
         return;
     }
 
+    //load custom font
     foreach (QString ttf_name, ttf_root->entryList()) {
         if(ttf_name.toLower().endsWith("ttf") || ttf_name.toLower().endsWith("otf")) {
             int fontid = db.addApplicationFont(ttf_root->absoluteFilePath(ttf_name));

@@ -178,6 +178,8 @@ public:
      */
     Q_INVOKABLE uint getCurTimeSec();
 
+    bool trytoCreateSmtpInstance();
+
 private:
     DataManager *datamanager;
 

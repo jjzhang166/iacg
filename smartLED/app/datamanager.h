@@ -8,18 +8,44 @@
 class DataManager
 {
 public:
+    enum BootData {
+        BOOT_SMTP,
+        BOOT_SERIALPORT
+    };
+
+    enum SerialportData {
+        SERIALPORT_PORTNAME,
+        SERIALPORT_BAUDRATE,
+        SERIALPORT_DATABITS,
+        SERIALPORT_STOPBITS,
+        SERIALPORT_PARITY
+    };
+
+    enum MailData {
+        MAIL_USER,
+        MAIL_PASSWORD,
+        MAIL_SENDADDR,
+        MAIL_RECVADDR,
+        MAIL_SERVERADDR,
+        MAIL_PORT
+    };
+
+public:
     DataManager(const QString &filename);
     ~DataManager();
 
 public:
-    QVariant ReadSerialportData(const QString &key);
-    void WriteSerialportData(const QString &key, QVariant value);
+    QVariant ReadSerialportData(const SerialportData key);
+    void WriteSerialportData(const SerialportData key, QVariant value);
 
     QVariant ReadFontfamilyData();
     void WriteFontfamilyData(QVariant value);
 
-    QVariant ReadMailData(const QString &key);
-    void WriteMailData(const QString &key, QVariant value);
+    QVariant ReadMailData(const MailData key);
+    void WriteMailData(const MailData key, QVariant value);
+
+    QVariant ReadBootData(const BootData key);
+    void WriteBootData(const BootData key, QVariant value);
 
 private:
     QSettings *SetInifile = nullptr;
@@ -42,6 +68,11 @@ private:
 
     //字体配置
     QVariant FontFamily;
+
+    //启动配置
+    QVariant SmtpBoot;
+    QVariant SerialportBoot;
+
 };
 
 #endif // DATAMANAGER_H

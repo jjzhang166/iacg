@@ -25,5 +25,6 @@
         <file>UI/SettingPanelItem/FontSetting.qml</file>
         <file>sl.ico</file>
         <file>splash.png</file>
+        <file>UI/SettingPanelItem/BootSetting.qml</file>
     </qresource>
 </RCC>

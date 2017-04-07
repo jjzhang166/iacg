@@ -14,59 +14,6 @@ Rectangle {
     width: 525
     height: 430
 
-/*    Dialog {
-        property string _t: "error dialog"
-        property string _c: "an error occurred"
-        id: dia
-        title: _t
-        modality: Qt.ApplicationModal
-        contentItem: Rectangle {
-            color: "#fafafa"
-            implicitWidth: 300
-            implicitHeight: 100
-            Text {
-                text: dia._c
-                color: "black"
-                anchors.centerIn: parent
-                anchors.verticalCenterOffset: -15
-            }
-
-            Button {
-                text: qsTr("OK")
-                anchors.right: parent.right
-                anchors.rightMargin: 15
-                anchors.bottom: parent.bottom
-                anchors.bottomMargin: 15
-                onClicked: dia.close()
-            }
-        }
-    }
-
-
-    function sndMailWithError(t) {
-        console.log("on send mail func")
-        var ret = maildata.sendMail(t)
-        switch(ret) {
-        case -1:
-            dia._t = qsTr("connet error")
-            dia._c = qsTr("can not connet smtp server")
-            dia.open()
-            break
-        case -2:
-            dia._t = qsTr("login error")
-            dia._c = qsTr("login error,please check your user and pwd")
-            dia.open()
-            break
-        case -3:
-            dia._t = qsTr("send mail error")
-            dia._c = qsTr("send mail,please check your mailbox setting")
-            dia.open()
-            break
-        default:
-            break
-        }
-    }*/
-
     Connections {
         target: maildata
         onCollData: {
@@ -132,8 +79,6 @@ Rectangle {
 
         onLightChanged: {
             lg = parseInt("0x"+lg)
-            if(maildata.lightAlert != -1 && lg > maildata.lightAlert)
-                maildata.sendMail(2)
             if(lg > 230)
                 light_img.source = "qrc:/pic/light_l.png"
             else if(lg > 140)
@@ -204,6 +149,7 @@ Rectangle {
 
         SLGauge {
             id: temp_gauge
+            value: 0
             height: 160
             normal_color: "red"
             alert_color: "red"
@@ -254,6 +200,7 @@ Rectangle {
         SLGauge {
             id: humi_gauge
             height: 160
+            value: 0
             tickmarkStepSize: 20
             maximumValue: 150
             minimumValue: 10
@@ -351,7 +298,7 @@ Rectangle {
                             comboBox1.currentIndex == 2? 3600:
                             comboBox1.currentIndex == 3? 36000:
                                                          86400
-                    console.log("cur delay time:"+rectangle1.delay_time)
+                    //console.log("cur delay time:"+rectangle1.delay_time)
                 }
             }
         }

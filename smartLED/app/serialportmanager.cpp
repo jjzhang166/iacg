@@ -1,42 +1,6 @@
 ﻿#include "serialportmanager.h"
 #include <QDebug>
 
-/*serialConnect::serialConnect(QObject *parent) : QObject(parent) {
-#ifdef Q_OS_LINUX
-    m_portList.append(QString("ttyUSB0"));
-    m_portList.append(QString("ttyUSB1"));
-    m_portList.append(QString("ttyUSB2"));
-    m_portList.append(QString("ttyUSB3"));
-    m_portList.append(QString("ttyS0"));
-    m_portList.append(QString("ttyS1"));
-    m_portList.append(QString("ttyS2"));
-    m_portList.append(QString("ttyS3"));
-#else
-    m_portList.append(QString("COM0"));
-    m_portList.append(QString("COM1"));
-    m_portList.append(QString("COM2"));
-    m_portList.append(QString("COM3"));
-    m_portList.append(QString("COM4"));
-    m_portList.append(QString("COM5"));
-    m_portList.append(QString("COM6"));
-    m_portList.append(QString("COM7"));
-#endif
-    linkPort = new QSerialPort;
-    QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
-         QByteArray data = linkPort->readAll();
-         if(data.left(1).toHex() != "ff" || data.length() != 6)
-             goto exit;
-         this->m_humidity = data.mid(1,2).toHex();
-         this->m_temperature = data.mid(3,2).toHex();
-         this->m_light = data.right(1).toHex();
-         emit humiChanged(m_humidity);
-         emit tempChanged(m_temperature);
-         emit lightChanged(m_light);
-         exit:
-         linkPort->clear();
-    });
-}*/
-
 SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
     QObject(parent),
     dataManager(dm),
@@ -47,15 +11,15 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
 
     InitPortlist();
 
-    QString pn  = dm->ReadSerialportData("PortName").toString();
+    QString pn = dm->ReadSerialportData(DataManager::SERIALPORT_PORTNAME).toString();
     if(!pn.isEmpty())
         m_portName = pn;
     bool ok;
-    int res = dm->ReadSerialportData("BaudRate").toInt(&ok);
+    int res = dm->ReadSerialportData(DataManager::SERIALPORT_BAUDRATE).toInt(&ok);
     if(ok) m_baudRate = (QSerialPort::BaudRate)res;
-    res = dm->ReadSerialportData("DataBits").toInt(&ok);
+    res = dm->ReadSerialportData(DataManager::SERIALPORT_DATABITS).toInt(&ok);
     if(ok) m_dataBits = (QSerialPort::DataBits)res;
-    float sbit = dm->ReadSerialportData("StopBits").toFloat(&ok);
+    float sbit = dm->ReadSerialportData(DataManager::SERIALPORT_STOPBITS).toFloat(&ok);
     if(ok) {
        if(sbit == 1)
             m_stopBits = QSerialPort::OneStop;
@@ -64,7 +28,7 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
         else if(sbit == 2)
             m_stopBits = QSerialPort::TwoStop;
     }
-    pn = dm->ReadSerialportData("Parity").toString();
+    pn = dm->ReadSerialportData(DataManager::SERIALPORT_PARITY).toString();
     if(!pn.isEmpty()) {
         if(pn.toLower() == "no")
             m_parity = QSerialPort::Parity::NoParity;
@@ -92,25 +56,25 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
 
 SerialportManager::~SerialportManager() {
     linkPort->close();
-    dataManager->WriteSerialportData("PortName",QVariant(m_portName));
-    dataManager->WriteSerialportData("BaudRate",QVariant(m_baudRate).toInt());
-    dataManager->WriteSerialportData("DataBits",QVariant(m_dataBits).toInt());
+    dataManager->WriteSerialportData(DataManager::SERIALPORT_PORTNAME,QVariant(m_portName));
+    dataManager->WriteSerialportData(DataManager::SERIALPORT_BAUDRATE,QVariant(m_baudRate).toInt());
+    dataManager->WriteSerialportData(DataManager::SERIALPORT_DATABITS,QVariant(m_dataBits).toInt());
     if(m_stopBits == QSerialPort::OneStop)
-        dataManager->WriteSerialportData("StopBits",QVariant(1));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(1));
     else if(m_stopBits == QSerialPort::OneAndHalfStop)
-        dataManager->WriteSerialportData("StopBits",QVariant(1.5));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(1.5));
     else if(m_stopBits == QSerialPort::TwoStop)
-        dataManager->WriteSerialportData("StopBits",QVariant(2));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(2));
 
     switch (m_parity) {
     case QSerialPort::Parity::NoParity:
-        dataManager->WriteSerialportData("Parity",QVariant("No"));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("No"));
         break;
     case QSerialPort::Parity::OddParity:
-        dataManager->WriteSerialportData("Parity",QVariant("Odd"));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("Odd"));
         break;
     case QSerialPort::Parity::EvenParity:
-        dataManager->WriteSerialportData("Parity",QVariant("Even"));
+        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("Even"));
     }
 }
 

@@ -10,6 +10,8 @@ SmartLED::SmartLED(const QString &pixmap, const QString &cfgfile, QObject *paren
     datamanager = new DataManager(cfgfile);
     qmlRegisterUncreatableType<SerialportManager>("Manager.Serialport",1,0,"SerialportManager",QString("Static Class"));
     qmlRegisterUncreatableType<MailManager>("Manager.Mail",1,0,"MailManager",QString("Static Class"));
+    bootmanager = new BootManager(datamanager);
+    engine->rootContext()->setContextProperty("bootmanager", bootmanager);
     fontmanager = new FontManager(datamanager);
     engine->rootContext()->setContextProperty("fontmanager", fontmanager);
     mailmanager = new MailManager(datamanager);
@@ -21,6 +23,7 @@ SmartLED::SmartLED(const QString &pixmap, const QString &cfgfile, QObject *paren
 }
 
 SmartLED::~SmartLED() {
+    delete bootmanager;
     delete serialportmanager;
     delete fontmanager;
     delete mailmanager;
@@ -31,7 +34,33 @@ SmartLED::~SmartLED() {
 void SmartLED::onObjectCreated(QObject* obj, QUrl url) {
     Q_UNUSED(url)
     if(obj != nullptr) {
-        splash->showMessage("QML Engine:init ok");
+        splash->showMessage("MailManager:create SMTP object");
+        if(!datamanager->ReadBootData(DataManager::BOOT_SMTP).toBool())
+            goto serialportInit;
+        if(!mailmanager->trytoCreateSmtpInstance()) {
+            splash->showMessage("MailManager:create SMTP object failed");
+            QMessageBox::information(NULL,"info", "MailManager:create SMTP object failed",
+                                     QMessageBox::Yes);
+        }
+
+        serialportInit:
+        if(!datamanager->ReadBootData(DataManager::BOOT_SERIALPORT).toBool())
+            goto splashEnd;
+        splash->showMessage("SerialManager:try to connect "+serialportmanager->portName());
+        QObject *button1 = nullptr;
+        foreach(QObject *obj,engine->rootObjects())
+            if(obj->objectName() == "obj_window1") {
+                button1 = obj->findChild<QObject*>("obj_window1_button1");
+            }
+        if(button1 == nullptr) {
+            splash->showMessage("QML Engine:find qml object error");
+            QMessageBox::critical(NULL,"error","QML:find qml object error",QMessageBox::Yes);
+            delete splash;
+            throw new QUnhandledException;
+        }
+        QMetaObject::invokeMethod(button1,"initSerialportConnect");
+
+        splashEnd:
         splash->close();
         delete splash;
     }

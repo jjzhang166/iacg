@@ -51,6 +51,11 @@ Rectangle {
                 }
 
                 ListElement {
+                    com_source: "qrc:/UI/SettingPanelItem/BootSetting.qml"
+                    ref_height: 100
+                }
+
+                ListElement {
                     com_source: "qrc:/UI/SettingPanelItem/ButtonPanel.qml"
                     ref_height: 70
                 }

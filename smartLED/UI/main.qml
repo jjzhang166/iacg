@@ -8,6 +8,7 @@ import SLComponent 1.0
 import Manager.Serialport 1.0
 
 Window {
+    objectName: "obj_window1"
     id: window1
     visible: true
     width: 200
@@ -212,18 +213,11 @@ Window {
         }
 
         SLFlatButton {
+            objectName: "obj_window1_button1"
             property var rightFrame: null
             property bool isConnected: false
-            id: button1
-            width: 160
-            height: 28
-            text: qsTr("Connect")
-            anchors.left: parent.left
-            anchors.leftMargin: 12
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 20
-            fontfamily: fontmanager.curfont
-            onClicked: {
+
+            function initSerialportConnect() {
                 if(!isConnected) {
                     sc.portName = comboBox1.currentText
                     sc.baudRate = Number(comboBox2.currentText)
@@ -241,7 +235,51 @@ Window {
                         var comRf = Qt.createComponent("qrc:/UI/RightFrame.qml")
                         if (comRf.status === Component.Ready)
                             rightFrame = comRf.createObject(window1)
+                        return true
+                    }
+                    else
+                        return false
+                }
+                else {
+                    window1.width = 200
+                    isConnected = false
+                    rightFrame.destroy()
+                    button1.text = qsTr("Connect")
+                    sc.connectStop()
+                    return true
+                }
+            }
 
+            id: button1
+            width: 160
+            height: 28
+            text: qsTr("Connect")
+            anchors.left: parent.left
+            anchors.leftMargin: 12
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 20
+            fontfamily: fontmanager.curfont
+            onClicked: {
+                if(!initSerialportConnect())
+                    window1.err_dia.open()
+                /*
+                if(!isConnected) {
+                    sc.portName = comboBox1.currentText
+                    sc.baudRate = Number(comboBox2.currentText)
+                    sc.dataBits = Number(comboBox3.currentText)
+                    sc.stopBits = (comboBox4.currentIndex == 0? SerialportManager.OneStop:
+                                    comboBox4.currentIndex == 1? SerialportManager.OneAndHalfStop:
+                                        SerialportManager.TwoStop)
+                    sc.parity = (comboBox5.currentIndex == 0? SerialportManager.NoParity:
+                                    comboBox5.currentIndex == 1?SerialportManager.OddParity:
+                                        SerialportManager.EvenParity)
+                    if(sc.connectSart()) {
+                        window1.width = 730
+                        isConnected = true
+                        button1.text = qsTr("DisConnect")
+                        var comRf = Qt.createComponent("qrc:/UI/RightFrame.qml")
+                        if (comRf.status === Component.Ready)
+                            rightFrame = comRf.createObject(window1)
                     }
                     else {
                         window1.err_dia.open()
@@ -254,7 +292,7 @@ Window {
                     rightFrame.destroy()
                     button1.text = qsTr("Connect")
                     sc.connectStop()
-                }
+                }*/
             }
         }
     }

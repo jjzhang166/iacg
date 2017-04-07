@@ -6,21 +6,21 @@ MailManager::MailManager(DataManager *dm,QObject *parent) : QObject(parent)
     ,alert_tmp(-1)
     ,alert_humi(-1)
     ,alert_light(-1) {
-    m_user = dm->ReadMailData("User").toString();
-    m_passwd = dm->ReadMailData("Password").toString();
-    m_sndaddr = dm->ReadMailData("SendAddr").toString();
-    m_recvaddr = dm->ReadMailData("RecvAddr").toString();
-    m_servaddr = dm->ReadMailData("ServerAddr").toString();
-    m_port = dm->ReadMailData("Port").toString();
+    m_user = dm->ReadMailData(DataManager::MAIL_USER).toString();
+    m_passwd = dm->ReadMailData(DataManager::MAIL_PASSWORD).toString();
+    m_sndaddr = dm->ReadMailData(DataManager::MAIL_SENDADDR).toString();
+    m_recvaddr = dm->ReadMailData(DataManager::MAIL_RECVADDR).toString();
+    m_servaddr = dm->ReadMailData(DataManager::MAIL_SERVERADDR).toString();
+    m_port = dm->ReadMailData(DataManager::MAIL_PORT).toString();
 }
 
 MailManager::~MailManager() {
-    datamanager->WriteMailData("User", m_user);
-    datamanager->WriteMailData("Password", m_passwd);
-    datamanager->WriteMailData("SendAddr", m_sndaddr);
-    datamanager->WriteMailData("RecvAddr", m_recvaddr);
-    datamanager->WriteMailData("ServerAddr", m_servaddr);
-    datamanager->WriteMailData("Port", m_port);
+    datamanager->WriteMailData(DataManager::MAIL_USER, m_user);
+    datamanager->WriteMailData(DataManager::MAIL_PASSWORD, m_passwd);
+    datamanager->WriteMailData(DataManager::MAIL_SENDADDR, m_sndaddr);
+    datamanager->WriteMailData(DataManager::MAIL_RECVADDR, m_recvaddr);
+    datamanager->WriteMailData(DataManager::MAIL_SERVERADDR, m_servaddr);
+    datamanager->WriteMailData(DataManager::MAIL_PORT, m_port);
 }
 
 int MailManager::tmpAlert() const {
@@ -187,6 +187,15 @@ int MailManager::sendMail(MAIL_TYPE t) {
     return ERR_SUCCESS;
 }
 
+bool MailManager::trytoCreateSmtpInstance() {
+    if(m_user.isEmpty() || m_passwd.isEmpty() ||
+            m_sndaddr.isEmpty() || m_recvaddr.isEmpty() ||
+            m_servaddr.isEmpty() || m_port.isEmpty())
+        return false;
+    int res = collMailDataEnd();
+    return (res == ERR_SUCCESS)? true : false;
+}
+
 int MailManager::collMailDataEnd() {
     if(m_servaddr.isEmpty()) {
         emit collMailEnd(ERR_SERVADDR_EMPTY);
@@ -234,7 +243,7 @@ int MailManager::collMailDataEnd() {
         return ERR_CLIENT_EXIST;
     }
     //if smtp == null,we create a new instance directly
-    try{
+    try {
         smtp = new SmtpClient(m_servaddr,25,SmtpClient::SslConnection);
         smtp->setPort(m_port.toInt());
         smtp->setUser(m_user);
