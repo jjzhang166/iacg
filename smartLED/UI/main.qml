@@ -262,37 +262,6 @@ Window {
             onClicked: {
                 if(!initSerialportConnect())
                     window1.err_dia.open()
-                /*
-                if(!isConnected) {
-                    sc.portName = comboBox1.currentText
-                    sc.baudRate = Number(comboBox2.currentText)
-                    sc.dataBits = Number(comboBox3.currentText)
-                    sc.stopBits = (comboBox4.currentIndex == 0? SerialportManager.OneStop:
-                                    comboBox4.currentIndex == 1? SerialportManager.OneAndHalfStop:
-                                        SerialportManager.TwoStop)
-                    sc.parity = (comboBox5.currentIndex == 0? SerialportManager.NoParity:
-                                    comboBox5.currentIndex == 1?SerialportManager.OddParity:
-                                        SerialportManager.EvenParity)
-                    if(sc.connectSart()) {
-                        window1.width = 730
-                        isConnected = true
-                        button1.text = qsTr("DisConnect")
-                        var comRf = Qt.createComponent("qrc:/UI/RightFrame.qml")
-                        if (comRf.status === Component.Ready)
-                            rightFrame = comRf.createObject(window1)
-                    }
-                    else {
-                        window1.err_dia.open()
-                        return
-                    }
-                }
-                else {
-                    window1.width = 200
-                    isConnected = false
-                    rightFrame.destroy()
-                    button1.text = qsTr("Connect")
-                    sc.connectStop()
-                }*/
             }
         }
     }

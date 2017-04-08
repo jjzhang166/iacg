@@ -33,7 +33,8 @@ TRANSLATIONS += locale/zh_CN.ts \
 
 lupdate_only{
     SOURCES += UI/*.qml \
-                UI/SettingPanelItem/*.qml
+                UI/SettingPanelItem/*.qml \
+                app/*.cpp
 }
 
 RC_ICONS = sl.ico

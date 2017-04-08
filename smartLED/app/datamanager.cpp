@@ -4,6 +4,7 @@
 DataManager::DataManager(const QString &filename)
     : FileName(filename) {
     SetInifile = new QSettings(FileName,QSettings::IniFormat);
+    Q_ASSERT(SetInifile != nullptr);
     PortName = SetInifile->value("SerialPort/PortName");
     BaudRate = SetInifile->value("SerialPort/BaudRate");
     DataBits = SetInifile->value("SerialPort/DataBits");
@@ -19,10 +20,12 @@ DataManager::DataManager(const QString &filename)
     SmtpBoot = SetInifile->value("Boot/SmtpBoot",QVariant(false));
     SerialportBoot = SetInifile->value("Boot/SerialportBoot",QVariant(true));
     delete SetInifile;
+    initDataFrame();
 }
 
 DataManager::~DataManager() {
     SetInifile = new QSettings(FileName,QSettings::IniFormat);
+    Q_ASSERT(SetInifile != nullptr);
     if(PortName.isValid() && !PortName.toString().isEmpty())
         SetInifile->setValue("SerialPort/PortName", PortName);
     if(BaudRate.isValid() && BaudRate.toInt() > 0)
@@ -52,6 +55,121 @@ DataManager::~DataManager() {
     if(SerialportBoot.isValid())
         SetInifile->setValue("Boot/SerialportBoot",SerialportBoot);
     delete SetInifile;
+    saveDataFrame();
+}
+
+void DataManager::initDataFrame(const QString &cfgfile) {
+    SetInifile = new QSettings(cfgfile, QSettings::IniFormat);
+    if(!QDir::current().exists(cfgfile)) {
+       int stdbutton =
+               QMessageBox::warning(nullptr,QObject::tr("warning"), QObject::tr("file:'frame.ini' is not exist.\n"
+                                                      "use default frame config?"),QMessageBox::Yes,QMessageBox::No);
+        if(stdbutton == (int)QMessageBox::No)
+            throw new QUnhandledException;
+    }
+    Q_ASSERT(SetInifile != nullptr);
+    frameLen = SetInifile->value("DataFrame/FrameLen", 6);
+    frameheader = SetInifile->value("DataFrame/FrameHeader", "ff");
+    frameheaderLen = SetInifile->value("DataFrame/FrameHeaderLen", 1);
+    framehumi = SetInifile->value("DataFrame/FrameHumi", 1);
+    framehumiLen = SetInifile->value("DataFrame/FrameHumiLen", 2);
+    frametemp = SetInifile->value("DataFrame/FrameTemp", 3);
+    frametempLen = SetInifile->value("DataFrame/FrameTempLen", 2);
+    framelight = SetInifile->value("DataFrame/FrameLight", 5);
+    framelightLen = SetInifile->value("DataFrame/FrameLightLen", 1);
+    framelight_Hvalue = SetInifile->value("DataFrame/LightValue_H", "-1|100");
+    framelight_MHvalue = SetInifile->value("DataFrame/LightValue_MH", "100|140");
+    framelight_Mvalue = SetInifile->value("DataFrame/LightValue_M", "140|230");
+    framelight_Lvalue = SetInifile->value("DataFrame/LightValue_L", "230|-1");
+    delete SetInifile;
+
+    QString lightdata = framelight_Hvalue.toString();
+    int pos = lightdata.indexOf('|');
+    h_lightSection = qMakePair(lightdata.mid(0, pos).toInt(), lightdata.mid(pos+1).toInt());
+    if(h_lightSection.first == -1)
+        h_lightSection.first = INT_MIN;
+    else if(h_lightSection.second == -1)
+        h_lightSection.second = INT_MAX;
+
+    lightdata = framelight_MHvalue.toString();
+    pos = lightdata.indexOf('|');
+    mh_lightSection = qMakePair(lightdata.mid(0, pos).toInt(), lightdata.mid(pos+1).toInt());
+
+    lightdata = framelight_Mvalue.toString();
+    pos = lightdata.indexOf('|');
+    m_lightSection = qMakePair(lightdata.mid(0, pos).toInt(), lightdata.mid(pos+1).toInt());
+
+    lightdata = framelight_Lvalue.toString();
+    pos = lightdata.indexOf('|');
+    l_lightSection = qMakePair(lightdata.mid(0, pos).toInt(), lightdata.mid(pos+1).toInt());
+    if(l_lightSection.first == -1)
+        l_lightSection.first = INT_MIN;
+    else if(l_lightSection.second == -1)
+        l_lightSection.second = INT_MAX;
+}
+
+void DataManager::saveDataFrame(const QString &cfgfile) {
+    SetInifile = new QSettings(cfgfile, QSettings::IniFormat);
+    Q_ASSERT(SetInifile != nullptr);
+    SetInifile->setValue("DataFrame/FrameLen", frameLen);
+    SetInifile->setValue("DataFrame/FrameHeader", frameheader);
+    SetInifile->setValue("DataFrame/FrameHeaderLen", frameheaderLen);
+    SetInifile->setValue("DataFrame/FrameHumi", framehumi);
+    SetInifile->setValue("DataFrame/FrameHumiLen", framehumiLen);
+    SetInifile->setValue("DataFrame/FrameTemp", frametemp);
+    SetInifile->setValue("DataFrame/FrameTempLen", frametempLen);
+    SetInifile->setValue("DataFrame/FrameLight", framelight);
+    SetInifile->setValue("DataFrame/FrameLightLen", framelightLen);
+    SetInifile->setValue("DataFrame/LightValue_H", framelight_Hvalue);
+    SetInifile->setValue("DataFrame/LightValue_MH", framelight_MHvalue);
+    SetInifile->setValue("DataFrame/LightValue_M", framelight_Mvalue);
+    SetInifile->setValue("DataFrame/LightValue_L", framelight_Lvalue);
+    delete SetInifile;
+}
+
+QVariant DataManager::ReadFrameData(const FrameData key) {
+    switch (key) {
+    case FRAME_LEN:
+        return frameLen;
+        break;
+    case FRAME_HEADER:
+        return frameheader;
+        break;
+    case FRAME_HEADERLEN:
+        return frameheaderLen;
+        break;
+    case FRAME_HUMI:
+        return framehumi;
+        break;
+    case FRAME_HUMILEN:
+        return framehumiLen;
+        break;
+    case FRAME_TEMP:
+        return frametemp;
+        break;
+    case FRAME_TEMPLEN:
+        return frametempLen;
+        break;
+    case FRAME_LIGHT:
+        return framelight;
+        break;
+    case FRAME_LIGHTLEN:
+        return framelightLen;
+        break;
+    }
+    return QVariant("");
+}
+
+int DataManager::parseLightLevel(const int lg) {
+    if(h_lightSection.first < lg && lg < h_lightSection.second)
+        return LL_HIGH;
+    if(mh_lightSection.first < lg && lg < mh_lightSection.second)
+        return LL_MH;
+    if(m_lightSection.first < lg && lg < m_lightSection.second)
+        return LL_MEDIUM;
+    if(l_lightSection.first < lg && lg < l_lightSection.second)
+        return LL_LOW;
+    return -1;      //parse error
 }
 
 QVariant DataManager::ReadSerialportData(const SerialportData key) {
@@ -159,6 +277,7 @@ QVariant DataManager::ReadBootData(const BootData key) {
         return SerialportBoot;
         break;
     }
+    return QVariant("");
 }
 
 void DataManager::WriteBootData(const BootData key, QVariant value) {

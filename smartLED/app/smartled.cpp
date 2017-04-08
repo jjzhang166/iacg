@@ -34,12 +34,12 @@ SmartLED::~SmartLED() {
 void SmartLED::onObjectCreated(QObject* obj, QUrl url) {
     Q_UNUSED(url)
     if(obj != nullptr) {
-        splash->showMessage("MailManager:create SMTP object");
         if(!datamanager->ReadBootData(DataManager::BOOT_SMTP).toBool())
             goto serialportInit;
+		splash->showMessage("MailManager:create SMTP object");
         if(!mailmanager->trytoCreateSmtpInstance()) {
             splash->showMessage("MailManager:create SMTP object failed");
-            QMessageBox::information(NULL,"info", "MailManager:create SMTP object failed",
+            QMessageBox::information(NULL,tr("info"), tr("MailManager:create SMTP object failed"),
                                      QMessageBox::Yes);
         }
 
@@ -54,7 +54,7 @@ void SmartLED::onObjectCreated(QObject* obj, QUrl url) {
             }
         if(button1 == nullptr) {
             splash->showMessage("QML Engine:find qml object error");
-            QMessageBox::critical(NULL,"error","QML:find qml object error",QMessageBox::Yes);
+            QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
             delete splash;
             throw new QUnhandledException;
         }
@@ -66,7 +66,7 @@ void SmartLED::onObjectCreated(QObject* obj, QUrl url) {
     }
     else {
         splash->showMessage("QML Engine:init error");
-        QMessageBox::critical(NULL,"error","QML:engine load failed",QMessageBox::Yes);
+        QMessageBox::critical(NULL, tr("error"), tr("QML:engine load failed"), QMessageBox::Yes);
         splash->close();
         delete splash;
         throw new QUnhandledException;

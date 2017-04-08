@@ -42,7 +42,7 @@ Item {
             anchors.verticalCenterOffset: 3
             font.family: fontmanager.curfont
             color: "#ffffff"
-            text: "The SmartLED Project"
+            text: qsTr("The SmartLED Project")
         }
 
         Image {

@@ -78,15 +78,19 @@ Rectangle {
         }
 
         onLightChanged: {
-            lg = parseInt("0x"+lg)
-            if(lg > 230)
-                light_img.source = "qrc:/pic/light_l.png"
-            else if(lg > 140)
-                light_img.source = "qrc:/pic/light_m.png"
-            else if(lg > 100)
-                light_img.source = "qrc:/pic/light_mh.png"
-            else
+            switch(ll) {
+            case 0:             //LL_HIGH
                 light_img.source = "qrc:/pic/light_h.png"
+                break
+            case 1:             //LL_MH
+                light_img.source = "qrc:/pic/light_mh.png"
+                break
+            case 2:             //LL_MEDIUM
+                light_img.source = "qrc:/pic/light_m.png"
+                break
+            case 3:             //LL_LOW
+                light_img.source = "qrc:/pic/light_l.png"
+            }
         }
     }
 

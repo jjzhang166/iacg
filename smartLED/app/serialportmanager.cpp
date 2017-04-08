@@ -41,14 +41,15 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
     linkPort = new QSerialPort;
     QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
          QByteArray data = linkPort->readAll();
-         if(data.left(1).toHex() != "ff" || data.length() != 6)
+         if(data.left(frameheaderLen).toHex() != frameheader || data.length() != frameLen)
              goto exit;
-         this->m_humidity = data.mid(1,2).toHex();
-         this->m_temperature = data.mid(3,2).toHex();
-         this->m_light = data.right(1).toHex();
+         this->m_humidity = data.mid(framehumi,framehumiLen).toHex();
+         this->m_temperature = data.mid(frametemp,frametempLen).toHex();
+         this->m_light = data.mid(framelight,framelightLen).toHex();
+         int lightlevel = dataManager->parseLightLevel(m_light.toInt(nullptr,16));
          emit humiChanged(m_humidity);
          emit tempChanged(m_temperature);
-         emit lightChanged(m_light);
+         emit lightChanged(lightlevel);
          exit:
          linkPort->clear();
     });
@@ -79,6 +80,25 @@ SerialportManager::~SerialportManager() {
 }
 
 void SerialportManager::InitPortlist() {
+    frameLen = dataManager->ReadFrameData(DataManager::FRAME_LEN).toInt();
+    Q_ASSERT(frameLen > 0);
+    frameheader = dataManager->ReadFrameData(DataManager::FRAME_HEADER).toByteArray();
+    Q_ASSERT(frameheader.length() > 0);
+    frameheaderLen = dataManager->ReadFrameData(DataManager::FRAME_HEADERLEN).toInt();
+    Q_ASSERT(frameheaderLen > 0);
+    framehumi = dataManager->ReadFrameData(DataManager::FRAME_HUMI).toInt();
+    Q_ASSERT(framehumi > 0);
+    framehumiLen = dataManager->ReadFrameData(DataManager::FRAME_HUMILEN).toInt();
+    Q_ASSERT(framehumiLen > 0);
+    frametemp = dataManager->ReadFrameData(DataManager::FRAME_TEMP).toInt();
+    Q_ASSERT(frametemp > 0);
+    frametempLen = dataManager->ReadFrameData(DataManager::FRAME_TEMPLEN).toInt();
+    Q_ASSERT(frametempLen > 0);
+    framelight = dataManager->ReadFrameData(DataManager::FRAME_LIGHT).toInt();
+    Q_ASSERT(framelight > 0);
+    framelightLen = dataManager->ReadFrameData(DataManager::FRAME_LIGHTLEN).toInt();
+    Q_ASSERT(framelightLen > 0);
+
     foreach (QSerialPortInfo port, QSerialPortInfo::availablePorts()) {
         m_portList.push_back(port.portName());
     }
@@ -86,12 +106,6 @@ void SerialportManager::InitPortlist() {
         m_portName = m_portList.at(0);
     else
         m_portName = "";
-}
-
-void SerialportManager::writeChar(const QString &cc) {
-    char data = cc[0].cell();
-    linkPort->clear();
-    linkPort->write(&data);
 }
 
 void SerialportManager::writeByte(const QString &b) {

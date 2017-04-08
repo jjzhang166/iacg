@@ -141,78 +141,78 @@
 <context>
     <name>CollPanel</name>
     <message>
-        <location filename="../UI/CollPanel.qml" line="100"/>
+        <location filename="../UI/CollPanel.qml" line="104"/>
         <source>CurrentLight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="130"/>
+        <location filename="../UI/CollPanel.qml" line="134"/>
         <source>CurrentTemp:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="141"/>
-        <location filename="../UI/CollPanel.qml" line="190"/>
+        <location filename="../UI/CollPanel.qml" line="145"/>
+        <location filename="../UI/CollPanel.qml" line="195"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="164"/>
+        <location filename="../UI/CollPanel.qml" line="169"/>
         <source>℃</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="179"/>
+        <location filename="../UI/CollPanel.qml" line="184"/>
         <source>CurrentHumi:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="217"/>
+        <location filename="../UI/CollPanel.qml" line="223"/>
         <source>%RH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="234"/>
+        <location filename="../UI/CollPanel.qml" line="240"/>
         <source>SendDelay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="245"/>
+        <location filename="../UI/CollPanel.qml" line="251"/>
         <source>Default Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="257"/>
+        <location filename="../UI/CollPanel.qml" line="263"/>
         <source>Custom Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="276"/>
+        <location filename="../UI/CollPanel.qml" line="282"/>
         <source>5 minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="276"/>
+        <location filename="../UI/CollPanel.qml" line="282"/>
         <source>15 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="277"/>
+        <location filename="../UI/CollPanel.qml" line="283"/>
         <source>1 hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="277"/>
+        <location filename="../UI/CollPanel.qml" line="283"/>
         <source>10 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="277"/>
+        <location filename="../UI/CollPanel.qml" line="283"/>
         <source>24 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="290"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -360,6 +360,20 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../app/datamanager.cpp" line="65"/>
+        <source>warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/datamanager.cpp" line="65"/>
+        <source>file:&apos;frame.ini&apos; is not exist.
+use default frame config?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RightFrame</name>
     <message>
         <location filename="../UI/RightFrame.qml" line="18"/>
@@ -374,6 +388,35 @@
     <message>
         <location filename="../UI/RightFrame.qml" line="31"/>
         <source>about</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SmartLED</name>
+    <message>
+        <location filename="../app/smartled.cpp" line="42"/>
+        <source>info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="42"/>
+        <source>MailManager:create SMTP object failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="57"/>
+        <location filename="../app/smartled.cpp" line="69"/>
+        <source>error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="57"/>
+        <source>QML:find qml object error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="69"/>
+        <source>QML:engine load failed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -402,6 +445,14 @@
     <message>
         <location filename="../UI/SettingPanelItem/TmpSetting.qml" line="87"/>
         <source>Test Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TopFrame</name>
+    <message>
+        <location filename="../UI/TopFrame.qml" line="45"/>
+        <source>The SmartLED Project</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

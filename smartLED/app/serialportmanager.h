@@ -41,7 +41,7 @@ signals:
      */
     void tempChanged(const QString &tm);
     void humiChanged(const QString &hm);
-    void lightChanged(const QString &lg);
+    void lightChanged(const int ll);
 
 public:
     SerialportManager(DataManager *dm, QObject *parent = 0);
@@ -88,8 +88,6 @@ public:
      */
     Q_INVOKABLE void connectStop();
 
-    //弃用
-    Q_INVOKABLE void writeChar(const QString&);
     /*
      * 名称：writeByte
      * 参数：QString,要发送的数据帧，为string类型的
@@ -112,6 +110,16 @@ private:
     QString m_temperature;
     QString m_humidity;
     QStringList m_portList;
+
+    int frameLen;
+    QByteArray frameheader;
+    int frameheaderLen;
+    int framehumi;
+    int framehumiLen;
+    int frametemp;
+    int frametempLen;
+    int framelight;
+    int framelightLen;
 
 private:
     void InitPortlist();
