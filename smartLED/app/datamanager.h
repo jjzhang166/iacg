@@ -1,4 +1,4 @@
-#ifndef DATAMANAGER_H
+﻿#ifndef DATAMANAGER_H
 #define DATAMANAGER_H
 
 #include <QVariant>
@@ -45,7 +45,15 @@ public:
         FRAME_TEMP,
         FRAME_TEMPLEN,
         FRAME_LIGHT,
-        FRAME_LIGHTLEN
+        FRAME_LIGHTLEN,
+        SNDFRAME_HEADER,
+        SNDFRAME_CHECK,
+        SNDFRAME_UNCHEKC,
+        SNDFRAME_BODY0,
+        SNDFRAME_BODY1,
+        SNDFRAME_BODY2,
+        SNDFRAME_BODY3,
+        SNDFRAME_BODY4
     };
 
     enum LightLevel {
@@ -124,6 +132,17 @@ private:
     QPair<int,int> mh_lightSection;
     QPair<int,int> m_lightSection;
     QPair<int,int> l_lightSection;
+
+    //控制帧配置
+    QVariant sndframeheader;    //控制帧的头部
+    QVariant sndframecheck;     //控制单片机自动补光时发送的数据
+    QVariant sndframeuncheck;   //控制单片机不自动补光时发送的数据
+    QVariant sndframebody_0;    //控制单片机补光级别0
+    QVariant sndframebody_1;    //控制单片机补光级别1
+    QVariant sndframebody_2;    //控制单片机补光级别2
+    QVariant sndframebody_3;    //控制单片机补光级别3
+    QVariant sndframebody_4;    //控制单片机补光级别4
+
 };
 
 #endif // DATAMANAGER_H

@@ -1,4 +1,4 @@
-#include "datamanager.h"
+﻿#include "datamanager.h"
 #include <QDebug>
 
 DataManager::DataManager(const QString &filename)
@@ -81,6 +81,15 @@ void DataManager::initDataFrame(const QString &cfgfile) {
     framelight_MHvalue = SetInifile->value("DataFrame/LightValue_MH", "100|140");
     framelight_Mvalue = SetInifile->value("DataFrame/LightValue_M", "140|230");
     framelight_Lvalue = SetInifile->value("DataFrame/LightValue_L", "230|-1");
+    //控制帧配置初始化
+    sndframeheader = SetInifile->value("ControlFrame/FrameHeader", "ff");
+    sndframecheck = SetInifile->value("ControlFrame/FrameCheck", "01");
+    sndframeuncheck = SetInifile->value("ControlFrame/FrameUnCheck", "00");
+    sndframebody_0 = SetInifile->value("ControlFrame/FrameBody_0", "00");
+    sndframebody_1 = SetInifile->value("ControlFrame/FrameBody_1", "0a");
+    sndframebody_2 = SetInifile->value("ControlFrame/FrameBody_2", "14");
+    sndframebody_3 = SetInifile->value("ControlFrame/FrameBody_3", "1e");
+    sndframebody_4 = SetInifile->value("ControlFrame/FrameBody_4", "28");
     delete SetInifile;
 
     QString lightdata = framelight_Hvalue.toString();
@@ -124,6 +133,15 @@ void DataManager::saveDataFrame(const QString &cfgfile) {
     SetInifile->setValue("DataFrame/LightValue_MH", framelight_MHvalue);
     SetInifile->setValue("DataFrame/LightValue_M", framelight_Mvalue);
     SetInifile->setValue("DataFrame/LightValue_L", framelight_Lvalue);
+    //控制帧配置保存
+    SetInifile->setValue("ControlFrame/FrameHeader", sndframeheader);
+    SetInifile->setValue("ControlFrame/FrameCheck", sndframecheck);
+    SetInifile->setValue("ControlFrame/FrameUnCheck", sndframeuncheck);
+    SetInifile->setValue("ControlFrame/FrameBody_0", sndframebody_0);
+    SetInifile->setValue("ControlFrame/FrameBody_1", sndframebody_1);
+    SetInifile->setValue("ControlFrame/FrameBody_2", sndframebody_2);
+    SetInifile->setValue("ControlFrame/FrameBody_3", sndframebody_3);
+    SetInifile->setValue("ControlFrame/FrameBody_4", sndframebody_4);
     delete SetInifile;
 }
 
@@ -155,6 +173,29 @@ QVariant DataManager::ReadFrameData(const FrameData key) {
         break;
     case FRAME_LIGHTLEN:
         return framelightLen;
+        break;
+    case SNDFRAME_HEADER:
+        return sndframeheader;
+        break;
+    case SNDFRAME_CHECK:
+        return sndframecheck;
+        break;
+    case SNDFRAME_UNCHEKC:
+        return sndframeuncheck;
+    case SNDFRAME_BODY0:
+        return sndframebody_0;
+        break;
+    case SNDFRAME_BODY1:
+        return sndframebody_1;
+        break;
+    case SNDFRAME_BODY2:
+        return sndframebody_2;
+        break;
+    case SNDFRAME_BODY3:
+        return sndframebody_3;
+        break;
+    case SNDFRAME_BODY4:
+        return sndframebody_4;
         break;
     }
     return QVariant("");

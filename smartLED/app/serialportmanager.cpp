@@ -98,6 +98,22 @@ void SerialportManager::InitPortlist() {
     Q_ASSERT(framelight > 0);
     framelightLen = dataManager->ReadFrameData(DataManager::FRAME_LIGHTLEN).toInt();
     Q_ASSERT(framelightLen > 0);
+    sndframeheader = dataManager->ReadFrameData(DataManager::SNDFRAME_HEADER).toByteArray();
+    Q_ASSERT(sndframeheader.length() > 0);
+    sndframebody_0 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY0).toByteArray();
+    Q_ASSERT(sndframebody_0.length() > 0);
+    sndframebody_1 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY1).toByteArray();
+    Q_ASSERT(sndframebody_1.length() > 0);
+    sndframebody_2 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY2).toByteArray();
+    Q_ASSERT(sndframebody_2.length() > 0);
+    sndframebody_3 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY3).toByteArray();
+    Q_ASSERT(sndframebody_3.length() > 0);
+    sndframebody_4 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY4).toByteArray();
+    Q_ASSERT(sndframebody_4.length() > 0);
+    sndframecheck = dataManager->ReadFrameData(DataManager::SNDFRAME_CHECK).toByteArray();
+    Q_ASSERT(sndframecheck.length() > 0);
+    sndframeuncheck = dataManager->ReadFrameData(DataManager::SNDFRAME_UNCHEKC).toByteArray();
+    Q_ASSERT(sndframeuncheck.length() > 0);
 
     foreach (QSerialPortInfo port, QSerialPortInfo::availablePorts()) {
         m_portList.push_back(port.portName());
@@ -106,6 +122,32 @@ void SerialportManager::InitPortlist() {
         m_portName = m_portList.at(0);
     else
         m_portName = "";
+}
+
+void SerialportManager::sndControlFrame(const bool checked, const int level) {
+    QString controlFrame = sndframeheader;
+    if(checked)
+        controlFrame += sndframecheck;
+    else
+        controlFrame += sndframeuncheck;
+    switch(level) {
+    case 0:
+        controlFrame += sndframebody_0;
+        break;
+    case 1:
+        controlFrame += sndframebody_1;
+        break;
+    case 2:
+        controlFrame += sndframebody_2;
+        break;
+    case 3:
+        controlFrame += sndframebody_3;
+        break;
+    case 4:
+        controlFrame += sndframebody_4;
+        break;
+    }
+    writeByte(controlFrame);
 }
 
 void SerialportManager::writeByte(const QString &b) {

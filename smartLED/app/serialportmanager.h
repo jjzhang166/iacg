@@ -73,6 +73,8 @@ public:
 
     QString humidity() const;
     void    setHumidity(const QString &hum);
+
+    Q_INVOKABLE void sndControlFrame(const bool checked, const int level);
     /*
      * 名称：connectSart
      * 参数：无
@@ -88,16 +90,6 @@ public:
      */
     Q_INVOKABLE void connectStop();
 
-    /*
-     * 名称：writeByte
-     * 参数：QString,要发送的数据帧，为string类型的
-     * 十六进制字符串，如"ff","11","0f"
-     * 返回值：无
-     * 作用：向单片机发送指定十六进制数据帧，从而达到通过上位机控制
-     * 单片机的效果
-     */
-    Q_INVOKABLE void writeByte(const QString&);
-
 private:
     QSerialPort *linkPort;
     DataManager *dataManager;
@@ -111,8 +103,9 @@ private:
     QString m_humidity;
     QStringList m_portList;
 
-    int frameLen;
+    //数据帧相关信息
     QByteArray frameheader;
+    int frameLen;
     int frameheaderLen;
     int framehumi;
     int framehumiLen;
@@ -121,8 +114,29 @@ private:
     int framelight;
     int framelightLen;
 
+    //控制帧相关信息
+    QByteArray sndframeheader;
+    QByteArray sndframecheck;
+    QByteArray sndframeuncheck;
+    QByteArray sndframebody_0;
+    QByteArray sndframebody_1;
+    QByteArray sndframebody_2;
+    QByteArray sndframebody_3;
+    QByteArray sndframebody_4;
+
 private:
     void InitPortlist();
+
+    /*
+     * 名称：writeByte
+     * 参数：QString,要发送的数据帧，为string类型的
+     * 十六进制字符串，如"ff","11","0f"
+     * 返回值：无
+     * 作用：向单片机发送指定十六进制数据帧，从而达到通过上位机控制
+     * 单片机的效果
+     */
+    void writeByte(const QString&);
+
     /*
      * 名称：QString2Hex
      * 参数：QString, 十六进制的字符串，如"ff","01"

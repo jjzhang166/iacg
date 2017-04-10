@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import QtQuick.Controls 1.4
 import SLComponent 1.0
 
@@ -56,13 +56,11 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 50
                 onClicked: {
-                    var byte1 = "ff"
-                    var byte2 = check1.checked? "01":"00"
-                    var byte3 = comboBox1.currentText == "Level0"? "00":
-                                comboBox1.currentText == "Level1"? "0a":
-                                comboBox1.currentText == "Level2"? "14":
-                                comboBox1.currentText == "Level3"? "1e":"28"
-                    sc.writeByte(byte1+byte2+byte3)
+                    var ll = comboBox1.currentText == "Level0"? 0:
+                                comboBox1.currentText == "Level1"? 1:
+                                comboBox1.currentText == "Level2"? 2:
+                                comboBox1.currentText == "Level3"? 3:4
+                    sc.sndControlFrame(check1.checked, ll)
                 }
             }
         }
