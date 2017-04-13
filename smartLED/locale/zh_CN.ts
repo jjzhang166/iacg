@@ -421,15 +421,22 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/datamanager.cpp" line="65"/>
+        <location filename="../app/datamanager.cpp" line="66"/>
+        <location filename="../app/datamanager.cpp" line="73"/>
         <source>warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="../app/datamanager.cpp" line="65"/>
+        <location filename="../app/datamanager.cpp" line="66"/>
         <source>file:&apos;frame.ini&apos; is not exist.
 use default frame config?</source>
-        <translation type="unfinished">配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据,是否使用默认数据帧结构?</translation>
+        <translation>配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据,是否使用默认数据帧结构?</translation>
+    </message>
+    <message>
+        <location filename="../app/datamanager.cpp" line="73"/>
+        <source>file:&apos;frame.ini&apos; is not exist.
+crate a new file?</source>
+        <translation type="unfinished">配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
     </message>
 </context>
 <context>
@@ -453,28 +460,28 @@ use default frame config?</source>
 <context>
     <name>SmartLED</name>
     <message>
-        <location filename="../app/smartled.cpp" line="42"/>
+        <location filename="../app/smartled.cpp" line="44"/>
         <source>info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="42"/>
+        <location filename="../app/smartled.cpp" line="44"/>
         <source>MailManager:create SMTP object failed</source>
         <translation>MailManager:创建SMTP对象失败</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="57"/>
-        <location filename="../app/smartled.cpp" line="69"/>
+        <location filename="../app/smartled.cpp" line="59"/>
+        <location filename="../app/smartled.cpp" line="71"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="57"/>
+        <location filename="../app/smartled.cpp" line="59"/>
         <source>QML:find qml object error</source>
         <translation>QML:搜寻qml对象树时发生错误</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="69"/>
+        <location filename="../app/smartled.cpp" line="71"/>
         <source>QML:engine load failed</source>
         <translation>QML:引擎装载失败</translation>
     </message>

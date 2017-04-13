@@ -362,14 +362,21 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/datamanager.cpp" line="65"/>
+        <location filename="../app/datamanager.cpp" line="66"/>
+        <location filename="../app/datamanager.cpp" line="73"/>
         <source>warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/datamanager.cpp" line="65"/>
+        <location filename="../app/datamanager.cpp" line="66"/>
         <source>file:&apos;frame.ini&apos; is not exist.
 use default frame config?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/datamanager.cpp" line="73"/>
+        <source>file:&apos;frame.ini&apos; is not exist.
+crate a new file?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -394,28 +401,28 @@ use default frame config?</source>
 <context>
     <name>SmartLED</name>
     <message>
-        <location filename="../app/smartled.cpp" line="42"/>
+        <location filename="../app/smartled.cpp" line="44"/>
         <source>info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="42"/>
+        <location filename="../app/smartled.cpp" line="44"/>
         <source>MailManager:create SMTP object failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="57"/>
-        <location filename="../app/smartled.cpp" line="69"/>
+        <location filename="../app/smartled.cpp" line="59"/>
+        <location filename="../app/smartled.cpp" line="71"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="57"/>
+        <location filename="../app/smartled.cpp" line="59"/>
         <source>QML:find qml object error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="69"/>
+        <location filename="../app/smartled.cpp" line="71"/>
         <source>QML:engine load failed</source>
         <translation type="unfinished"></translation>
     </message>

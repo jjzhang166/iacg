@@ -44,5 +44,3 @@ win32: LIBS += -L$$PWD/./ -lSMTPEmail
 INCLUDEPATH += $$PWD/app/.
 DEPENDPATH += $$PWD/app/.
 
-DISTFILES += \
-    UI/SettingPanelItem/BootSetting.qml

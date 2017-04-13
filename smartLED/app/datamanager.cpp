@@ -61,11 +61,23 @@ DataManager::~DataManager() {
 void DataManager::initDataFrame(const QString &cfgfile) {
     SetInifile = new QSettings(cfgfile, QSettings::IniFormat);
     if(!QDir::current().exists(cfgfile)) {
-       int stdbutton =
-               QMessageBox::warning(nullptr,QObject::tr("warning"), QObject::tr("file:'frame.ini' is not exist.\n"
-                                                      "use default frame config?"),QMessageBox::Yes,QMessageBox::No);
-        if(stdbutton == (int)QMessageBox::No)
-            throw new QUnhandledException;
+        if(!QDir::current().exists("frameCreator.exe")) {
+           int stdbutton =
+                   QMessageBox::warning(nullptr, QObject::tr("warning"), QObject::tr("file:'frame.ini' is not exist.\n"
+                                                          "use default frame config?"), QMessageBox::Yes,QMessageBox::No);
+            if(stdbutton == (int)QMessageBox::No)
+                throw new QUnhandledException;
+        }
+        else {
+            int stdbutton =
+                    QMessageBox::warning(nullptr, QObject::tr("warning"), QObject::tr("file:'frame.ini' is not exist.\n"
+                                                           "crate a new file?"), QMessageBox::Yes, QMessageBox::No);
+            if(stdbutton == (int)QMessageBox::Yes) {
+                QProcess fc;
+                fc.startDetached(QDir::currentPath() + "/frameCreator.exe");
+                throw new QUnhandledException;
+            }
+        }
     }
     Q_ASSERT(SetInifile != nullptr);
     frameLen = SetInifile->value("DataFrame/FrameLen", 6);

@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QUnhandledException>
 #include <QObject>
+#include <QProcess>
 #include <limits>
 
 class DataManager

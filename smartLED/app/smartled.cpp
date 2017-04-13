@@ -1,8 +1,10 @@
-#include "smartled.h"
+﻿#include "smartled.h"
 #include <QUnhandledException>
 
 SmartLED::SmartLED(const QString &pixmap, const QString &cfgfile, QObject *parent) : QObject(parent) {
-    splash = new QSplashScreen(QPixmap(pixmap));
+    QDir splash_file(QDir::currentPath() + "/splash.png");
+    splash = (QDir::current().exists("splash.png")) ? new QSplashScreen(QPixmap(splash_file.absolutePath()))
+                                    : new QSplashScreen(QPixmap(pixmap));
     splash->show();
     splash->showMessage("QML Engine:loading,please wait...");
     engine = new QQmlApplicationEngine;
