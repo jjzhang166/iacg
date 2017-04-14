@@ -1,4 +1,4 @@
-#include "mailmanager.h"
+﻿#include "mailmanager.h"
 #include <QDebug>
 
 MailManager::MailManager(DataManager *dm,QObject *parent) : QObject(parent)
@@ -6,21 +6,29 @@ MailManager::MailManager(DataManager *dm,QObject *parent) : QObject(parent)
     ,alert_tmp(-1)
     ,alert_humi(-1)
     ,alert_light(-1) {
-    m_user = dm->ReadMailData(DataManager::MAIL_USER).toString();
-    m_passwd = dm->ReadMailData(DataManager::MAIL_PASSWORD).toString();
-    m_sndaddr = dm->ReadMailData(DataManager::MAIL_SENDADDR).toString();
-    m_recvaddr = dm->ReadMailData(DataManager::MAIL_RECVADDR).toString();
-    m_servaddr = dm->ReadMailData(DataManager::MAIL_SERVERADDR).toString();
-    m_port = dm->ReadMailData(DataManager::MAIL_PORT).toString();
+    USER = dm->ReadMailData(DataManager::MAIL_USER).toString();
+    PASSWORD = dm->ReadMailData(DataManager::MAIL_PASSWORD).toString();
+    SENDADDR = dm->ReadMailData(DataManager::MAIL_SENDADDR).toString();
+    RECVADDR = dm->ReadMailData(DataManager::MAIL_RECVADDR).toString();
+    SERVADDR = dm->ReadMailData(DataManager::MAIL_SERVERADDR).toString();
+    PORT = dm->ReadMailData(DataManager::MAIL_PORT).toString();
 }
 
 MailManager::~MailManager() {
-    datamanager->WriteMailData(DataManager::MAIL_USER, m_user);
-    datamanager->WriteMailData(DataManager::MAIL_PASSWORD, m_passwd);
-    datamanager->WriteMailData(DataManager::MAIL_SENDADDR, m_sndaddr);
-    datamanager->WriteMailData(DataManager::MAIL_RECVADDR, m_recvaddr);
-    datamanager->WriteMailData(DataManager::MAIL_SERVERADDR, m_servaddr);
-    datamanager->WriteMailData(DataManager::MAIL_PORT, m_port);
+    datamanager->WriteMailData(DataManager::MAIL_USER, USER);
+    datamanager->WriteMailData(DataManager::MAIL_PASSWORD, PASSWORD);
+    datamanager->WriteMailData(DataManager::MAIL_SENDADDR, SENDADDR);
+    datamanager->WriteMailData(DataManager::MAIL_RECVADDR, RECVADDR);
+    datamanager->WriteMailData(DataManager::MAIL_SERVERADDR, SERVADDR);
+    datamanager->WriteMailData(DataManager::MAIL_PORT, PORT);
+}
+
+void MailManager::setMailData(MAIL_DATA type, QString data) {
+    m_data.insert(type, data);
+}
+
+QString MailManager::getMailData(MAIL_DATA type) {
+    return m_data.value(type);
 }
 
 int MailManager::tmpAlert() const {
@@ -31,58 +39,6 @@ int MailManager::humiAlert() const {
     return this->alert_humi;
 }
 
-int MailManager::lightAlert() const {
-    return this->alert_light;
-}
-
-QString MailManager::user() const {
-    return this->m_user;
-}
-
-QString MailManager::passwd() const {
-    return this->m_passwd;
-}
-
-QString MailManager::sndaddr() const {
-    return this->m_sndaddr;
-}
-
-QString MailManager::recvaddr() const {
-    return this->m_recvaddr;
-}
-
-QString MailManager::tmp_title() const {
-    return this->m_tmptitle;
-}
-
-QString MailManager::tmp_content() const {
-    return this->m_tmpcontent;
-}
-
-QString MailManager::humi_title() const {
-    return this->m_humititle;
-}
-
-QString MailManager::humi_content() const {
-    return this->m_humicontent;
-}
-
-QString MailManager::light_title() const {
-    return this->m_lighttitle;
-}
-
-QString MailManager::light_content() const {
-    return this->m_lightcontent;
-}
-
-QString MailManager::servaddr() const {
-    return this->m_servaddr;
-}
-
-QString MailManager::port() const {
-    return this->m_port;
-}
-
 void MailManager::setTmpAlert(const int &ta) {
     this->alert_tmp = ta;
 }
@@ -91,71 +47,19 @@ void MailManager::setHumiAlert(const int &ha) {
     this->alert_humi = ha;
 }
 
-void MailManager::setLightAlert(const int &la) {
-    this->alert_light = la;
-}
-
-void MailManager::setUser(const QString &usr) {
-    this->m_user = usr;
-}
-
-void MailManager::setPasswd(const QString &pwd) {
-    this->m_passwd = pwd;
-}
-
-void MailManager::setSndaddr(const QString &saddr) {
-    this->m_sndaddr = saddr;
-}
-
-void MailManager::setRecvaddr(const QString &raddr) {
-    this->m_recvaddr = raddr;
-}
-
-void MailManager::setTmp_title(const QString &t) {
-    this->m_tmptitle = t;
-}
-
-void MailManager::setTmp_content(const QString &ct) {
-    this->m_tmpcontent = ct;
-}
-
-void MailManager::setHumi_title(const QString &ht) {
-    this->m_humititle = ht;
-}
-
-void MailManager::setHumi_content(const QString &hc) {
-    this->m_humicontent = hc;
-}
-
-void MailManager::setLight_title(const QString &lt) {
-    this->m_lighttitle = lt;
-}
-
-void MailManager::setLight_content(const QString &lc) {
-    this->m_lightcontent = lc;
-}
-
-void MailManager::setServaddr(const QString &saddr) {
-    this->m_servaddr = saddr;
-}
-
-void MailManager::setPort(const QString &port) {
-    this->m_port = port;
-}
-
 int MailManager::sendMail(MAIL_TYPE t) {
     MimeMessage msg;
-    msg.setSender(new EmailAddress(m_sndaddr,QString("smartLED")));
-    msg.addRecipient(new EmailAddress(m_recvaddr,QString("anonymous")));
+    msg.setSender(new EmailAddress(SENDADDR,QString("smartLED")));
+    msg.addRecipient(new EmailAddress(RECVADDR,QString("anonymous")));
     MimeText *content = nullptr;
     switch (t) {
     case MAIL_TMP:
-        msg.setSubject(this->m_tmptitle);
-        content = new MimeText(this->m_tmpcontent);
+        msg.setSubject(TMPTITLE);
+        content = new MimeText(TMPCONTENT);
         break;
     case MAIL_HUMI:
-        msg.setSubject(this->m_humititle);
-        content = new MimeText(this->m_humicontent);
+        msg.setSubject(HUMITITLE);
+        content = new MimeText(HUMICONTENT);
         break;
 /*
     case MAIL_LIGHT:
@@ -188,28 +92,28 @@ int MailManager::sendMail(MAIL_TYPE t) {
 }
 
 bool MailManager::trytoCreateSmtpInstance() {
-    if(m_user.isEmpty() || m_passwd.isEmpty() ||
-            m_sndaddr.isEmpty() || m_recvaddr.isEmpty() ||
-            m_servaddr.isEmpty() || m_port.isEmpty())
+    if(USER.isEmpty() || PASSWORD.isEmpty() ||
+            SENDADDR.isEmpty() || RECVADDR.isEmpty() ||
+            SERVADDR.isEmpty() || PORT.isEmpty())
         return false;
     int res = collMailDataEnd();
     return (res == ERR_SUCCESS)? true : false;
 }
 
 int MailManager::collMailDataEnd() {
-    if(m_servaddr.isEmpty()) {
+    if(SERVADDR.isEmpty()) {
         emit collMailEnd(ERR_SERVADDR_EMPTY);
         return ERR_SERVADDR_EMPTY;
     }
-    if(m_port.toInt() <= 0) {
+    if(PORT.toInt() <= 0) {
         emit collMailEnd(ERR_PORT_EMPTY);
         return ERR_PORT_EMPTY;
     }
-    if(m_user.isEmpty()) {
+    if(USER.isEmpty()) {
         emit collMailEnd(ERR_USER_EMPTY);
         return ERR_USER_EMPTY;
     }
-    if(m_passwd.isEmpty()) {
+    if(PASSWORD.isEmpty()) {
         emit collMailEnd(ERR_PASSWORD_EMPTY);
         return ERR_PASSWORD_EMPTY;
     }
@@ -219,11 +123,11 @@ int MailManager::collMailDataEnd() {
         delete smtp;
         smtp = nullptr;
         //create a new SMTPClient instance
-        try{
-            smtp = new SmtpClient(m_servaddr,25,SmtpClient::SslConnection);
-            smtp->setPort(m_port.toInt());
-            smtp->setUser(m_user);
-            smtp->setPassword(m_passwd);
+        try {
+            smtp = new SmtpClient(SERVADDR,25,SmtpClient::SslConnection);
+            smtp->setPort(PORT.toInt());
+            smtp->setUser(USER);
+            smtp->setPassword(PASSWORD);
             if(!smtp->connectToHost()) {
                 qDebug() << "connect host error";
                 handleSMTPError(ERR_CONNECT_FAILED,nullptr);
@@ -244,10 +148,10 @@ int MailManager::collMailDataEnd() {
     }
     //if smtp == null,we create a new instance directly
     try {
-        smtp = new SmtpClient(m_servaddr,25,SmtpClient::SslConnection);
-        smtp->setPort(m_port.toInt());
-        smtp->setUser(m_user);
-        smtp->setPassword(m_passwd);
+        smtp = new SmtpClient(SERVADDR,25,SmtpClient::SslConnection);
+        smtp->setPort(PORT.toInt());
+        smtp->setUser(USER);
+        smtp->setPassword(PASSWORD);
         if(!smtp->connectToHost()) {
             qDebug() << "connect host error";
             handleSMTPError(ERR_CONNECT_FAILED,nullptr);
@@ -280,11 +184,11 @@ void MailManager::handleSMTPError(MAIL_ERROR err,MimeText *ct) {
 }
 
 int MailManager::collTempDataEnd() {
-    if(m_tmptitle.isEmpty()) {
+    if(TMPTITLE.isEmpty()) {
         emit collTempEnd(ERR_TITLE_EMPTY);
         return ERR_TITLE_EMPTY;
     }
-    if(m_tmpcontent.isEmpty()) {
+    if(TMPCONTENT.isEmpty()) {
         emit collTempEnd(ERR_CONTENT_EMPTY);
         return ERR_CONTENT_EMPTY;
     }
@@ -293,11 +197,11 @@ int MailManager::collTempDataEnd() {
 }
 
 int MailManager::collHumiDataEnd() {
-    if(m_humititle.isEmpty()) {
+    if(HUMITITLE.isEmpty()) {
         emit collHumiEnd(ERR_TITLE_EMPTY);
         return ERR_TITLE_EMPTY;
     }
-    if(m_humicontent.isEmpty()) {
+    if(HUMICONTENT.isEmpty()) {
         emit collHumiEnd(ERR_CONTENT_EMPTY);
         return ERR_CONTENT_EMPTY;
     }

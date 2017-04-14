@@ -1,6 +1,7 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import QtQuick.Controls 1.4
 import SLComponent 1.0
+import Manager.Mail 1.0
 
 Item {
     implicitWidth: 525
@@ -23,8 +24,8 @@ Item {
                         }
                         else
                             maildata.humiAlert = parseInt(input_alertvalue.text)
-                        maildata.humi_title = input_title.text
-                        maildata.humi_content = input_content.text
+                        maildata.setMailData(MailManager.DATA_HUMITITLE, input_title.text)
+                        maildata.setMailData(MailManager.DATA_HUMICONTENT, input_content.text)
                         if(maildata.collHumiDataEnd() === 1)
                             return
                         check1.checked = false

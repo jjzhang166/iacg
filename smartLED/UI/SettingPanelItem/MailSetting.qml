@@ -1,6 +1,7 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import QtQuick.Controls 1.4
 import SLComponent 1.0
+import Manager.Mail 1.0
 
 Item {
     implicitWidth: 525
@@ -16,12 +17,12 @@ Item {
             Connections {
                 target: maildata
                 onCollData: {
-                    maildata.servaddr = input_server.text
-                    maildata.port = input_port.text
-                    maildata.user = input_user.text
-                    maildata.passwd = input_psw.text
-                    maildata.sndaddr = input_snd.text
-                    maildata.recvaddr = input_recv.text
+                    maildata.setMailData(MailManager.DATA_SERVADDR, input_server.text)
+                    maildata.setMailData(MailManager.DATA_PORT, input_port.text)
+                    maildata.setMailData(MailManager.DATA_USER, input_user.text)
+                    maildata.setMailData(MailManager.DATA_PASSWORD, input_psw.text)
+                    maildata.setMailData(MailManager.DATA_SENDADDR, input_snd.text)
+                    maildata.setMailData(MailManager.DATA_RECVADDR, input_recv.text)
                     maildata.collMailDataEnd()
                     console.log("coll mail data and create the SMTPClient instance")
                 }
@@ -43,7 +44,7 @@ Item {
                 anchors.verticalCenterOffset: 2
                 anchors.left: parent.left
                 anchors.leftMargin: 120
-                text: maildata.servaddr
+                text: maildata.getMailData(MailManager.DATA_SERVADDR)
                 tooltip: qsTr("smtp server address")
                 tooltip_fontfamily: fontmanager.curfont
                 font.family: fontmanager.curfont
@@ -62,7 +63,7 @@ Item {
                 anchors.leftMargin: 13
                 anchors.verticalCenter: t2.verticalCenter
                 anchors.verticalCenterOffset: 2
-                text: maildata.port
+                text: maildata.getMailData(MailManager.DATA_PORT)
                 tooltip: qsTr("smtp port")
                 tooltip_fontfamily: fontmanager.curfont
                 font.family: fontmanager.curfont
@@ -82,7 +83,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t3.verticalCenter
                 anchors.verticalCenterOffset: 2
-                text: maildata.user
+                text: maildata.getMailData(MailManager.DATA_USER)
                 tooltip: qsTr("user name")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -103,7 +104,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t4.verticalCenter
                 anchors.verticalCenterOffset: 2
-                text: maildata.passwd
+                text: maildata.getMailData(MailManager.DATA_PASSWORD)
                 tooltip: qsTr("password")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -124,7 +125,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t5.verticalCenter
                 anchors.verticalCenterOffset: 2
-                text: maildata.sndaddr
+                text: maildata.getMailData(MailManager.DATA_SENDADDR)
                 tooltip: qsTr("sending mailbox's address")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240
@@ -145,7 +146,7 @@ Item {
                 anchors.leftMargin: 120
                 anchors.verticalCenter: t6.verticalCenter
                 anchors.verticalCenterOffset: 2
-                text: maildata.recvaddr
+                text: maildata.getMailData(MailManager.DATA_RECVADDR)
                 tooltip: qsTr("recv mailbox's address")
                 tooltip_fontfamily: fontmanager.curfont
                 width: 240

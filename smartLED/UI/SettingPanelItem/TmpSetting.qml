@@ -1,6 +1,7 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import QtQuick.Controls 1.4
 import SLComponent 1.0
+import Manager.Mail 1.0
 
 Item {
     implicitWidth: 525
@@ -24,8 +25,8 @@ Item {
                         }
                         else
                             maildata.tmpAlert = parseInt(input_alertvalue.text)
-                        maildata.tmp_title = input_title.text
-                        maildata.tmp_content = input_content.text
+                        maildata.setMailData(MailManager.DATA_TMPTITLE, input_title.text)
+                        maildata.setMailData(MailManager.DATA_TMPCONTENT, input_content.text)
                         if(maildata.collTempDataEnd() === 1)
                             return
                         check1.checked = false
