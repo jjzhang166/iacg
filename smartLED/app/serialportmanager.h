@@ -46,6 +46,7 @@ signals:
 public:
     SerialportManager(DataManager *dm, QObject *parent = 0);
     ~SerialportManager();
+    void saveData();
 
 public:
     QStringList portList() const;

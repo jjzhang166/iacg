@@ -1,4 +1,4 @@
-#include "fontmanager.h"
+﻿#include "fontmanager.h"
 #include <QDebug>
 
 FontManager::FontManager(DataManager *dm,QObject *parent)
@@ -34,6 +34,7 @@ FontManager::FontManager(DataManager *dm,QObject *parent)
 }
 
 FontManager::~FontManager() {
+    qDebug() << "destroy fontmanager";
     datamanager->WriteFontfamilyData(current_font);
 }
 

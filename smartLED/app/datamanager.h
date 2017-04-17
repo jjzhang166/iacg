@@ -65,7 +65,7 @@ public:
     };
 
 public:
-    DataManager(const QString &filename);
+    DataManager(const QString &filename = "cfg.ini");
     ~DataManager();
 
 public:

@@ -24,6 +24,7 @@ DataManager::DataManager(const QString &filename)
 }
 
 DataManager::~DataManager() {
+    qDebug() << "destroy data manager";
     SetInifile = new QSettings(FileName,QSettings::IniFormat);
     Q_ASSERT(SetInifile != nullptr);
     if(PortName.isValid() && !PortName.toString().isEmpty())

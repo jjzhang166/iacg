@@ -1,4 +1,4 @@
-#include "bootmanager.h"
+﻿#include "bootmanager.h"
 #include <QDebug>
 
 BootManager::BootManager(DataManager *dm ,QObject *parent) :
@@ -9,6 +9,7 @@ BootManager::BootManager(DataManager *dm ,QObject *parent) :
 }
 
 BootManager::~BootManager() {
+    qDebug() << "destroy boot manager";
     datamanager->WriteBootData(DataManager::BOOT_SMTP, m_smtpBoot);
     datamanager->WriteBootData(DataManager::BOOT_SERIALPORT, m_serialportBoot);
 }

@@ -1,4 +1,4 @@
-#ifndef FONTMANAGER_H
+﻿#ifndef FONTMANAGER_H
 #define FONTMANAGER_H
 
 #include <QObject>

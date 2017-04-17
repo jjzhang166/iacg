@@ -1,15 +1,16 @@
 TEMPLATE = app
 
 QT += gui widgets qml quick serialport
-CONFIG += c++11
+CONFIG += c++14
 
 SOURCES += main.cpp \
+    app/application.cpp \
     app/fontmanager.cpp \
     app/datamanager.cpp \
     app/serialportmanager.cpp \
     app/mailmanager.cpp \
-    app/smartled.cpp \
-    app/bootmanager.cpp
+    app/bootmanager.cpp \
+    app/smartled.cpp
 
 RESOURCES += qml.qrc
 
@@ -25,8 +26,9 @@ HEADERS += \
     app/datamanager.h \
     app/serialportmanager.h \
     app/mailmanager.h \
+    app/bootmanager.h \
     app/smartled.h \
-    app/bootmanager.h
+    app/application.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts

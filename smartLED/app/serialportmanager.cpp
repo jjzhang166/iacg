@@ -56,6 +56,7 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
 }
 
 SerialportManager::~SerialportManager() {
+    qDebug() << "destroy serialport manager";
     linkPort->close();
     dataManager->WriteSerialportData(DataManager::SERIALPORT_PORTNAME,QVariant(m_portName));
     dataManager->WriteSerialportData(DataManager::SERIALPORT_BAUDRATE,QVariant(m_baudRate).toInt());

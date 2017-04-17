@@ -1,4 +1,4 @@
-#ifndef BOOTMANAGER_H
+﻿#ifndef BOOTMANAGER_H
 #define BOOTMANAGER_H
 
 #include <QObject>

@@ -15,6 +15,7 @@ MailManager::MailManager(DataManager *dm,QObject *parent) : QObject(parent)
 }
 
 MailManager::~MailManager() {
+    qDebug() << "destroy mail manager";
     datamanager->WriteMailData(DataManager::MAIL_USER, USER);
     datamanager->WriteMailData(DataManager::MAIL_PASSWORD, PASSWORD);
     datamanager->WriteMailData(DataManager::MAIL_SENDADDR, SENDADDR);
