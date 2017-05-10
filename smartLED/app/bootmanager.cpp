@@ -1,17 +1,17 @@
 ﻿#include "bootmanager.h"
 #include <QDebug>
 
-BootManager::BootManager(DataManager *dm ,QObject *parent) :
+BootManager::BootManager(QObject *parent) :
     QObject(parent),
-    datamanager(dm) {
-    m_smtpBoot = dm->ReadBootData(DataManager::BOOT_SMTP).toBool();
-    m_serialportBoot = dm->ReadBootData(DataManager::BOOT_SERIALPORT).toBool();
+    ini_setting("cfg.ini", QSettings::IniFormat) {
+    m_smtpBoot = ini_setting.value("Boot/SmtpBoot", false).toBool();
+    m_serialportBoot = ini_setting.value("Boot/SerialportBoot", false).toBool();
 }
 
 BootManager::~BootManager() {
     qDebug() << "destroy boot manager";
-    datamanager->WriteBootData(DataManager::BOOT_SMTP, m_smtpBoot);
-    datamanager->WriteBootData(DataManager::BOOT_SERIALPORT, m_serialportBoot);
+    ini_setting.setValue("Boot/SmtpBoot", m_smtpBoot);
+    ini_setting.setValue("Boot/SerialportBoot", m_serialportBoot);
 }
 
 bool BootManager::smtpBoot() const {

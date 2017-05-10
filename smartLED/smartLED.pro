@@ -6,7 +6,6 @@ CONFIG += c++14
 SOURCES += main.cpp \
     app/application.cpp \
     app/fontmanager.cpp \
-    app/datamanager.cpp \
     app/serialportmanager.cpp \
     app/mailmanager.cpp \
     app/bootmanager.cpp \
@@ -23,7 +22,6 @@ include(deployment.pri)
 HEADERS += \
     app/SmtpClient/SmtpMime \
     app/fontmanager.h \
-    app/datamanager.h \
     app/serialportmanager.h \
     app/mailmanager.h \
     app/bootmanager.h \

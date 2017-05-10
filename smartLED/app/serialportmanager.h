@@ -3,8 +3,7 @@
 #include <QObject>
 #include <QSerialPort>
 #include <QSerialPortInfo>
-
-#include "datamanager.h"
+#include <QSettings>
 
 class SerialportManager : public QObject {
     Q_OBJECT
@@ -13,6 +12,7 @@ class SerialportManager : public QObject {
     Q_ENUMS(QSerialPort::DataBits)
     Q_ENUMS(QSerialPort::StopBits)
     Q_ENUMS(QSerialPort::Parity)
+    Q_ENUMS(LightLevel)
 
     /*
      * 以下为serialConnet类的属性表
@@ -44,7 +44,16 @@ signals:
     void lightChanged(const int ll);
 
 public:
-    SerialportManager(DataManager *dm, QObject *parent = 0);
+    enum LightLevel {
+        LL_HIGH,
+        LL_MH,
+        LL_MEDIUM,
+        LL_LOW,
+        LL_ERROR = -1
+    };
+
+public:
+    SerialportManager(QObject *parent = 0);
     ~SerialportManager();
     void saveData();
 
@@ -92,8 +101,10 @@ public:
     Q_INVOKABLE void connectStop();
 
 private:
+    QSettings frame_setting;
+    QSettings ini_setting;
+
     QSerialPort *linkPort;
-    DataManager *dataManager;
     QSerialPort::BaudRate m_baudRate;
     QSerialPort::DataBits m_dataBits;
     QSerialPort::StopBits m_stopBits;
@@ -114,6 +125,14 @@ private:
     int frametempLen;
     int framelight;
     int framelightLen;
+    QString framelight_Hvalue;     //高光照强度区间
+    QString framelight_MHvalue;    //中高光照强度区间
+    QString framelight_Mvalue;     //中等光照强度区间
+    QString framelight_Lvalue;     //低光照强度区间
+    QPair<int,int> h_lightSection;
+    QPair<int,int> mh_lightSection;
+    QPair<int,int> m_lightSection;
+    QPair<int,int> l_lightSection;
 
     //控制帧相关信息
     QByteArray sndframeheader;
@@ -127,6 +146,8 @@ private:
 
 private:
     void InitPortlist();
+    bool parseLightSection();
+    LightLevel parseLightLevel(const int lg);
 
     /*
      * 名称：writeByte

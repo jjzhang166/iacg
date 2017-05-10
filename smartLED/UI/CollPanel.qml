@@ -4,6 +4,7 @@ import QtQuick.Dialogs 1.2
 
 import SLComponent 1.0
 import Manager.Mail 1.0
+import Manager.Serialport 1.0
 
 Rectangle {
     property string bg_color: "#fafafa"
@@ -79,16 +80,16 @@ Rectangle {
 
         onLightChanged: {
             switch(ll) {
-            case 0:             //LL_HIGH
+            case SerialportManager.LL_HIGH:             //LL_HIGH
                 light_img.source = "qrc:/pic/light_h.png"
                 break
-            case 1:             //LL_MH
+            case SerialportManager.LL_MH:             //LL_MH
                 light_img.source = "qrc:/pic/light_mh.png"
                 break
-            case 2:             //LL_MEDIUM
+            case SerialportManager.LL_MEDIUM:             //LL_MEDIUM
                 light_img.source = "qrc:/pic/light_m.png"
                 break
-            case 3:             //LL_LOW
+            case SerialportManager.LL_LOW:             //LL_LOW
                 light_img.source = "qrc:/pic/light_l.png"
             }
         }

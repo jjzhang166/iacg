@@ -5,6 +5,8 @@
 !define PRODUCT_VERSION "1.5"
 !define PRODUCT_PUBLISHER "nxlgdjk"
 !define PRODUCT_WEB_SITE "https://git.oschina.net/linuxlike/iacg"
+!define PRODUCT_INSTALL_KEY "Software\${PRODUCT_NAME}"
+!define PRODUCT_INSTALL_ROOT_KEY "HKLM"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
@@ -103,6 +105,7 @@ Section -Post
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
+  WriteRegStr ${PRODUCT_INSTALL_ROOT_KEY} "${PRODUCT_INSTALL_KEY}" "WorkPath" "$INSTDIR\bin"
 SectionEnd
 
 #-- 根据 NSIS 脚本编辑规则，所有 Function 区段必须放置在 Section 区段之后编写，以避免安装程序出现未可预知的问题。--#

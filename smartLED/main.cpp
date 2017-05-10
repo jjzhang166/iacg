@@ -16,11 +16,6 @@ int main(int argc, char *argv[])
     QTranslator ts;
     ts.load(":/locale/zh_CN.qm");
     app.installTranslator(&ts);
-    try{
-        SmartLED::app = std::make_unique<Application>(":/splash.png");
-        app.exec();
-    }
-    catch(...) {
-        app.quit();
-    }
+    SmartLED::init();
+    return app.exec();
 }

@@ -1,27 +1,26 @@
 ﻿#include "mailmanager.h"
 #include <QDebug>
 
-MailManager::MailManager(DataManager *dm,QObject *parent) : QObject(parent)
-    ,datamanager(dm)
+MailManager::MailManager(QObject *parent) : QObject(parent)
+    ,ini_setting("cfg.ini", QSettings::IniFormat)
     ,alert_tmp(-1)
     ,alert_humi(-1)
     ,alert_light(-1) {
-    USER = dm->ReadMailData(DataManager::MAIL_USER).toString();
-    PASSWORD = dm->ReadMailData(DataManager::MAIL_PASSWORD).toString();
-    SENDADDR = dm->ReadMailData(DataManager::MAIL_SENDADDR).toString();
-    RECVADDR = dm->ReadMailData(DataManager::MAIL_RECVADDR).toString();
-    SERVADDR = dm->ReadMailData(DataManager::MAIL_SERVERADDR).toString();
-    PORT = dm->ReadMailData(DataManager::MAIL_PORT).toString();
+    USER = ini_setting.value("Mail/User", "").toString();
+    PASSWORD = ini_setting.value("Mail/Password", "").toString();
+    SENDADDR = ini_setting.value("Mail/SendAddr", "").toString();
+    RECVADDR = ini_setting.value("Mail/RecvAddr", "").toString();
+    SERVADDR = ini_setting.value("Mail/ServerAddr", "").toString();
+    PORT = ini_setting.value("Mail/Port", "").toString();
 }
 
 MailManager::~MailManager() {
     qDebug() << "destroy mail manager";
-    datamanager->WriteMailData(DataManager::MAIL_USER, USER);
-    datamanager->WriteMailData(DataManager::MAIL_PASSWORD, PASSWORD);
-    datamanager->WriteMailData(DataManager::MAIL_SENDADDR, SENDADDR);
-    datamanager->WriteMailData(DataManager::MAIL_RECVADDR, RECVADDR);
-    datamanager->WriteMailData(DataManager::MAIL_SERVERADDR, SERVADDR);
-    datamanager->WriteMailData(DataManager::MAIL_PORT, PORT);
+    if(!USER.isEmpty()) ini_setting.setValue("Mail/User", USER);
+    if(!PASSWORD.isEmpty()) ini_setting.setValue("Mail/Password", PASSWORD);
+    if(!SENDADDR.isEmpty()) ini_setting.setValue("Mail/SendAddr", SENDADDR);
+    if(!RECVADDR.isEmpty()) ini_setting.setValue("Mail/RecvAddr", RECVADDR);
+    if(!PORT.isEmpty()) ini_setting.setValue("Mail/Port", PORT);
 }
 
 void MailManager::setMailData(MAIL_DATA type, QString data) {

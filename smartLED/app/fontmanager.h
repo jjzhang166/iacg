@@ -4,8 +4,7 @@
 #include <QObject>
 #include <QDir>
 #include <QFontDatabase>
-
-#include "datamanager.h"
+#include <QSettings>
 
 class FontManager : public QObject
 {
@@ -17,7 +16,7 @@ signals:
     void curfontChanged();
 
 public:
-    explicit FontManager(DataManager *dm,QObject *parent = 0);
+    explicit FontManager(QObject *parent = 0);
     ~FontManager();
 
 public:
@@ -28,10 +27,10 @@ public:
     Q_INVOKABLE bool isListempty();
 
 private:
-    DataManager *datamanager;
+    QSettings ini_setting;
     QFontDatabase db;
     QStringList family_list;
-    QDir *ttf_root;
+    QDir ttf_root;
     QString current_font;
 };
 

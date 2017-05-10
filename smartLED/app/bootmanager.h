@@ -2,7 +2,7 @@
 #define BOOTMANAGER_H
 
 #include <QObject>
-#include "datamanager.h"
+#include <QSettings>
 
 class BootManager : public QObject {
     Q_OBJECT
@@ -10,7 +10,7 @@ class BootManager : public QObject {
     Q_PROPERTY(bool serialportBoot READ serialportBoot WRITE setSerialportBoot NOTIFY serialportBootChanged)
 
 public:
-    explicit BootManager(DataManager *dm, QObject *parent = 0);
+    explicit BootManager(QObject *parent = 0);
     ~BootManager();
 
 signals:
@@ -25,7 +25,7 @@ public:
     void setSerialportBoot(const bool);
 
 private:
-    DataManager *datamanager;
+    QSettings ini_setting;
     bool m_smtpBoot;
     bool m_serialportBoot;
 };
