@@ -16,6 +16,11 @@ int main(int argc, char *argv[])
     QTranslator ts;
     ts.load(":/locale/zh_CN.qm");
     app.installTranslator(&ts);
-    SmartLED::init();
-    return app.exec();
+    try {
+        SmartLED::init();
+        return app.exec();
+    }
+    catch(...) {
+        app.exit(-1);
+    }
 }

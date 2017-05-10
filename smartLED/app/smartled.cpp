@@ -1,4 +1,5 @@
 ﻿#include "smartled.h"
+#include <QProcess>
 
 std::unique_ptr<Application> SmartLED::app;
 std::unique_ptr<BootManager> SmartLED::bootmanager;
@@ -18,6 +19,18 @@ void SmartLED::init() {
                                            : new QSplashScreen(QPixmap(":/splash.png"));
     SmartLED::splash->show();
     SmartLED::splash->showMessage("program init...");
+    QDir frame_file(SmartLED::workpath + "/frame.ini");
+    qDebug() << "abs path:" << frame_file.absolutePath();
+    if(!frame_file.exists()) {
+        QMessageBox::StandardButton button = QMessageBox::information(NULL, QObject::tr("info"),
+                    QObject::tr("file 'frame.ini' is not exist,do you want to create a new file or use default config."),
+                    QMessageBox::Yes, QMessageBox::No);
+        if(button == QMessageBox::Yes) {
+            QProcess framecreator;
+            framecreator.startDetached(SmartLED::workpath + "/framecreator.exe");
+            throw new QUnhandledException;
+        }
+    }
     SmartLED::bootmanager = std::make_unique<BootManager>();
     SmartLED::fontmanager = std::make_unique<FontManager>();
     SmartLED::mailmanager = std::make_unique<MailManager>();

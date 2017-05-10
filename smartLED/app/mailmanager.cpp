@@ -10,7 +10,7 @@ MailManager::MailManager(QObject *parent) : QObject(parent)
     PASSWORD = ini_setting.value("Mail/Password", "").toString();
     SENDADDR = ini_setting.value("Mail/SendAddr", "").toString();
     RECVADDR = ini_setting.value("Mail/RecvAddr", "").toString();
-    SERVADDR = ini_setting.value("Mail/ServerAddr", "").toString();
+    SERVADDR = ini_setting.value("Mail/ServAddr", "").toString();
     PORT = ini_setting.value("Mail/Port", "").toString();
 }
 
@@ -20,6 +20,7 @@ MailManager::~MailManager() {
     if(!PASSWORD.isEmpty()) ini_setting.setValue("Mail/Password", PASSWORD);
     if(!SENDADDR.isEmpty()) ini_setting.setValue("Mail/SendAddr", SENDADDR);
     if(!RECVADDR.isEmpty()) ini_setting.setValue("Mail/RecvAddr", RECVADDR);
+    if(!SERVADDR.isEmpty()) ini_setting.setValue("Mail/ServAddr", SERVADDR);
     if(!PORT.isEmpty()) ini_setting.setValue("Mail/Port", PORT);
 }
 
@@ -61,12 +62,6 @@ int MailManager::sendMail(MAIL_TYPE t) {
         msg.setSubject(HUMITITLE);
         content = new MimeText(HUMICONTENT);
         break;
-/*
-    case MAIL_LIGHT:
-        msg.setSubject(this->m_lighttitle);
-        content = new MimeText(this->m_lightcontent);
-        break;
-*/
     default:
         break;
     }

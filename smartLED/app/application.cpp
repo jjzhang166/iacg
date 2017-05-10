@@ -16,7 +16,7 @@ Application::Application(QObject *parent) : QObject(parent) {
 }
 
 Application::~Application() {
-    delete engine;
+    qDebug() << "application destroyed";
 }
 
 void Application::onObjectCreated(QObject* obj, QUrl url) {
