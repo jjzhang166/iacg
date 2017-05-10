@@ -60,7 +60,9 @@ SerialportManager::SerialportManager(QObject *parent) :
 }
 
 SerialportManager::~SerialportManager() {
+#ifdef QT_DEBUG
     qDebug() << "destroy serialport manager";
+#endif
     linkPort->close();
     if(!m_portName.isEmpty()) ini_setting.setValue("SerialPort/PortName", m_portName);
     ini_setting.setValue("SerialPort/BaudRate", m_baudRate);

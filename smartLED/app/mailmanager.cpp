@@ -15,7 +15,9 @@ MailManager::MailManager(QObject *parent) : QObject(parent)
 }
 
 MailManager::~MailManager() {
+#ifdef QT_DEBUG
     qDebug() << "destroy mail manager";
+#endif
     if(!USER.isEmpty()) ini_setting.setValue("Mail/User", USER);
     if(!PASSWORD.isEmpty()) ini_setting.setValue("Mail/Password", PASSWORD);
     if(!SENDADDR.isEmpty()) ini_setting.setValue("Mail/SendAddr", SENDADDR);
@@ -69,12 +71,16 @@ int MailManager::sendMail(MAIL_TYPE t) {
     msg.addPart(content);
     try {
         if(smtp == nullptr) {
+#ifdef QT_DEBUG
             qDebug() << "null pointer";
+#endif
             emit(ERR_UNEXCEPT);
             return ERR_UNEXCEPT;
         }
         if(!smtp->sendMail(msg)) {
+#ifdef QT_DEBUG
             qDebug() << "send mail error";
+#endif
             handleSMTPError(ERR_SENDMAIL_FAILED,content);
             return ERR_SENDMAIL_FAILED;
         }
@@ -124,12 +130,16 @@ int MailManager::collMailDataEnd() {
             smtp->setUser(USER);
             smtp->setPassword(PASSWORD);
             if(!smtp->connectToHost()) {
+#ifdef QT_DEBUG
                 qDebug() << "connect host error";
+#endif
                 handleSMTPError(ERR_CONNECT_FAILED,nullptr);
                 return ERR_CONNECT_FAILED;
             }
             if(!smtp->login()) {
+#ifdef QT_DEBUG
                 qDebug() << "login error";
+#endif
                 handleSMTPError(ERR_LOGIN_FAILED,nullptr);
                 return ERR_LOGIN_FAILED;
             }
@@ -148,12 +158,16 @@ int MailManager::collMailDataEnd() {
         smtp->setUser(USER);
         smtp->setPassword(PASSWORD);
         if(!smtp->connectToHost()) {
+#ifdef QT_DEBUG
             qDebug() << "connect host error";
+#endif
             handleSMTPError(ERR_CONNECT_FAILED,nullptr);
             return ERR_CONNECT_FAILED;
         }
         if(!smtp->login()) {
+#ifdef QT_DEBUG
             qDebug() << "login error";
+#endif
             handleSMTPError(ERR_LOGIN_FAILED,nullptr);
             return ERR_LOGIN_FAILED;
         }

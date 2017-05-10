@@ -12,16 +12,16 @@ QString SmartLED::workpath;
 void SmartLED::init() {
     QSettings reg_setting("HKEY_CURRENT_USER\\SOFTWARE\\SmartLED", QSettings::NativeFormat);
     SmartLED::workpath = reg_setting.value("WorkPath", "").toString();
-    if(SmartLED::workpath.isEmpty())
+    if(SmartLED::workpath.isEmpty()) {
+        QMessageBox::critical(NULL, QObject::tr("error"),
+                              QObject::tr("get working path failed"), QMessageBox::Yes);
         throw new QUnhandledException;
-    QDir splash_file(SmartLED::workpath + "/splash.png");
-    SmartLED::splash = splash_file.exists()? new QSplashScreen(QPixmap(splash_file.absolutePath()))
-                                           : new QSplashScreen(QPixmap(":/splash.png"));
+    }
+    SmartLED::splash = QDir::current().exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
+                                        : new QSplashScreen(QPixmap(":/splash.png"));
     SmartLED::splash->show();
     SmartLED::splash->showMessage("program init...");
-    QDir frame_file(SmartLED::workpath + "/frame.ini");
-    qDebug() << "abs path:" << frame_file.absolutePath();
-    if(!frame_file.exists()) {
+    if(!QDir::current().exists("frame.ini")) {
         QMessageBox::StandardButton button = QMessageBox::information(NULL, QObject::tr("info"),
                     QObject::tr("file 'frame.ini' is not exist,do you want to create a new file or use default config."),
                     QMessageBox::Yes, QMessageBox::No);

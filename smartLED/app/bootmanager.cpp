@@ -9,7 +9,9 @@ BootManager::BootManager(QObject *parent) :
 }
 
 BootManager::~BootManager() {
+#ifdef QT_DEBUG
     qDebug() << "destroy boot manager";
+#endif
     ini_setting.setValue("Boot/SmtpBoot", m_smtpBoot);
     ini_setting.setValue("Boot/SerialportBoot", m_serialportBoot);
 }

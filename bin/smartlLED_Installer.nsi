@@ -6,7 +6,7 @@
 !define PRODUCT_PUBLISHER "nxlgdjk"
 !define PRODUCT_WEB_SITE "https://git.oschina.net/linuxlike/iacg"
 !define PRODUCT_INSTALL_KEY "Software\${PRODUCT_NAME}"
-!define PRODUCT_INSTALL_ROOT_KEY "HKLM"
+!define PRODUCT_INSTALL_ROOT_KEY "HKCU"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 !define PRODUCT_STARTMENU_REGVAL "NSIS:StartMenuDir"
@@ -148,6 +148,7 @@ Section Uninstall
   RMDir "$INSTDIR"
 
   DeleteRegKey ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}"
+  DeleteRegKey ${PRODUCT_INSTALL_ROOT_KEY} "${PRODUCT_INSTALL_KEY}"
   SetAutoClose true
 SectionEnd
 

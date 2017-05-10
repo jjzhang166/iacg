@@ -16,7 +16,9 @@ Application::Application(QObject *parent) : QObject(parent) {
 }
 
 Application::~Application() {
+#ifdef QT_DEBUG
     qDebug() << "application destroyed";
+#endif
 }
 
 void Application::onObjectCreated(QObject* obj, QUrl url) {
