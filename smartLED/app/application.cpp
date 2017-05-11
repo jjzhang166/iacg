@@ -23,7 +23,8 @@ Application::~Application() {
 }
 
 void Application::onWindowClosed(QQuickCloseEvent *) {
-    if(!QDir::current().exists("frame.ini")) {
+    QDir rootdir(SmartLED::workpath);
+    if(!rootdir.exists("frame.ini")) {
         QMessageBox::StandardButton retBtn = QMessageBox::information(NULL, QObject::tr("info"),
                                  QObject::tr("file 'frame.ini' is not exist, save the current config?"),
                                  QMessageBox::Yes, QMessageBox::No);

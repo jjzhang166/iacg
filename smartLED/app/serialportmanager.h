@@ -4,7 +4,6 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QSettings>
-#include "frame.h"
 
 class SerialportManager : public QObject {
     Q_OBJECT
@@ -74,6 +73,7 @@ public:
     QString humidity() const;
     void    setHumidity(const QString &hum);
 
+    Q_INVOKABLE void refreshPortlist();
     Q_INVOKABLE void sndControlFrame(const bool checked, const int level);
     Q_INVOKABLE bool connectSart();
     Q_INVOKABLE void connectStop();

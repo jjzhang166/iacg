@@ -6,6 +6,7 @@
 #include "mailmanager.h"
 #include "serialportmanager.h"
 #include "application.h"
+#include "frame.h"
 #include <QSplashScreen>
 #include <QMessageBox>
 #include <memory>

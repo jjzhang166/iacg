@@ -1,4 +1,5 @@
 ﻿#include "serialportmanager.h"
+#include "frame.h"
 #include <QUnhandledException>
 #include <QDebug>
 
@@ -88,6 +89,14 @@ void SerialportManager::InitPortlist() {
         m_portName = m_portList.at(0);
     else
         m_portName = "";
+}
+
+void SerialportManager::refreshPortlist() {
+#ifdef  QT_DEBUG
+    qDebug() << "refresh port list";
+#endif
+    m_portList.clear();
+    InitPortlist();
 }
 
 void SerialportManager::sndControlFrame(const bool checked, const int level) {

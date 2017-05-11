@@ -17,11 +17,12 @@ void SmartLED::init() {
                               QObject::tr("get working path failed"), QMessageBox::Yes);
         throw new QUnhandledException;
     }
-    SmartLED::splash = QDir::current().exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
+    QDir rootdir(SmartLED::workpath);
+    SmartLED::splash = rootdir.exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
                                         : new QSplashScreen(QPixmap(":/splash.png"));
     SmartLED::splash->show();
     SmartLED::splash->showMessage("program init...");
-    if(!QDir::current().exists("frame.ini")) {
+    if(!rootdir.exists("frame.ini")) {
         QMessageBox::StandardButton button = QMessageBox::information(NULL, QObject::tr("info"),
                     QObject::tr("file 'frame.ini' is not exist,do you want to create a new file or use default config."),
                     QMessageBox::Yes, QMessageBox::No);

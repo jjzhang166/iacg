@@ -83,6 +83,7 @@ Window {
         }
 
         SLComboBox {
+            property bool refresh
             id: comboBox1
             width: 170
             anchors.left: parent.left
@@ -90,9 +91,17 @@ Window {
             anchors.top: text1.bottom
             anchors.topMargin: 10
             fontfamily: fontmanager.curfont
+            refresh: pressed? true : false
             model: sc.portList
             Component.onCompleted:
                 currentIndex = find(sc.portName)
+            onRefreshChanged:
+                if(refresh) {
+                    sc.refreshPortlist()
+                    model = sc.portList
+                    if(sc.portList.length === 0)
+                        currentIndex = -1
+                }
         }
 
         Text {
