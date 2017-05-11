@@ -6,8 +6,8 @@
 #include "mailmanager.h"
 #include "serialportmanager.h"
 #include "application.h"
-#include <QPixmap>
 #include <QSplashScreen>
+#include <QMessageBox>
 #include <memory>
 
 namespace SmartLED {
@@ -18,7 +18,6 @@ namespace SmartLED {
     extern std::unique_ptr<SerialportManager> serialportmanager;
     extern QString workpath;
     extern QSplashScreen *splash;
-    extern QPixmap *splash_pixmap;
     void init();
 }
 

@@ -31,6 +31,7 @@ void SmartLED::init() {
             throw new QUnhandledException;
         }
     }
+    Frame::initFrame();
     SmartLED::bootmanager = std::make_unique<BootManager>();
     SmartLED::fontmanager = std::make_unique<FontManager>();
     SmartLED::mailmanager = std::make_unique<MailManager>();

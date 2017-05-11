@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     app/serialportmanager.cpp \
     app/mailmanager.cpp \
     app/bootmanager.cpp \
-    app/smartled.cpp
+    app/smartled.cpp \
+    app/frame.cpp
 
 RESOURCES += qml.qrc
 
@@ -26,7 +27,8 @@ HEADERS += \
     app/mailmanager.h \
     app/bootmanager.h \
     app/smartled.h \
-    app/application.h
+    app/application.h \
+    app/frame.h
 
 TRANSLATIONS += locale/zh_CN.ts \
                     locale/en_US.ts

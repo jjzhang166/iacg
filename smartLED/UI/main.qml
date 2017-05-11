@@ -15,8 +15,8 @@ Window {
     height: 495
     color: "transparent"
     flags: Qt.FramelessWindowHint |
-           Qt.Window |
-           Qt.WindowMinimizeButtonHint
+           Qt.WindowMinimizeButtonHint |
+           Qt.Window
 
     DropShadow {
         anchors.fill: centerFrame

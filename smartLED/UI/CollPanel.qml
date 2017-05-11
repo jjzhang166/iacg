@@ -80,16 +80,16 @@ Rectangle {
 
         onLightChanged: {
             switch(ll) {
-            case SerialportManager.LL_HIGH:             //LL_HIGH
+            case 0:             //LL_HIGH
                 light_img.source = "qrc:/pic/light_h.png"
                 break
-            case SerialportManager.LL_MH:             //LL_MH
+            case 1:             //LL_MH
                 light_img.source = "qrc:/pic/light_mh.png"
                 break
-            case SerialportManager.LL_MEDIUM:             //LL_MEDIUM
+            case 2:             //LL_MEDIUM
                 light_img.source = "qrc:/pic/light_m.png"
                 break
-            case SerialportManager.LL_LOW:             //LL_LOW
+            case 3:             //LL_LOW
                 light_img.source = "qrc:/pic/light_l.png"
             }
         }

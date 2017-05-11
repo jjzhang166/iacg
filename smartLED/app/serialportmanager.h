@@ -4,6 +4,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QSettings>
+#include "frame.h"
 
 class SerialportManager : public QObject {
     Q_OBJECT
@@ -12,7 +13,6 @@ class SerialportManager : public QObject {
     Q_ENUMS(QSerialPort::DataBits)
     Q_ENUMS(QSerialPort::StopBits)
     Q_ENUMS(QSerialPort::Parity)
-    Q_ENUMS(LightLevel)
 
     /*
      * 以下为serialConnet类的属性表
@@ -44,18 +44,8 @@ signals:
     void lightChanged(const int ll);
 
 public:
-    enum LightLevel {
-        LL_HIGH,
-        LL_MH,
-        LL_MEDIUM,
-        LL_LOW,
-        LL_ERROR = -1
-    };
-
-public:
     SerialportManager(QObject *parent = 0);
     ~SerialportManager();
-    void saveData();
 
 public:
     QStringList portList() const;
@@ -85,25 +75,11 @@ public:
     void    setHumidity(const QString &hum);
 
     Q_INVOKABLE void sndControlFrame(const bool checked, const int level);
-    /*
-     * 名称：connectSart
-     * 参数：无
-     * 返回值：bool，指示是否成功
-     * 作用：上位机尝试通过指定的串口与单片机进行通信
-     */
     Q_INVOKABLE bool connectSart();
-    /*
-     * 名称：connectStop
-     * 参数：无
-     * 返回值：无
-     * 作用：上位机停止与单片机的通信
-     */
     Q_INVOKABLE void connectStop();
 
 private:
-    QSettings frame_setting;
     QSettings ini_setting;
-
     QSerialPort *linkPort;
     QSerialPort::BaudRate m_baudRate;
     QSerialPort::DataBits m_dataBits;
@@ -115,39 +91,10 @@ private:
     QString m_humidity;
     QStringList m_portList;
 
-    //数据帧相关信息
-    QByteArray frameheader;
-    int frameLen;
-    int frameheaderLen;
-    int framehumi;
-    int framehumiLen;
-    int frametemp;
-    int frametempLen;
-    int framelight;
-    int framelightLen;
-    QString framelight_Hvalue;     //高光照强度区间
-    QString framelight_MHvalue;    //中高光照强度区间
-    QString framelight_Mvalue;     //中等光照强度区间
-    QString framelight_Lvalue;     //低光照强度区间
-    QPair<int,int> h_lightSection;
-    QPair<int,int> mh_lightSection;
-    QPair<int,int> m_lightSection;
-    QPair<int,int> l_lightSection;
-
-    //控制帧相关信息
-    QByteArray sndframeheader;
-    QByteArray sndframecheck;
-    QByteArray sndframeuncheck;
-    QByteArray sndframebody_0;
-    QByteArray sndframebody_1;
-    QByteArray sndframebody_2;
-    QByteArray sndframebody_3;
-    QByteArray sndframebody_4;
-
 private:
     void InitPortlist();
-    bool parseLightSection();
-    LightLevel parseLightLevel(const int lg);
+    //bool parseLightSection();
+    //Frame::LightLevel parseLightLevel(const int lg);
 
     /*
      * 名称：writeByte

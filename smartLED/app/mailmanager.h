@@ -64,7 +64,6 @@ public:
 
     MailManager(QObject *parent = 0);
     ~MailManager();
-    void saveData();
 
 public:
 

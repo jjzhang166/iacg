@@ -4,8 +4,7 @@
 #include <QObject>
 #include <QQmlApplicationEngine>
 #include <QtQml>
-#include <QMessageBox>
-#include <QUnhandledException>
+#include <QQuickWindow>
 
 class Application : public QObject {
     Q_OBJECT
@@ -15,6 +14,7 @@ public:
 
 public slots:
     void onObjectCreated(QObject* ,QUrl);
+    void onWindowClosed(QQuickCloseEvent*);
 
 private:
     QQmlApplicationEngine *engine;
