@@ -5,7 +5,6 @@
 ** Contact: linuxlike@foxmail.com
 **
 ******************************************************************************/
-
 #include <QApplication>
 #include <QTranslator>
 #include "app/smartled.h"
@@ -17,11 +16,10 @@ int main(int argc, char *argv[])
     ts.load(":/locale/zh_CN.qm");
     app.installTranslator(&ts);
     try {
-        SmartLED *sl = new SmartLED(":/splash.png");
-        app.exec();
-        delete sl;
+        SmartLED::init();
+        return app.exec();
     }
     catch(...) {
-        app.quit();
+        app.exit(-1);
     }
 }

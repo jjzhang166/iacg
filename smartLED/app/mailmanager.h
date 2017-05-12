@@ -1,12 +1,19 @@
-﻿#ifndef MAILDATA_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef MAILDATA_H
 #define MAILDATA_H
 #include <QObject>
 #include <QString>
 #include <QTimer>
 #include <QDateTime>
+#include <QSettings>
 
 #include "smtpClient/SmtpMime"
-#include "datamanager.h"
 
 class MailManager : public QObject {
     Q_OBJECT
@@ -62,7 +69,7 @@ public:
         ERR_CONTENT_EMPTY = -12         //邮件没有内容
     };
 
-    MailManager(DataManager *dm,QObject *parent = 0);
+    MailManager(QObject *parent = 0);
     ~MailManager();
 
 public:
@@ -100,7 +107,7 @@ private:
     #define PORT            m_data[11]
 
 private:
-    DataManager *datamanager;
+    QSettings ini_setting;
 
     enum _timeout{
         TIME_OUT_LOW = 2000,

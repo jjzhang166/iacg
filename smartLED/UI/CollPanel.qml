@@ -4,6 +4,7 @@ import QtQuick.Dialogs 1.2
 
 import SLComponent 1.0
 import Manager.Mail 1.0
+import Manager.Serialport 1.0
 
 Rectangle {
     property string bg_color: "#fafafa"

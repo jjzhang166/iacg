@@ -19,7 +19,7 @@ Rectangle {
         id: text1
         x: 54
         y: 133
-        text: qsTr("Author:linuxlike")
+        text: qsTr("Author:dengjunkai")
         font.family: fontmanager.curfont
         font.pointSize: 13
     }

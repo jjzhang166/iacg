@@ -1,10 +1,16 @@
-﻿#ifndef SERIALCONNECT_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef SERIALCONNECT_H
 #define SERIALCONNECT_H
 #include <QObject>
 #include <QSerialPort>
 #include <QSerialPortInfo>
-
-#include "datamanager.h"
+#include <QSettings>
 
 class SerialportManager : public QObject {
     Q_OBJECT
@@ -44,7 +50,7 @@ signals:
     void lightChanged(const int ll);
 
 public:
-    SerialportManager(DataManager *dm, QObject *parent = 0);
+    SerialportManager(QObject *parent = 0);
     ~SerialportManager();
 
 public:
@@ -74,25 +80,14 @@ public:
     QString humidity() const;
     void    setHumidity(const QString &hum);
 
+    Q_INVOKABLE void refreshPortlist();
     Q_INVOKABLE void sndControlFrame(const bool checked, const int level);
-    /*
-     * 名称：connectSart
-     * 参数：无
-     * 返回值：bool，指示是否成功
-     * 作用：上位机尝试通过指定的串口与单片机进行通信
-     */
     Q_INVOKABLE bool connectSart();
-    /*
-     * 名称：connectStop
-     * 参数：无
-     * 返回值：无
-     * 作用：上位机停止与单片机的通信
-     */
     Q_INVOKABLE void connectStop();
 
 private:
+    QSettings ini_setting;
     QSerialPort *linkPort;
-    DataManager *dataManager;
     QSerialPort::BaudRate m_baudRate;
     QSerialPort::DataBits m_dataBits;
     QSerialPort::StopBits m_stopBits;
@@ -103,48 +98,15 @@ private:
     QString m_humidity;
     QStringList m_portList;
 
-    //数据帧相关信息
-    QByteArray frameheader;
-    int frameLen;
-    int frameheaderLen;
-    int framehumi;
-    int framehumiLen;
-    int frametemp;
-    int frametempLen;
-    int framelight;
-    int framelightLen;
-
-    //控制帧相关信息
-    QByteArray sndframeheader;
-    QByteArray sndframecheck;
-    QByteArray sndframeuncheck;
-    QByteArray sndframebody_0;
-    QByteArray sndframebody_1;
-    QByteArray sndframebody_2;
-    QByteArray sndframebody_3;
-    QByteArray sndframebody_4;
-
 private:
     void InitPortlist();
 
-    /*
-     * 名称：writeByte
-     * 参数：QString,要发送的数据帧，为string类型的
-     * 十六进制字符串，如"ff","11","0f"
-     * 返回值：无
-     * 作用：向单片机发送指定十六进制数据帧，从而达到通过上位机控制
-     * 单片机的效果
-     */
+    //向单片机发送指定十六进制数据帧，从而达到通过上位机控制单片机的效果
     void writeByte(const QString&);
 
-    /*
-     * 名称：QString2Hex
-     * 参数：QString, 十六进制的字符串，如"ff","01"
-     * 返回值：QByteArray，十六进制值
-     * 作用：将十六进制字符串转换成能通过串口发送，单片机可以识别的
-     * 十六进制值
-     */
+    //作用：将十六进制字符串转换成能通过串口发送，单片机可以识别的十六进制值
     QByteArray QString2Hex(QString str);
+
     //此方法为QString2Hex内部调用
     char ConvertHexChar(char ch);
 };

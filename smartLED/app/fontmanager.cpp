@@ -1,22 +1,25 @@
-#include "fontmanager.h"
+﻿#include "fontmanager.h"
+#include "smartled.h"
 #include <QDebug>
 
-FontManager::FontManager(DataManager *dm,QObject *parent)
-    : QObject(parent),datamanager(dm) {
-    QString path = QDir::currentPath() + "/ttf";
-    //qDebug() << "ttf root:" << path;
-    ttf_root = new QDir(path);
-    if(!ttf_root->exists()) {
-        current_font = "Times New Roman";
-        return;
+FontManager::FontManager(QObject *parent)
+    : QObject(parent),
+    ttf_root(SmartLED::workpath + "/ttf"),
+    ini_setting("cfg.ini", QSettings::IniFormat) {
+
+    if(!ttf_root.exists()) {
+        QMessageBox::critical(NULL, QObject::tr("error"),
+                              QObject::tr("ttf dir not exist"), QMessageBox::Yes);
+        throw new QUnhandledException;
     }
 
     //load custom font
-    foreach (QString ttf_name, ttf_root->entryList()) {
+    foreach (QString ttf_name, ttf_root.entryList()) {
         if(ttf_name.toLower().endsWith("ttf") || ttf_name.toLower().endsWith("otf")) {
-            int fontid = db.addApplicationFont(ttf_root->absoluteFilePath(ttf_name));
+            int fontid = db.addApplicationFont(ttf_root.absoluteFilePath(ttf_name));
             if(fontid < -1)
-                qDebug() << "load font error";
+                QMessageBox::warning(NULL, QObject::tr("warning"),
+                                     QObject::tr("load font error"), QMessageBox::Yes);
             else {
                 QStringList fl = db.applicationFontFamilies(fontid);
                 family_list.append(fl.at(0));
@@ -24,17 +27,23 @@ FontManager::FontManager(DataManager *dm,QObject *parent)
         }
     }
 
-    current_font = datamanager->ReadFontfamilyData().toString();
+    current_font = ini_setting.value("Font/FontFamily", "").toString();
     if(current_font.isEmpty()) {
         if(!family_list.isEmpty())
             current_font = family_list.at(0);
-        else
-            current_font = "Times New Roman";
+        else {
+            QMessageBox::critical(NULL, QObject::tr("error"),
+                                  QObject::tr("empty font list"), QMessageBox::Yes);
+            throw new QUnhandledException;
+        }
     }
 }
 
 FontManager::~FontManager() {
-    datamanager->WriteFontfamilyData(current_font);
+#ifdef QT_DEBUG
+    qDebug() << "destroy fontmanager";
+#endif
+    ini_setting.setValue("Font/FontFamily", current_font);
 }
 
 QStringList FontManager::familylist() const {

@@ -1,76 +1,41 @@
 ﻿#include "smartled.h"
-#include <QUnhandledException>
+#include <QProcess>
 
-SmartLED::SmartLED(const QString &pixmap, const QString &cfgfile, QObject *parent) : QObject(parent) {
-    QDir splash_file(QDir::currentPath() + "/splash.png");
-    splash = (QDir::current().exists("splash.png")) ? new QSplashScreen(QPixmap(splash_file.absolutePath()))
-                                    : new QSplashScreen(QPixmap(pixmap));
-    splash->show();
-    splash->showMessage("QML Engine:loading,please wait...");
-    engine = new QQmlApplicationEngine;
-    QObject::connect(engine,SIGNAL(objectCreated(QObject*,QUrl)),this,SLOT(onObjectCreated(QObject*,QUrl)));
-    datamanager = new DataManager(cfgfile);
-    qmlRegisterUncreatableType<SerialportManager>("Manager.Serialport",1,0,"SerialportManager",QString("Static Class"));
-    qmlRegisterUncreatableType<MailManager>("Manager.Mail",1,0,"MailManager",QString("Static Class"));
-    bootmanager = new BootManager(datamanager);
-    engine->rootContext()->setContextProperty("bootmanager", bootmanager);
-    fontmanager = new FontManager(datamanager);
-    engine->rootContext()->setContextProperty("fontmanager", fontmanager);
-    mailmanager = new MailManager(datamanager);
-    engine->rootContext()->setContextProperty("maildata", mailmanager);
-    serialportmanager = new SerialportManager(datamanager);
-    engine->rootContext()->setContextProperty("sc", serialportmanager);
-    engine->addImportPath(QDir::currentPath());
-    engine->load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
-}
+std::unique_ptr<Application> SmartLED::app;
+std::unique_ptr<BootManager> SmartLED::bootmanager;
+std::unique_ptr<FontManager> SmartLED::fontmanager;
+std::unique_ptr<MailManager> SmartLED::mailmanager;
+std::unique_ptr<SerialportManager> SmartLED::serialportmanager;
+QSplashScreen *SmartLED::splash = nullptr;
+QString SmartLED::workpath;
 
-SmartLED::~SmartLED() {
-    delete bootmanager;
-    delete serialportmanager;
-    delete fontmanager;
-    delete mailmanager;
-    delete datamanager;
-    delete engine;
-}
-
-void SmartLED::onObjectCreated(QObject* obj, QUrl url) {
-    Q_UNUSED(url)
-    if(obj != nullptr) {
-        if(!datamanager->ReadBootData(DataManager::BOOT_SMTP).toBool())
-            goto serialportInit;
-		splash->showMessage("MailManager:create SMTP object");
-        if(!mailmanager->trytoCreateSmtpInstance()) {
-            splash->showMessage("MailManager:create SMTP object failed");
-            QMessageBox::information(NULL,tr("info"), tr("MailManager:create SMTP object failed"),
-                                     QMessageBox::Yes);
-        }
-
-        serialportInit:
-        if(!datamanager->ReadBootData(DataManager::BOOT_SERIALPORT).toBool())
-            goto splashEnd;
-        splash->showMessage("SerialManager:try to connect "+serialportmanager->portName());
-        QObject *button1 = nullptr;
-        foreach(QObject *obj,engine->rootObjects())
-            if(obj->objectName() == "obj_window1") {
-                button1 = obj->findChild<QObject*>("obj_window1_button1");
-            }
-        if(button1 == nullptr) {
-            splash->showMessage("QML Engine:find qml object error");
-            QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
-            delete splash;
-            throw new QUnhandledException;
-        }
-        QMetaObject::invokeMethod(button1,"initSerialportConnect");
-
-        splashEnd:
-        splash->close();
-        delete splash;
-    }
-    else {
-        splash->showMessage("QML Engine:init error");
-        QMessageBox::critical(NULL, tr("error"), tr("QML:engine load failed"), QMessageBox::Yes);
-        splash->close();
-        delete splash;
+void SmartLED::init() {
+    QSettings reg_setting("HKEY_CURRENT_USER\\SOFTWARE\\SmartLED", QSettings::NativeFormat);
+    SmartLED::workpath = reg_setting.value("WorkPath", "").toString();
+    if(SmartLED::workpath.isEmpty()) {
+        QMessageBox::critical(NULL, QObject::tr("error"),
+                              QObject::tr("get working path failed"), QMessageBox::Yes);
         throw new QUnhandledException;
     }
+    QDir rootdir(SmartLED::workpath);
+    SmartLED::splash = rootdir.exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
+                                        : new QSplashScreen(QPixmap(":/splash.png"));
+    SmartLED::splash->show();
+    SmartLED::splash->showMessage("program init...");
+    if(!rootdir.exists("frame.ini")) {
+        QMessageBox::StandardButton button = QMessageBox::information(NULL, QObject::tr("info"),
+                    QObject::tr("file 'frame.ini' is not exist,do you want to create a new file or use default config."),
+                    QMessageBox::Yes, QMessageBox::No);
+        if(button == QMessageBox::Yes) {
+            QProcess framecreator;
+            framecreator.startDetached(SmartLED::workpath + "/framecreator.exe");
+            throw new QUnhandledException;
+        }
+    }
+    Frame::initFrame();
+    SmartLED::bootmanager = std::make_unique<BootManager>();
+    SmartLED::fontmanager = std::make_unique<FontManager>();
+    SmartLED::mailmanager = std::make_unique<MailManager>();
+    SmartLED::serialportmanager = std::make_unique<SerialportManager>();
+    SmartLED::app = std::make_unique<Application>();
 }

@@ -1,9 +1,11 @@
 ﻿#include "serialportmanager.h"
+#include "frame.h"
+#include <QUnhandledException>
 #include <QDebug>
 
-SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
+SerialportManager::SerialportManager(QObject *parent) :
     QObject(parent),
-    dataManager(dm),
+    ini_setting("cfg.ini", QSettings::IniFormat),
     m_baudRate(QSerialPort::BaudRate::Baud9600),
     m_dataBits(QSerialPort::DataBits::Data8),
     m_stopBits(QSerialPort::StopBits::OneStop),
@@ -11,15 +13,14 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
 
     InitPortlist();
 
-    QString pn = dm->ReadSerialportData(DataManager::SERIALPORT_PORTNAME).toString();
-    if(!pn.isEmpty())
-        m_portName = pn;
+    m_portName = ini_setting.value("SerialPort/PortName", "").toString();
+
     bool ok;
-    int res = dm->ReadSerialportData(DataManager::SERIALPORT_BAUDRATE).toInt(&ok);
-    if(ok) m_baudRate = (QSerialPort::BaudRate)res;
-    res = dm->ReadSerialportData(DataManager::SERIALPORT_DATABITS).toInt(&ok);
-    if(ok) m_dataBits = (QSerialPort::DataBits)res;
-    float sbit = dm->ReadSerialportData(DataManager::SERIALPORT_STOPBITS).toFloat(&ok);
+    m_baudRate = (QSerialPort::BaudRate)ini_setting.value("SerialPort/BaudRate", "9600").toInt(&ok);
+    if(!ok) throw new QUnhandledException;
+    m_dataBits = (QSerialPort::DataBits)ini_setting.value("SerialPort/DataBits", "8").toInt(&ok);
+    if(!ok) throw new QUnhandledException;
+    float sbit = ini_setting.value("SerialPort/StopBits", "1").toFloat(&ok);
     if(ok) {
        if(sbit == 1)
             m_stopBits = QSerialPort::OneStop;
@@ -28,93 +29,59 @@ SerialportManager::SerialportManager(DataManager *dm, QObject *parent) :
         else if(sbit == 2)
             m_stopBits = QSerialPort::TwoStop;
     }
-    pn = dm->ReadSerialportData(DataManager::SERIALPORT_PARITY).toString();
-    if(!pn.isEmpty()) {
-        if(pn.toLower() == "no")
-            m_parity = QSerialPort::Parity::NoParity;
-        else if(pn.toLower() == "odd")
-            m_parity = QSerialPort::Parity::OddParity;
-        else if(pn.toLower() == "even")
-            m_parity = QSerialPort::Parity::EvenParity;
-    }
+    else
+        throw new QUnhandledException;
+    QString pn = ini_setting.value("SerialPort/Parity", "no").toString();
+    if(pn.toLower() == "no")
+        m_parity = QSerialPort::Parity::NoParity;
+    else if(pn.toLower() == "odd")
+        m_parity = QSerialPort::Parity::OddParity;
+    else if(pn.toLower() == "even")
+        m_parity = QSerialPort::Parity::EvenParity;
+    else
+        throw new QUnhandledException;
 
     linkPort = new QSerialPort;
-    QObject::connect(linkPort,&QSerialPort::readyRead,this,[=](){
+    QObject::connect(linkPort, &QSerialPort::readyRead, this, [=](){
          QByteArray data = linkPort->readAll();
-         if(data.left(frameheaderLen).toHex() != frameheader || data.length() != frameLen)
-             goto exit;
-         this->m_humidity = data.mid(framehumi,framehumiLen).toHex();
-         this->m_temperature = data.mid(frametemp,frametempLen).toHex();
-         this->m_light = data.mid(framelight,framelightLen).toHex();
-         int lightlevel = dataManager->parseLightLevel(m_light.toInt(nullptr,16));
-         emit humiChanged(m_humidity);
-         emit tempChanged(m_temperature);
-         emit lightChanged(lightlevel);
+         Frame dataframe(data);
+         if(!dataframe.ok) goto exit;
+         emit humiChanged(dataframe.getHumidity());
+         emit tempChanged(dataframe.getTemperature());
+         emit lightChanged(dataframe.getLightLevel());
          exit:
          linkPort->clear();
     });
 }
 
 SerialportManager::~SerialportManager() {
+#ifdef QT_DEBUG
+    qDebug() << "destroy serialport manager";
+#endif
     linkPort->close();
-    dataManager->WriteSerialportData(DataManager::SERIALPORT_PORTNAME,QVariant(m_portName));
-    dataManager->WriteSerialportData(DataManager::SERIALPORT_BAUDRATE,QVariant(m_baudRate).toInt());
-    dataManager->WriteSerialportData(DataManager::SERIALPORT_DATABITS,QVariant(m_dataBits).toInt());
+    if(!m_portName.isEmpty()) ini_setting.setValue("SerialPort/PortName", m_portName);
+    ini_setting.setValue("SerialPort/BaudRate", m_baudRate);
+    ini_setting.setValue("SerialPort/DataBits", m_dataBits);
     if(m_stopBits == QSerialPort::OneStop)
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(1));
+        ini_setting.setValue("SerialPort/StopBits", 1);
     else if(m_stopBits == QSerialPort::OneAndHalfStop)
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(1.5));
+        ini_setting.setValue("SerialPort/StopBits", 1.5);
     else if(m_stopBits == QSerialPort::TwoStop)
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_STOPBITS,QVariant(2));
+        ini_setting.setValue("SerialPort/StopBits", 2);
 
     switch (m_parity) {
     case QSerialPort::Parity::NoParity:
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("No"));
+        ini_setting.setValue("SerialPort/Parity", "No");
         break;
     case QSerialPort::Parity::OddParity:
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("Odd"));
+        ini_setting.setValue("SerialPort/Parity", "Odd");
         break;
     case QSerialPort::Parity::EvenParity:
-        dataManager->WriteSerialportData(DataManager::SERIALPORT_PARITY,QVariant("Even"));
+        ini_setting.setValue("SerialPort/Parity", "Even");
     }
 }
 
 void SerialportManager::InitPortlist() {
-    frameLen = dataManager->ReadFrameData(DataManager::FRAME_LEN).toInt();
-    Q_ASSERT(frameLen > 0);
-    frameheader = dataManager->ReadFrameData(DataManager::FRAME_HEADER).toByteArray();
-    Q_ASSERT(frameheader.length() > 0);
-    frameheaderLen = dataManager->ReadFrameData(DataManager::FRAME_HEADERLEN).toInt();
-    Q_ASSERT(frameheaderLen > 0);
-    framehumi = dataManager->ReadFrameData(DataManager::FRAME_HUMI).toInt();
-    Q_ASSERT(framehumi > 0);
-    framehumiLen = dataManager->ReadFrameData(DataManager::FRAME_HUMILEN).toInt();
-    Q_ASSERT(framehumiLen > 0);
-    frametemp = dataManager->ReadFrameData(DataManager::FRAME_TEMP).toInt();
-    Q_ASSERT(frametemp > 0);
-    frametempLen = dataManager->ReadFrameData(DataManager::FRAME_TEMPLEN).toInt();
-    Q_ASSERT(frametempLen > 0);
-    framelight = dataManager->ReadFrameData(DataManager::FRAME_LIGHT).toInt();
-    Q_ASSERT(framelight > 0);
-    framelightLen = dataManager->ReadFrameData(DataManager::FRAME_LIGHTLEN).toInt();
-    Q_ASSERT(framelightLen > 0);
-    sndframeheader = dataManager->ReadFrameData(DataManager::SNDFRAME_HEADER).toByteArray();
-    Q_ASSERT(sndframeheader.length() > 0);
-    sndframebody_0 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY0).toByteArray();
-    Q_ASSERT(sndframebody_0.length() > 0);
-    sndframebody_1 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY1).toByteArray();
-    Q_ASSERT(sndframebody_1.length() > 0);
-    sndframebody_2 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY2).toByteArray();
-    Q_ASSERT(sndframebody_2.length() > 0);
-    sndframebody_3 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY3).toByteArray();
-    Q_ASSERT(sndframebody_3.length() > 0);
-    sndframebody_4 = dataManager->ReadFrameData(DataManager::SNDFRAME_BODY4).toByteArray();
-    Q_ASSERT(sndframebody_4.length() > 0);
-    sndframecheck = dataManager->ReadFrameData(DataManager::SNDFRAME_CHECK).toByteArray();
-    Q_ASSERT(sndframecheck.length() > 0);
-    sndframeuncheck = dataManager->ReadFrameData(DataManager::SNDFRAME_UNCHEKC).toByteArray();
-    Q_ASSERT(sndframeuncheck.length() > 0);
-
     foreach (QSerialPortInfo port, QSerialPortInfo::availablePorts()) {
         m_portList.push_back(port.portName());
     }
@@ -124,30 +91,13 @@ void SerialportManager::InitPortlist() {
         m_portName = "";
 }
 
+void SerialportManager::refreshPortlist() {
+    m_portList.clear();
+    InitPortlist();
+}
+
 void SerialportManager::sndControlFrame(const bool checked, const int level) {
-    QString controlFrame = sndframeheader;
-    if(checked)
-        controlFrame += sndframecheck;
-    else
-        controlFrame += sndframeuncheck;
-    switch(level) {
-    case 0:
-        controlFrame += sndframebody_0;
-        break;
-    case 1:
-        controlFrame += sndframebody_1;
-        break;
-    case 2:
-        controlFrame += sndframebody_2;
-        break;
-    case 3:
-        controlFrame += sndframebody_3;
-        break;
-    case 4:
-        controlFrame += sndframebody_4;
-        break;
-    }
-    writeByte(controlFrame);
+    writeByte(Frame::getControlFrame(checked, level));
 }
 
 void SerialportManager::writeByte(const QString &b) {
@@ -286,4 +236,3 @@ char SerialportManager::ConvertHexChar(char ch) {
     else
         return (-1);
 }
-
