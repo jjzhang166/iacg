@@ -1,4 +1,11 @@
-﻿#ifndef MAILDATA_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef MAILDATA_H
 #define MAILDATA_H
 #include <QObject>
 #include <QString>

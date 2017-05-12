@@ -1,4 +1,11 @@
-﻿#ifndef BOOTMANAGER_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef BOOTMANAGER_H
 #define BOOTMANAGER_H
 
 #include <QObject>

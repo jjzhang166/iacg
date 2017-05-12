@@ -1,4 +1,11 @@
-﻿#ifndef FRAME_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef FRAME_H
 #define FRAME_H
 
 #include <QByteArray>

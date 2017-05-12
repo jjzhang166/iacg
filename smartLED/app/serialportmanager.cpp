@@ -92,9 +92,6 @@ void SerialportManager::InitPortlist() {
 }
 
 void SerialportManager::refreshPortlist() {
-#ifdef  QT_DEBUG
-    qDebug() << "refresh port list";
-#endif
     m_portList.clear();
     InitPortlist();
 }

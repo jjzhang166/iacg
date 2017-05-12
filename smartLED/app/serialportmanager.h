@@ -1,4 +1,11 @@
-﻿#ifndef SERIALCONNECT_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef SERIALCONNECT_H
 #define SERIALCONNECT_H
 #include <QObject>
 #include <QSerialPort>
@@ -93,27 +100,13 @@ private:
 
 private:
     void InitPortlist();
-    //bool parseLightSection();
-    //Frame::LightLevel parseLightLevel(const int lg);
 
-    /*
-     * 名称：writeByte
-     * 参数：QString,要发送的数据帧，为string类型的
-     * 十六进制字符串，如"ff","11","0f"
-     * 返回值：无
-     * 作用：向单片机发送指定十六进制数据帧，从而达到通过上位机控制
-     * 单片机的效果
-     */
+    //向单片机发送指定十六进制数据帧，从而达到通过上位机控制单片机的效果
     void writeByte(const QString&);
 
-    /*
-     * 名称：QString2Hex
-     * 参数：QString, 十六进制的字符串，如"ff","01"
-     * 返回值：QByteArray，十六进制值
-     * 作用：将十六进制字符串转换成能通过串口发送，单片机可以识别的
-     * 十六进制值
-     */
+    //作用：将十六进制字符串转换成能通过串口发送，单片机可以识别的十六进制值
     QByteArray QString2Hex(QString str);
+
     //此方法为QString2Hex内部调用
     char ConvertHexChar(char ch);
 };

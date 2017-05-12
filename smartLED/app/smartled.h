@@ -1,4 +1,11 @@
-﻿#ifndef SMARTLED_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef SMARTLED_H
 #define SMARTLED_H
 
 #include "bootmanager.h"

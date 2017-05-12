@@ -5,7 +5,6 @@
 ** Contact: linuxlike@foxmail.com
 **
 ******************************************************************************/
-
 #include <QApplication>
 #include <QTranslator>
 #include "app/smartled.h"

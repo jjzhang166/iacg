@@ -1,4 +1,11 @@
-﻿#ifndef FONTMANAGER_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef FONTMANAGER_H
 #define FONTMANAGER_H
 
 #include <QObject>

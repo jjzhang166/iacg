@@ -1,4 +1,11 @@
-﻿#ifndef APPLICATION_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef APPLICATION_H
 #define APPLICATION_H
 
 #include <QObject>

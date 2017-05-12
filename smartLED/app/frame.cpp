@@ -2,9 +2,7 @@
 #include <QMessageBox>
 #include <QUnhandledException>
 #include <limits>
-#ifdef QT_DEBUG
-    #include <QDebug>
-#endif
+#include <QDebug>
 
 QByteArray Frame::frameheader = QByteArray("ff");
 int Frame::frameLen = 6;
