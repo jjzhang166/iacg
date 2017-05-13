@@ -2,7 +2,7 @@
 
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "smartLED"
-!define PRODUCT_VERSION "1.5"
+!define PRODUCT_VERSION "1.7"
 !define PRODUCT_PUBLISHER "nxlgdjk"
 !define PRODUCT_WEB_SITE "https://git.oschina.net/linuxlike/iacg"
 !define PRODUCT_INSTALL_KEY "Software\${PRODUCT_NAME}"

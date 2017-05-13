@@ -7,6 +7,7 @@ std::unique_ptr<FontManager> SmartLED::fontmanager;
 std::unique_ptr<MailManager> SmartLED::mailmanager;
 std::unique_ptr<SerialportManager> SmartLED::serialportmanager;
 QSplashScreen *SmartLED::splash = nullptr;
+QColor SmartLED::splash_color = Qt::black;
 QString SmartLED::workpath;
 
 void SmartLED::init() {
@@ -18,10 +19,15 @@ void SmartLED::init() {
         throw new QUnhandledException;
     }
     QDir rootdir(SmartLED::workpath);
-    SmartLED::splash = rootdir.exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
-                                        : new QSplashScreen(QPixmap(":/splash.png"));
+    if(rootdir.exists("special_splash.png")) {
+        SmartLED::splash = new QSplashScreen(QPixmap(SmartLED::workpath + "/special_splash.png"));
+        SmartLED::splash_color = QColor(Qt::white);
+    }
+    else
+        SmartLED::splash = rootdir.exists("splash.png")? new QSplashScreen(QPixmap(SmartLED::workpath + "/splash.png"))
+                                            : new QSplashScreen(QPixmap(":/splash.png"));
     SmartLED::splash->show();
-    SmartLED::splash->showMessage("program init...");
+    SmartLED::splash->showMessage("program init...", Qt::AlignLeft, SmartLED::splash_color);
     if(!rootdir.exists("frame.ini")) {
         QMessageBox::StandardButton button = QMessageBox::information(NULL, QObject::tr("info"),
                     QObject::tr("file 'frame.ini' is not exist,do you want to create a new file or use default config."),

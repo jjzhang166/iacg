@@ -8,22 +8,26 @@
         <translation type="vanished">作者：linuxlike</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="22"/>
-        <source>Author:dengjunkai</source>
-        <translation>作者：dengjunkai</translation>
+        <location filename="../UI/AboutPage.qml" line="23"/>
+        <source>Project:SmartLED</source>
+        <translation>论文题目：电子智能补光系统的研究与设计</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="30"/>
+        <location filename="../UI/AboutPage.qml" line="31"/>
+        <source>Author:dengjunkai</source>
+        <translation>作者：自动化13101邓俊锴</translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutPage.qml" line="73"/>
         <source>EMail:linuxlike@foxmail.com</source>
         <translation>作者邮箱：linuxlike@foxmail.com</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="40"/>
         <source>ProjectHome:</source>
-        <translation>项目主页：</translation>
+        <translation type="vanished">项目主页：</translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="72"/>
+        <location filename="../UI/AboutPage.qml" line="41"/>
         <source>Author&apos;s School Home:</source>
         <translation>作者学校：</translation>
     </message>
@@ -31,30 +35,30 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="30"/>
+        <location filename="../app/application.cpp" line="44"/>
         <source>info</source>
-        <translation type="unfinished">信息</translation>
+        <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="30"/>
+        <location filename="../app/application.cpp" line="44"/>
         <source>MailManager:create SMTP object failed</source>
-        <translation type="unfinished">MailManager:创建SMTP对象失败</translation>
+        <translation>MailManager:创建SMTP对象失败</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="45"/>
-        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="61"/>
+        <location filename="../app/application.cpp" line="74"/>
         <source>error</source>
-        <translation type="unfinished">错误</translation>
+        <translation>错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="45"/>
+        <location filename="../app/application.cpp" line="61"/>
         <source>QML:find qml object error</source>
-        <translation type="unfinished">QML:搜寻qml对象树时发生错误</translation>
+        <translation>QML:搜寻qml对象树时发生错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="74"/>
         <source>QML:engine load failed</source>
-        <translation type="unfinished">QML:引擎装载失败</translation>
+        <translation>QML:引擎装载失败</translation>
     </message>
 </context>
 <context>
@@ -440,8 +444,32 @@
 <context>
     <name>QObject</name>
     <message>
+        <location filename="../app/fontmanager.cpp" line="11"/>
+        <location filename="../app/fontmanager.cpp" line="35"/>
+        <location filename="../app/frame.cpp" line="158"/>
+        <location filename="../app/smartled.cpp" line="16"/>
+        <source>error</source>
+        <translation>错误</translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="12"/>
+        <source>ttf dir not exist</source>
+        <translation>字体目录不存在</translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="21"/>
         <source>warning</source>
-        <translation type="vanished">警告</translation>
+        <translation>警告</translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="22"/>
+        <source>load font error</source>
+        <translation>字体装载失败</translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="36"/>
+        <source>empty font list</source>
+        <translation>字体列表为空</translation>
     </message>
     <message>
         <source>file:&apos;frame.ini&apos; is not exist.
@@ -454,14 +482,30 @@ crate a new file?</source>
         <translation type="obsolete">配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="22"/>
+        <location filename="../app/application.cpp" line="28"/>
+        <location filename="../app/smartled.cpp" line="26"/>
         <source>info</source>
-        <translation type="unfinished">信息</translation>
+        <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="23"/>
+        <location filename="../app/application.cpp" line="29"/>
+        <source>file &apos;frame.ini&apos; is not exist, save the current config?</source>
+        <translation>配置文件&quot;frame.ini&quot;不存在，保存当前帧配置吗？</translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="17"/>
+        <source>get working path failed</source>
+        <translation>获取工作目录失败</translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="27"/>
         <source>file &apos;frame.ini&apos; is not exist,do you want to create a new file or use default config.</source>
         <translation>配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
+    </message>
+    <message>
+        <location filename="../app/frame.cpp" line="159"/>
+        <source>paese frame failed</source>
+        <translation>解析帧失败</translation>
     </message>
 </context>
 <context>
@@ -538,7 +582,7 @@ crate a new file?</source>
     <message>
         <location filename="../UI/TopFrame.qml" line="45"/>
         <source>The SmartLED Project</source>
-        <translation type="unfinished"></translation>
+        <translation>电子智能补光系统</translation>
     </message>
 </context>
 <context>
@@ -559,33 +603,33 @@ crate a new file?</source>
         <translation>串口号：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="100"/>
+        <location filename="../UI/main.qml" line="109"/>
         <source>BaudRate:</source>
         <translation>波特率：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="125"/>
+        <location filename="../UI/main.qml" line="134"/>
         <source>DataBit:</source>
         <translation>数据位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="149"/>
+        <location filename="../UI/main.qml" line="158"/>
         <source>StopBit:</source>
         <translation>停止位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="183"/>
+        <location filename="../UI/main.qml" line="192"/>
         <source>CheckBit:</source>
         <translation>校验位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="247"/>
         <location filename="../UI/main.qml" line="256"/>
+        <location filename="../UI/main.qml" line="265"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="234"/>
+        <location filename="../UI/main.qml" line="243"/>
         <source>DisConnect</source>
         <translation>断开</translation>
     </message>

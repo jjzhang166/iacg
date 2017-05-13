@@ -7,27 +7,28 @@ Rectangle {
 
     Image {
         id: image1
-        width: 417
-        height: 39
+        width: 402
+        height: 77
         anchors.top: parent.top
-        anchors.topMargin: 55
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.topMargin: 40
+        anchors.left: parent.left
+        anchors.leftMargin: 40
         source: "qrc:/pic/project_logo.png"
     }
 
     Text {
         id: text1
-        x: 54
-        y: 133
-        text: qsTr("Author:dengjunkai")
+        x: 50
+        y: 150
+        text: qsTr("Project:SmartLED")
         font.family: fontmanager.curfont
         font.pointSize: 13
     }
 
     Text {
         id: text2
-        x: 54
-        text: qsTr("EMail:linuxlike@foxmail.com")
+        x: 50
+        text: qsTr("Author:dengjunkai")
         font.family: fontmanager.curfont
         font.pointSize: 13
         anchors.top: text1.bottom
@@ -36,8 +37,8 @@ Rectangle {
 
     Text {
         id: text3
-        x: 54
-        text: qsTr("ProjectHome:")
+        x: 50
+        text: qsTr("Author's School Home:")
         anchors.top: text2.bottom
         anchors.topMargin: 30
         font.pointSize: 13
@@ -46,10 +47,10 @@ Rectangle {
 
     Text {
         id: text4
-        y: 227
+        y: 244
         text: "<html></style>
-                <a href=\"https://git.oschina.net/linuxlike/iacg\">
-                git.oschina.net/linuxlike/iacg</a>
+                <a href=\"http://www.nxist.com\">
+                www.nxist.com</a>
                 </html>"
         anchors.left: text3.right
         anchors.leftMargin: 6
@@ -68,33 +69,11 @@ Rectangle {
 
     Text {
         id: text5
-        x: 54
-        text: qsTr("Author's School Home:")
+        x: 50
+        text: qsTr("EMail:linuxlike@foxmail.com")
         anchors.top: text4.bottom
         anchors.topMargin: 30
         font.pointSize: 13
         font.family: fontmanager.curfont
-    }
-
-    Text {
-        id: text6
-        y: 274
-        text: "<html></style>
-                <a href=\"http://www.nxist.com\">
-                nxist.com</a>
-                </html>"
-        anchors.left: text5.right
-        anchors.leftMargin: 6
-        font.family: fontmanager.curfont
-        font.pointSize: 13
-        onLinkActivated: Qt.openUrlExternally(link)
-        MouseArea {
-            id: m2
-            anchors.fill: parent
-            hoverEnabled: true
-            acceptedButtons: Qt.NoButton
-            onEntered: m2.cursorShape = Qt.PointingHandCursor
-            onExited: m2.cursorShape = Qt.ArrowCursor
-        }
     }
 }

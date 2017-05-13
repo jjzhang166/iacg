@@ -26,6 +26,7 @@ namespace SmartLED {
     extern std::unique_ptr<SerialportManager> serialportmanager;
     extern QString workpath;
     extern QSplashScreen *splash;
+    extern QColor splash_color;
     void init();
 }
 

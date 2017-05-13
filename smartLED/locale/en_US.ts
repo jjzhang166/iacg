@@ -4,22 +4,22 @@
 <context>
     <name>AboutPage</name>
     <message>
-        <location filename="../UI/AboutPage.qml" line="22"/>
+        <location filename="../UI/AboutPage.qml" line="23"/>
+        <source>Project:SmartLED</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/AboutPage.qml" line="31"/>
         <source>Author:dengjunkai</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="30"/>
+        <location filename="../UI/AboutPage.qml" line="73"/>
         <source>EMail:linuxlike@foxmail.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/AboutPage.qml" line="40"/>
-        <source>ProjectHome:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../UI/AboutPage.qml" line="72"/>
+        <location filename="../UI/AboutPage.qml" line="41"/>
         <source>Author&apos;s School Home:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -27,28 +27,28 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="30"/>
+        <location filename="../app/application.cpp" line="44"/>
         <source>info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="30"/>
+        <location filename="../app/application.cpp" line="44"/>
         <source>MailManager:create SMTP object failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="45"/>
-        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="61"/>
+        <location filename="../app/application.cpp" line="74"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="45"/>
+        <location filename="../app/application.cpp" line="61"/>
         <source>QML:find qml object error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="74"/>
         <source>QML:engine load failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -358,13 +358,57 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../app/smartled.cpp" line="22"/>
+        <location filename="../app/application.cpp" line="28"/>
+        <location filename="../app/smartled.cpp" line="26"/>
         <source>info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="23"/>
+        <location filename="../app/application.cpp" line="29"/>
+        <source>file &apos;frame.ini&apos; is not exist, save the current config?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="17"/>
+        <source>get working path failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/smartled.cpp" line="27"/>
         <source>file &apos;frame.ini&apos; is not exist,do you want to create a new file or use default config.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="11"/>
+        <location filename="../app/fontmanager.cpp" line="35"/>
+        <location filename="../app/frame.cpp" line="158"/>
+        <location filename="../app/smartled.cpp" line="16"/>
+        <source>error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="12"/>
+        <source>ttf dir not exist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="21"/>
+        <source>warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="22"/>
+        <source>load font error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/fontmanager.cpp" line="36"/>
+        <source>empty font list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../app/frame.cpp" line="159"/>
+        <source>paese frame failed</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -440,33 +484,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="100"/>
+        <location filename="../UI/main.qml" line="109"/>
         <source>BaudRate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="125"/>
+        <location filename="../UI/main.qml" line="134"/>
         <source>DataBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="149"/>
+        <location filename="../UI/main.qml" line="158"/>
         <source>StopBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="183"/>
+        <location filename="../UI/main.qml" line="192"/>
         <source>CheckBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="247"/>
         <location filename="../UI/main.qml" line="256"/>
+        <location filename="../UI/main.qml" line="265"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="234"/>
+        <location filename="../UI/main.qml" line="243"/>
         <source>DisConnect</source>
         <translation type="unfinished"></translation>
     </message>

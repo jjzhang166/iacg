@@ -3,7 +3,7 @@
 #include <QUnhandledException>
 
 Application::Application(QObject *parent) : QObject(parent) {
-    SmartLED::splash->showMessage("QML Engine:loading,please wait...");
+    SmartLED::splash->showMessage("QML Engine:loading,please wait...", Qt::AlignLeft, SmartLED::splash_color);
     engine = new QQmlApplicationEngine;
     QObject::connect(engine,SIGNAL(objectCreated(QObject*,QUrl)),this,SLOT(onObjectCreated(QObject*,QUrl)));
     qmlRegisterUncreatableType<SerialportManager>("Manager.Serialport",1,0,"SerialportManager",QString("Static Class"));
@@ -38,9 +38,9 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
     if(obj != nullptr) {
         if(!SmartLED::bootmanager->smtpBoot())
             goto serialportInit;
-        SmartLED::splash->showMessage("MailManager:create SMTP object");
+        SmartLED::splash->showMessage("MailManager:create SMTP object", Qt::AlignLeft, SmartLED::splash_color);
         if(!SmartLED::mailmanager->trytoCreateSmtpInstance()) {
-            SmartLED::splash->showMessage("MailManager:create SMTP object failed");
+            SmartLED::splash->showMessage("MailManager:create SMTP object failed", Qt::AlignLeft, SmartLED::splash_color);
             QMessageBox::information(NULL, tr("info"), tr("MailManager:create SMTP object failed"),
                                      QMessageBox::Yes);
         }
@@ -48,7 +48,8 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
         serialportInit:
         if(!SmartLED::bootmanager->serialportBoot())
             goto splashEnd;
-        SmartLED::splash->showMessage("SerialManager:try to connect " + SmartLED::serialportmanager->portName());
+        SmartLED::splash->showMessage("SerialManager:try to connect " + SmartLED::serialportmanager->portName(),
+                                      Qt::AlignLeft, SmartLED::splash_color);
         QObject *window1 = nullptr;
         QObject *button1 = nullptr;
         foreach(QObject *obj, engine->rootObjects())
@@ -57,7 +58,8 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
                 button1 = obj->findChild<QObject*>("obj_window1_button1");
             }
         if(window1 == nullptr || button1 == nullptr) {
-            SmartLED::splash->showMessage("QML Engine:find qml object error");
+            SmartLED::splash->showMessage("QML Engine:find qml object error",
+                                          Qt::AlignLeft, SmartLED::splash_color);
             QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
             throw new QUnhandledException;
         }
@@ -70,7 +72,7 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
         SmartLED::splash = nullptr;
     }
     else {
-        SmartLED::splash->showMessage("QML Engine:init error");
+        SmartLED::splash->showMessage("QML Engine:init error", Qt::AlignLeft, SmartLED::splash_color);
         QMessageBox::critical(NULL, tr("error"), tr("QML:engine load failed"), QMessageBox::Yes);
         throw new QUnhandledException;
     }
