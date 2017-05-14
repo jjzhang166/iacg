@@ -26,5 +26,6 @@
         <file>sl.ico</file>
         <file>splash.png</file>
         <file>UI/SettingPanelItem/BootSetting.qml</file>
+        <file>pic/light_err.png</file>
     </qresource>
 </RCC>

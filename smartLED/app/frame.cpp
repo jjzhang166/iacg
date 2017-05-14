@@ -35,11 +35,20 @@ QPair<int,int> Frame::l_lightSection = qMakePair(0,0);
 Frame::Frame(const QByteArray &data, QObject *parent) :
     dataframe(data),
     QObject(parent),
-    ok(false) {
+    status(FRAME_FAILED) {
     if(dataframe.left(frameheaderLen).toHex() != frameheader ||
-            dataframe.length() != frameLen)
+            dataframe.length() != frameLen) {
+#ifdef QT_DEBUG
+        qDebug() << "skip dataframe";
+#endif
+        status = (dataframe.length() == 1)? FRAME_EMPTY : FRAME_FAILED;
         return;
-    ok = true;
+    }
+    status = FRAME_SUCCESS;
+}
+
+Frame::FrameStatus Frame::getFrameStatus() {
+    return status;
 }
 
 const QByteArray Frame::getTemperature() {

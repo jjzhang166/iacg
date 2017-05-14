@@ -45,7 +45,15 @@ SerialportManager::SerialportManager(const QString &filename, QObject *parent) :
     QObject::connect(linkPort, &QSerialPort::readyRead, this, [=](){
          QByteArray data = linkPort->readAll();
          Frame dataframe(data);
-         if(!dataframe.ok) goto exit;
+         if(dataframe.getFrameStatus() != Frame::FRAME_SUCCESS) {
+             if(dataframe.getFrameStatus() == Frame::FRAME_EMPTY) {
+                 qDebug() << "frame is empty";
+                 emit humiChanged("0");
+                 emit tempChanged("0");
+                 emit lightChanged(Frame::LL_ERROR);
+             }
+             goto exit;
+         }
          emit humiChanged(dataframe.getHumidity());
          emit tempChanged(dataframe.getTemperature());
          emit lightChanged(dataframe.getLightLevel());

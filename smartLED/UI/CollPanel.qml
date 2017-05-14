@@ -91,6 +91,9 @@ Rectangle {
                 break
             case 3:             //LL_LOW
                 light_img.source = "qrc:/pic/light_l.png"
+                break
+            case -1:            //LL_ERROR
+                light_img.source = "qrc:/pic/light_err.png"
             }
         }
     }
@@ -119,7 +122,7 @@ Rectangle {
             anchors.leftMargin: 65
             anchors.top: light_label.bottom
             anchors.topMargin: 25
-            source: "qrc:/pic/light_h.png"
+            source: "qrc:/pic/light_err.png"
         }
     }
 

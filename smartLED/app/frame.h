@@ -24,6 +24,12 @@ public:
         LL_ERROR = -1
     };
 
+    enum FrameStatus {
+        FRAME_SUCCESS,
+        FRAME_FAILED,
+        FRAME_EMPTY
+    };
+
 public:
     Frame(const QByteArray &data, QObject *parent = nullptr);
 
@@ -34,7 +40,7 @@ public:
     const QByteArray getTemperature();
     const QByteArray getHumidity();
     LightLevel getLightLevel();
-    bool ok;
+    FrameStatus getFrameStatus();
 
 private:
     static bool parseLightSection();
@@ -68,6 +74,7 @@ private:
 
 private:
     const QByteArray dataframe;
+    FrameStatus status;
     static QPair<int,int> h_lightSection;
     static QPair<int,int> mh_lightSection;
     static QPair<int,int> m_lightSection;
