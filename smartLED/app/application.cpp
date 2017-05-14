@@ -31,8 +31,6 @@ void Application::onWindowClosed(QQuickCloseEvent *) {
         if(retBtn == QMessageBox::Yes)
             Frame::saveFrame(SmartLED::workpath + "/frame.ini");
     }
-    QSettings ini_setting(SmartLED::workpath + "/cfg.ini", QSettings::IniFormat);
-    ini_setting.setValue("Boot/WinShadow", winshadow);
 }
 
 void Application::onObjectCreated(QObject* obj, QUrl url) {
@@ -58,9 +56,8 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
             QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
             throw new QUnhandledException;
         }
-        QSettings ini_setting(SmartLED::workpath + "/cfg.ini", QSettings::IniFormat);
-        winshadow = ini_setting.value("Boot/WinShadow", true).toBool();
-        if(!winshadow)
+
+        if(!SmartLED::bootmanager->winShadow())
             QMetaObject::invokeMethod(window1, "closeWinShadow");
 
         if(!SmartLED::bootmanager->serialportBoot())

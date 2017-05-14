@@ -25,7 +25,6 @@ public slots:
 
 private:
     QQmlApplicationEngine *engine;
-    bool winshadow;
 };
 
 #endif // APPLICATION_H

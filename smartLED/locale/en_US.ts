@@ -37,18 +37,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="61"/>
-        <location filename="../app/application.cpp" line="74"/>
+        <location filename="../app/application.cpp" line="56"/>
+        <location filename="../app/application.cpp" line="73"/>
+        <location filename="../app/application.cpp" line="86"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="61"/>
+        <location filename="../app/application.cpp" line="56"/>
+        <location filename="../app/application.cpp" line="73"/>
         <source>QML:find qml object error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="74"/>
+        <location filename="../app/application.cpp" line="86"/>
         <source>QML:engine load failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -91,6 +93,11 @@
     <message>
         <location filename="../UI/SettingPanelItem/BootSetting.qml" line="30"/>
         <source>SerialportBoot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../UI/SettingPanelItem/BootSetting.qml" line="40"/>
+        <source>WindowShadow</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -170,78 +177,78 @@
 <context>
     <name>CollPanel</name>
     <message>
-        <location filename="../UI/CollPanel.qml" line="105"/>
+        <location filename="../UI/CollPanel.qml" line="108"/>
         <source>CurrentLight:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="135"/>
+        <location filename="../UI/CollPanel.qml" line="138"/>
         <source>CurrentTemp:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="146"/>
-        <location filename="../UI/CollPanel.qml" line="196"/>
+        <location filename="../UI/CollPanel.qml" line="149"/>
+        <location filename="../UI/CollPanel.qml" line="199"/>
         <source>0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="170"/>
+        <location filename="../UI/CollPanel.qml" line="173"/>
         <source>℃</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="185"/>
+        <location filename="../UI/CollPanel.qml" line="188"/>
         <source>CurrentHumi:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="224"/>
+        <location filename="../UI/CollPanel.qml" line="227"/>
         <source>%RH</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="241"/>
+        <location filename="../UI/CollPanel.qml" line="244"/>
         <source>SendDelay:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="252"/>
+        <location filename="../UI/CollPanel.qml" line="255"/>
         <source>Default Time</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="264"/>
+        <location filename="../UI/CollPanel.qml" line="267"/>
         <source>Custom Time:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="283"/>
+        <location filename="../UI/CollPanel.qml" line="286"/>
         <source>5 minute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="283"/>
+        <location filename="../UI/CollPanel.qml" line="286"/>
         <source>15 minutes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>1 hour</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>10 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>24 hours</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="291"/>
+        <location filename="../UI/CollPanel.qml" line="294"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -359,7 +366,7 @@
     <name>QObject</name>
     <message>
         <location filename="../app/application.cpp" line="28"/>
-        <location filename="../app/smartled.cpp" line="26"/>
+        <location filename="../app/smartled.cpp" line="32"/>
         <source>info</source>
         <translation type="unfinished"></translation>
     </message>
@@ -369,20 +376,20 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="17"/>
+        <location filename="../app/smartled.cpp" line="18"/>
         <source>get working path failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="27"/>
+        <location filename="../app/smartled.cpp" line="33"/>
         <source>file &apos;frame.ini&apos; is not exist,do you want to create a new file or use default config.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../app/fontmanager.cpp" line="11"/>
         <location filename="../app/fontmanager.cpp" line="35"/>
-        <location filename="../app/frame.cpp" line="158"/>
-        <location filename="../app/smartled.cpp" line="16"/>
+        <location filename="../app/frame.cpp" line="167"/>
+        <location filename="../app/smartled.cpp" line="17"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
@@ -407,7 +414,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../app/frame.cpp" line="159"/>
+        <location filename="../app/frame.cpp" line="168"/>
         <source>paese frame failed</source>
         <translation type="unfinished"></translation>
     </message>
@@ -469,48 +476,48 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../UI/main.qml" line="60"/>
+        <location filename="../UI/main.qml" line="82"/>
         <source>error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="64"/>
+        <location filename="../UI/main.qml" line="86"/>
         <source>connect error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="76"/>
+        <location filename="../UI/main.qml" line="98"/>
         <source>SerialPort:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="109"/>
+        <location filename="../UI/main.qml" line="131"/>
         <source>BaudRate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="134"/>
+        <location filename="../UI/main.qml" line="156"/>
         <source>DataBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="158"/>
+        <location filename="../UI/main.qml" line="180"/>
         <source>StopBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="192"/>
+        <location filename="../UI/main.qml" line="214"/>
         <source>CheckBit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="256"/>
-        <location filename="../UI/main.qml" line="265"/>
+        <location filename="../UI/main.qml" line="278"/>
+        <location filename="../UI/main.qml" line="287"/>
         <source>Connect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="243"/>
+        <location filename="../UI/main.qml" line="265"/>
         <source>DisConnect</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+﻿import QtQuick 2.0
 import SLComponent 1.0
 
 Item {
@@ -30,6 +30,16 @@ Item {
                 text: qsTr("SerialportBoot")
                 checked: bootmanager.serialportBoot
                 onCheckedChanged: bootmanager.serialportBoot = checked
+            }
+
+            SLCheckBox {
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: checkbox_smtp.left
+                anchors.rightMargin: 30
+                fontfamily: fontmanager.curfont
+                text: qsTr("WindowShadow")
+                checked: bootmanager.winShadow
+                onCheckedChanged: bootmanager.winShadow = checked
             }
         }
     }

@@ -45,18 +45,20 @@
         <translation>MailManager:创建SMTP对象失败</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="61"/>
-        <location filename="../app/application.cpp" line="74"/>
+        <location filename="../app/application.cpp" line="56"/>
+        <location filename="../app/application.cpp" line="73"/>
+        <location filename="../app/application.cpp" line="86"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="61"/>
+        <location filename="../app/application.cpp" line="56"/>
+        <location filename="../app/application.cpp" line="73"/>
         <source>QML:find qml object error</source>
         <translation>QML:搜寻qml对象树时发生错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="74"/>
+        <location filename="../app/application.cpp" line="86"/>
         <source>QML:engine load failed</source>
         <translation>QML:引擎装载失败</translation>
     </message>
@@ -100,6 +102,11 @@
         <location filename="../UI/SettingPanelItem/BootSetting.qml" line="30"/>
         <source>SerialportBoot</source>
         <translation>连接串口</translation>
+    </message>
+    <message>
+        <location filename="../UI/SettingPanelItem/BootSetting.qml" line="40"/>
+        <source>WindowShadow</source>
+        <translation>窗口阴影</translation>
     </message>
 </context>
 <context>
@@ -214,73 +221,73 @@
         <translation type="vanished">发送邮件错误,请确认你的邮箱配置</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="105"/>
+        <location filename="../UI/CollPanel.qml" line="108"/>
         <source>CurrentLight:</source>
         <translation>当前亮度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="135"/>
+        <location filename="../UI/CollPanel.qml" line="138"/>
         <source>CurrentTemp:</source>
         <translation>当前温度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="146"/>
-        <location filename="../UI/CollPanel.qml" line="196"/>
+        <location filename="../UI/CollPanel.qml" line="149"/>
+        <location filename="../UI/CollPanel.qml" line="199"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="170"/>
+        <location filename="../UI/CollPanel.qml" line="173"/>
         <source>℃</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="185"/>
+        <location filename="../UI/CollPanel.qml" line="188"/>
         <source>CurrentHumi:</source>
         <translation>当前湿度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="224"/>
+        <location filename="../UI/CollPanel.qml" line="227"/>
         <source>%RH</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="241"/>
+        <location filename="../UI/CollPanel.qml" line="244"/>
         <source>SendDelay:</source>
         <translation>发信间隔：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="252"/>
+        <location filename="../UI/CollPanel.qml" line="255"/>
         <source>Default Time</source>
         <translation>默认时间(1分钟)</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="264"/>
+        <location filename="../UI/CollPanel.qml" line="267"/>
         <source>Custom Time:</source>
         <translation>配置时间:</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="283"/>
+        <location filename="../UI/CollPanel.qml" line="286"/>
         <source>5 minute</source>
         <translation>5分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="283"/>
+        <location filename="../UI/CollPanel.qml" line="286"/>
         <source>15 minutes</source>
         <translation>15分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>1 hour</source>
         <translation>1小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>10 hours</source>
         <translation>10小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="284"/>
+        <location filename="../UI/CollPanel.qml" line="287"/>
         <source>24 hours</source>
         <translation>24小时</translation>
     </message>
@@ -297,7 +304,7 @@
         <translation type="vanished">光照等级：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="291"/>
+        <location filename="../UI/CollPanel.qml" line="294"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -446,8 +453,8 @@
     <message>
         <location filename="../app/fontmanager.cpp" line="11"/>
         <location filename="../app/fontmanager.cpp" line="35"/>
-        <location filename="../app/frame.cpp" line="158"/>
-        <location filename="../app/smartled.cpp" line="16"/>
+        <location filename="../app/frame.cpp" line="167"/>
+        <location filename="../app/smartled.cpp" line="17"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
@@ -483,7 +490,7 @@ crate a new file?</source>
     </message>
     <message>
         <location filename="../app/application.cpp" line="28"/>
-        <location filename="../app/smartled.cpp" line="26"/>
+        <location filename="../app/smartled.cpp" line="32"/>
         <source>info</source>
         <translation>信息</translation>
     </message>
@@ -493,17 +500,17 @@ crate a new file?</source>
         <translation>配置文件&quot;frame.ini&quot;不存在，保存当前帧配置吗？</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="17"/>
+        <location filename="../app/smartled.cpp" line="18"/>
         <source>get working path failed</source>
         <translation>获取工作目录失败</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="27"/>
+        <location filename="../app/smartled.cpp" line="33"/>
         <source>file &apos;frame.ini&apos; is not exist,do you want to create a new file or use default config.</source>
         <translation>配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
     </message>
     <message>
-        <location filename="../app/frame.cpp" line="159"/>
+        <location filename="../app/frame.cpp" line="168"/>
         <source>paese frame failed</source>
         <translation>解析帧失败</translation>
     </message>
@@ -588,48 +595,48 @@ crate a new file?</source>
 <context>
     <name>main</name>
     <message>
-        <location filename="../UI/main.qml" line="60"/>
+        <location filename="../UI/main.qml" line="82"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="64"/>
+        <location filename="../UI/main.qml" line="86"/>
         <source>connect error</source>
         <translation>连接失败</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="76"/>
+        <location filename="../UI/main.qml" line="98"/>
         <source>SerialPort:</source>
         <translation>串口号：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="109"/>
+        <location filename="../UI/main.qml" line="131"/>
         <source>BaudRate:</source>
         <translation>波特率：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="134"/>
+        <location filename="../UI/main.qml" line="156"/>
         <source>DataBit:</source>
         <translation>数据位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="158"/>
+        <location filename="../UI/main.qml" line="180"/>
         <source>StopBit:</source>
         <translation>停止位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="192"/>
+        <location filename="../UI/main.qml" line="214"/>
         <source>CheckBit:</source>
         <translation>校验位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="256"/>
-        <location filename="../UI/main.qml" line="265"/>
+        <location filename="../UI/main.qml" line="278"/>
+        <location filename="../UI/main.qml" line="287"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="243"/>
+        <location filename="../UI/main.qml" line="265"/>
         <source>DisConnect</source>
         <translation>断开</translation>
     </message>

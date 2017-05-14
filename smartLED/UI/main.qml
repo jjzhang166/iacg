@@ -20,6 +20,23 @@ Window {
 
     function closeWinShadow() {
         winshadow.destroy()
+        borderloader.sourceComponent = bordercom
+    }
+
+    Component {
+        id: bordercom
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+        }
+    }
+
+    Loader {
+        id: borderloader
+        anchors.fill: centerFrame
+        anchors.leftMargin: -1
+        anchors.rightMargin: -1
+        anchors.bottomMargin: -1
     }
 
     DropShadow {
