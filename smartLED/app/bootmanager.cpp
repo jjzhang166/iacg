@@ -1,9 +1,9 @@
 ﻿#include "bootmanager.h"
 #include <QDebug>
 
-BootManager::BootManager(QObject *parent) :
+BootManager::BootManager(const QString &filename, QObject *parent) :
     QObject(parent),
-    ini_setting("cfg.ini", QSettings::IniFormat) {
+    ini_setting(filename, QSettings::IniFormat) {
     m_smtpBoot = ini_setting.value("Boot/SmtpBoot", false).toBool();
     m_serialportBoot = ini_setting.value("Boot/SerialportBoot", false).toBool();
 }

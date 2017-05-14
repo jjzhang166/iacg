@@ -1,8 +1,8 @@
 ﻿#include "mailmanager.h"
 #include <QDebug>
 
-MailManager::MailManager(QObject *parent) : QObject(parent)
-    ,ini_setting("cfg.ini", QSettings::IniFormat)
+MailManager::MailManager(const QString &filename, QObject *parent) : QObject(parent)
+    ,ini_setting(filename, QSettings::IniFormat)
     ,alert_tmp(-1)
     ,alert_humi(-1)
     ,alert_light(-1) {

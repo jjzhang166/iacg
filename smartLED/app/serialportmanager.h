@@ -50,7 +50,7 @@ signals:
     void lightChanged(const int ll);
 
 public:
-    SerialportManager(QObject *parent = 0);
+    SerialportManager(const QString &filename, QObject *parent = 0);
     ~SerialportManager();
 
 public:

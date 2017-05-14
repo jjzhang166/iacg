@@ -38,10 +38,10 @@ void SmartLED::init() {
             throw new QUnhandledException;
         }
     }
-    Frame::initFrame();
-    SmartLED::bootmanager = std::make_unique<BootManager>();
-    SmartLED::fontmanager = std::make_unique<FontManager>();
-    SmartLED::mailmanager = std::make_unique<MailManager>();
-    SmartLED::serialportmanager = std::make_unique<SerialportManager>();
+    Frame::initFrame(SmartLED::workpath + "/frame.ini");
+    SmartLED::bootmanager = std::make_unique<BootManager>(SmartLED::workpath + "/cfg.ini");
+    SmartLED::fontmanager = std::make_unique<FontManager>(SmartLED::workpath + "/cfg.ini");
+    SmartLED::mailmanager = std::make_unique<MailManager>(SmartLED::workpath + "/cfg.ini");
+    SmartLED::serialportmanager = std::make_unique<SerialportManager>(SmartLED::workpath + "/cfg.ini");
     SmartLED::app = std::make_unique<Application>();
 }

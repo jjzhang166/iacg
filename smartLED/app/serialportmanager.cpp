@@ -3,9 +3,9 @@
 #include <QUnhandledException>
 #include <QDebug>
 
-SerialportManager::SerialportManager(QObject *parent) :
+SerialportManager::SerialportManager(const QString &filename, QObject *parent) :
     QObject(parent),
-    ini_setting("cfg.ini", QSettings::IniFormat),
+    ini_setting(filename, QSettings::IniFormat),
     m_baudRate(QSerialPort::BaudRate::Baud9600),
     m_dataBits(QSerialPort::DataBits::Data8),
     m_stopBits(QSerialPort::StopBits::OneStop),

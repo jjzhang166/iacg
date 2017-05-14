@@ -18,7 +18,12 @@ Window {
            Qt.WindowMinimizeButtonHint |
            Qt.Window
 
+    function closeWinShadow() {
+        winshadow.destroy()
+    }
+
     DropShadow {
+        id: winshadow
         anchors.fill: centerFrame
         fast: true
         horizontalOffset: 0

@@ -2,10 +2,10 @@
 #include "smartled.h"
 #include <QDebug>
 
-FontManager::FontManager(QObject *parent)
+FontManager::FontManager(const QString &filename, QObject *parent)
     : QObject(parent),
     ttf_root(SmartLED::workpath + "/ttf"),
-    ini_setting("cfg.ini", QSettings::IniFormat) {
+    ini_setting(filename, QSettings::IniFormat) {
 
     if(!ttf_root.exists()) {
         QMessageBox::critical(NULL, QObject::tr("error"),

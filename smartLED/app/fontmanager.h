@@ -23,7 +23,7 @@ signals:
     void curfontChanged();
 
 public:
-    explicit FontManager(QObject *parent = 0);
+    explicit FontManager(const QString &filename, QObject *parent = 0);
     ~FontManager();
 
 public:

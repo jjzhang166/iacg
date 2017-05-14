@@ -17,7 +17,7 @@ class BootManager : public QObject {
     Q_PROPERTY(bool serialportBoot READ serialportBoot WRITE setSerialportBoot NOTIFY serialportBootChanged)
 
 public:
-    explicit BootManager(QObject *parent = 0);
+    explicit BootManager(const QString &filename, QObject *parent = 0);
     ~BootManager();
 
 signals:

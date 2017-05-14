@@ -18,7 +18,7 @@ Application::Application(QObject *parent) : QObject(parent) {
 
 Application::~Application() {
 #ifdef QT_DEBUG
-    qDebug() << "application destroyed";
+    qDebug() << "destroy application";
 #endif
 }
 
@@ -29,8 +29,10 @@ void Application::onWindowClosed(QQuickCloseEvent *) {
                                  QObject::tr("file 'frame.ini' is not exist, save the current config?"),
                                  QMessageBox::Yes, QMessageBox::No);
         if(retBtn == QMessageBox::Yes)
-            Frame::saveFrame();
+            Frame::saveFrame(SmartLED::workpath + "/frame.ini");
     }
+    QSettings ini_setting(SmartLED::workpath + "/cfg.ini", QSettings::IniFormat);
+    ini_setting.setValue("Boot/WinShadow", winshadow);
 }
 
 void Application::onObjectCreated(QObject* obj, QUrl url) {
@@ -46,27 +48,38 @@ void Application::onObjectCreated(QObject* obj, QUrl url) {
         }
 
         serialportInit:
-        if(!SmartLED::bootmanager->serialportBoot())
-            goto splashEnd;
-        SmartLED::splash->showMessage("SerialManager:try to connect " + SmartLED::serialportmanager->portName(),
-                                      Qt::AlignLeft, SmartLED::splash_color);
         QObject *window1 = nullptr;
-        QObject *button1 = nullptr;
-        foreach(QObject *obj, engine->rootObjects())
-            if(obj->objectName() == "obj_window1") {
+        foreach (QObject *obj, engine->rootObjects())
+            if(obj->objectName() == "obj_window1")
                 window1 = obj;
-                button1 = obj->findChild<QObject*>("obj_window1_button1");
-            }
-        if(window1 == nullptr || button1 == nullptr) {
+        if(window1 == nullptr) {
             SmartLED::splash->showMessage("QML Engine:find qml object error",
                                           Qt::AlignLeft, SmartLED::splash_color);
             QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
             throw new QUnhandledException;
         }
-        QObject::connect(window1, SIGNAL(closing(QQuickCloseEvent*)), this, SLOT(onWindowClosed(QQuickCloseEvent*)));
+        QSettings ini_setting(SmartLED::workpath + "/cfg.ini", QSettings::IniFormat);
+        winshadow = ini_setting.value("Boot/WinShadow", true).toBool();
+        if(!winshadow)
+            QMetaObject::invokeMethod(window1, "closeWinShadow");
+
+        if(!SmartLED::bootmanager->serialportBoot())
+            goto splashEnd;
+        SmartLED::splash->showMessage("SerialManager:try to connect " + SmartLED::serialportmanager->portName(),
+                                      Qt::AlignLeft, SmartLED::splash_color);
+
+        QObject *button1 = nullptr;
+        button1 = obj->findChild<QObject*>("obj_window1_button1");
+        if(button1 == nullptr) {
+            SmartLED::splash->showMessage("QML Engine:find qml object error",
+                                          Qt::AlignLeft, SmartLED::splash_color);
+            QMessageBox::critical(NULL, tr("error"), tr("QML:find qml object error"), QMessageBox::Yes);
+            throw new QUnhandledException;
+        }
         QMetaObject::invokeMethod(button1,"initSerialportConnect");
 
         splashEnd:
+        QObject::connect(window1, SIGNAL(closing(QQuickCloseEvent*)), this, SLOT(onWindowClosed(QQuickCloseEvent*)));
         SmartLED::splash->close();
         delete SmartLED::splash;
         SmartLED::splash = nullptr;

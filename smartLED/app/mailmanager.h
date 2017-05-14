@@ -69,7 +69,7 @@ public:
         ERR_CONTENT_EMPTY = -12         //邮件没有内容
     };
 
-    MailManager(QObject *parent = 0);
+    MailManager(const QString &filename, QObject *parent = 0);
     ~MailManager();
 
 public:
