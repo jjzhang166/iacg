@@ -8,35 +8,20 @@ import SLComponent 1.0
 import Manager.Serialport 1.0
 
 Window {
+    property bool enableWinShadow: true
     objectName: "obj_window1"
     id: window1
     visible: true
     width: 200
     height: 495
-    color: "transparent"
+    color: enableWinShadow? "transparent" : "black"
     flags: Qt.FramelessWindowHint |
            Qt.WindowMinimizeButtonHint |
            Qt.Window
 
     function closeWinShadow() {
         winshadow.destroy()
-        borderloader.sourceComponent = bordercom
-    }
-
-    Component {
-        id: bordercom
-        Rectangle {
-            anchors.fill: parent
-            color: "black"
-        }
-    }
-
-    Loader {
-        id: borderloader
-        anchors.fill: centerFrame
-        anchors.leftMargin: -1
-        anchors.rightMargin: -1
-        anchors.bottomMargin: -1
+        enableWinShadow = false
     }
 
     DropShadow {
@@ -66,9 +51,9 @@ Window {
 
     TopFrame {
         id: tf
-        x: 5
+        x: enableWinShadow? 5 : 0
         z: 10
-        width: parent.width - 10
+        width: enableWinShadow? parent.width - 10 : parent.width
         height: 30
         win_instance: window1
         title_opacity: 0
@@ -88,9 +73,9 @@ Window {
 
     Rectangle {
         id: centerFrame
-        x: 5
-        width: parent.width - 10
-        height: parent.height - 5
+        x: enableWinShadow? 5 : 1
+        width: enableWinShadow? parent.width - 10 : parent.width - 2
+        height: enableWinShadow? parent.height - 5 : parent.height -1
         color: "#f6f6f8"
 
         Text {
