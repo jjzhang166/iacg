@@ -12,6 +12,7 @@ Application::Application(QObject *parent) : QObject(parent) {
     engine->rootContext()->setContextProperty("fontmanager", SmartLED::fontmanager.get());
     engine->rootContext()->setContextProperty("maildata", SmartLED::mailmanager.get());
     engine->rootContext()->setContextProperty("sc", SmartLED::serialportmanager.get());
+    engine->rootContext()->setContextProperty("notifymanager", SmartLED::notifymanager.get());
     engine->addImportPath(QDir::currentPath());
     engine->load(QUrl(QStringLiteral("qrc:/UI/main.qml")));
 }

@@ -14,6 +14,7 @@
 #include "serialportmanager.h"
 #include "application.h"
 #include "frame.h"
+#include "notifymanager.h"
 #include <QSplashScreen>
 #include <QMessageBox>
 #include <memory>
@@ -24,6 +25,7 @@ namespace SmartLED {
     extern std::unique_ptr<FontManager> fontmanager;
     extern std::unique_ptr<MailManager> mailmanager;
     extern std::unique_ptr<SerialportManager> serialportmanager;
+    extern std::unique_ptr<NotifyManager> notifymanager;
     extern QString workpath;
     extern QSplashScreen *splash;
     extern QColor splash_color;

@@ -6,6 +6,7 @@ std::unique_ptr<BootManager> SmartLED::bootmanager;
 std::unique_ptr<FontManager> SmartLED::fontmanager;
 std::unique_ptr<MailManager> SmartLED::mailmanager;
 std::unique_ptr<SerialportManager> SmartLED::serialportmanager;
+std::unique_ptr<NotifyManager> SmartLED::notifymanager;
 QSplashScreen *SmartLED::splash = nullptr;
 QColor SmartLED::splash_color = Qt::black;
 QString SmartLED::workpath;
@@ -43,5 +44,6 @@ void SmartLED::init() {
     SmartLED::fontmanager = std::make_unique<FontManager>(SmartLED::workpath + "/cfg.ini");
     SmartLED::mailmanager = std::make_unique<MailManager>(SmartLED::workpath + "/cfg.ini");
     SmartLED::serialportmanager = std::make_unique<SerialportManager>(SmartLED::workpath + "/cfg.ini");
+    SmartLED::notifymanager = std::make_unique<NotifyManager>(SmartLED::workpath + "/notify.wav", SmartLED::workpath + "/cfg.ini");
     SmartLED::app = std::make_unique<Application>();
 }

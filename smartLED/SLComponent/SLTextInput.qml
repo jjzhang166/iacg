@@ -24,7 +24,13 @@ TextInput {
         else
             tooltip.opacity = 0.7
     }
-
+	
+	onEnabledChanged: {
+		frame.color = enabled? "transparent" : "gray"
+		frame.opacity = enabled? 1 : 0.6
+		color = enabled? "black" : "gray"
+	}
+	
     Text {
         id: tooltip
         anchors.fill: parent

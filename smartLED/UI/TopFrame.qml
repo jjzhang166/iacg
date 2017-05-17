@@ -4,6 +4,7 @@ import QtQuick.Controls 1.4
 Item {
     property var win_instance: null
     property alias title_opacity: topFrame.app_title_opacity
+    property alias notify_opacity: topFrame.btn_notify_opacity
 
     Rectangle {
         id: topFrame
@@ -67,10 +68,10 @@ Item {
             id: btn_min
             width: 14
             height: 14
+            anchors.verticalCenter: parent.verticalCenter
             anchors.verticalCenterOffset: -3
             anchors.right: btn_close.left
             anchors.rightMargin: 7
-            anchors.verticalCenter: parent.verticalCenter
             source: "qrc:/pic/Minimize.png"
             MouseArea {
                 z: 10
@@ -79,6 +80,29 @@ Item {
                 onEntered: btn_min.source = "qrc:/pic/MinimizeHover.png"
                 onExited: btn_min.source = "qrc:/pic/Minimize.png"
                 onClicked: win_instance.showMinimized()
+            }
+        }
+
+        property alias btn_notify_opacity: btn_notify.opacity
+        Image {
+            id: btn_notify
+            width: 14
+            height: 14
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.right: btn_min.left
+            anchors.rightMargin: 7
+            source: "qrc:/pic/notify.png"
+            MouseArea {
+                z: 10
+                anchors.fill: parent
+                hoverEnabled: true
+                onEntered: btn_notify.source = "qrc:/pic/notify_hover.png"
+                onExited: btn_notify.source = "qrc:/pic/notify.png"
+                onClicked: {
+                    var notifywin = Qt.createComponent("qrc:/UI/NotifyWindow.qml")
+                    if(notifywin.status === Component.Ready)
+                        notifywin.createObject()
+                }
             }
         }
     }

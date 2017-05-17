@@ -35,6 +35,28 @@ Rectangle {
         }
     }
 
+    Timer {
+        property bool temp_enable: true
+        property bool humi_enable: true
+        property bool ll_enable: true
+        id: alertControl
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            if(!notifymanager.notifyEnable) {
+                notifymanager.stopAlertSound()
+                stop()
+            }
+            if(alertControl.temp_enable &&
+                    alertControl.humi_enable &&
+                    alertControl.ll_enable) {
+                notifymanager.stopAlertSound()
+                stop()
+                console.log("stop alert")
+            }
+        }
+    }
+
     Connections {
         id: con
         property bool temp_busy: false
@@ -43,7 +65,7 @@ Rectangle {
         onTempChanged: {
             tm = parseInt("0x"+tm)
             if(!con.temp_busy) {
-                if(maildata.tmpAlert != -1 && tm > maildata.tmpAlert) {
+                if(maildata.tmpAlert !== -1 && tm > maildata.tmpAlert) {
                     if(temp_time == 0) {
                         temp_time = maildata.getCurTimeSec()
                         maildata.sendMail(MailManager.MAIL_TMP)
@@ -55,6 +77,18 @@ Rectangle {
                     }
                 }
             }
+
+            if(tm <= notifymanager.notifyTemp)
+                alertControl.temp_enable = true
+            if(notifymanager.notifyEnable &&
+                    !alertControl.running &&
+                    tm > notifymanager.notifyTemp) {
+                    alertControl.temp_enable = false
+                    notifymanager.playAlertSound()
+                    alertControl.start()
+                    console.log("start timer in temp")
+            }
+
             temp_value.text = tm
             temp_gauge.value = tm
         }
@@ -74,11 +108,34 @@ Rectangle {
                     }
                 }
             }
+
+            if(hm <= notifymanager.notifyHumi)
+                alertControl.humi_enable = true
+            if(notifymanager.notifyEnable &&
+                    !alertControl.running &&
+                    hm > notifymanager.notifyHumi) {
+                    alertControl.humi_enable = false
+                    notifymanager.playAlertSound()
+                    alertControl.start()
+                    console.log("start timer in humi")
+            }
+
             humi_value.text = hm
             humi_gauge.value = hm
         }
 
         onLightChanged: {
+            if(ll !== notifymanager.notifyLL)
+                alertControl.ll_enable = true
+            if(notifymanager.notifyEnable &&
+                    ll === notifymanager.notifyLL &&
+                    !alertControl.running) {
+                alertControl.ll_enable = false
+                notifymanager.playAlertSound()
+                alertControl.start()
+                console.log("start timer in ll")
+            }
+
             switch(ll) {
             case 0:             //LL_HIGH
                 light_img.source = "qrc:/pic/light_h.png"

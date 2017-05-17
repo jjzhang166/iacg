@@ -57,8 +57,11 @@ Window {
         height: 30
         win_instance: window1
         title_opacity: 0
-        onWidthChanged:
-          title_opacity = width > 600 ? 1 : 0
+        notify_opacity: 0
+        onWidthChanged: {
+            title_opacity = width > 600 ? 1 : 0
+            notify_opacity = width > 600? 1 : 0
+        }
     }
 
     property alias err_dia: _err_dia
