@@ -43,7 +43,7 @@ lupdate_only{
 
 RC_ICONS = sl.ico
 
-win32: LIBS += -L$$PWD/./ -lSMTPEmail
+win32: LIBS += -L$$PWD/./ -lSMTPEmail -lWinmm
 
 INCLUDEPATH += $$PWD/app/.
 DEPENDPATH += $$PWD/app/.

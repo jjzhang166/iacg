@@ -1,7 +1,6 @@
 ﻿import QtQuick 2.4
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
-
 import SLComponent 1.0
 import Manager.Mail 1.0
 import Manager.Serialport 1.0
@@ -22,13 +21,13 @@ Rectangle {
             con.humi_busy = true
         }
         onCollTempEnd: {
-            if(res == MailManager.ERR_SUCCESS) {
+            if(res === MailManager.ERR_SUCCESS) {
                 console.log("coll temp end,and send mail stand by")
                 con.temp_busy = false
             }
         }
         onCollHumiEnd: {
-            if(res == MailManager.ERR_SUCCESS) {
+            if(res === MailManager.ERR_SUCCESS) {
                 console.log("coll humi end,and send mail stand by")
                 con.humi_busy =false
             }
@@ -43,7 +42,13 @@ Rectangle {
         repeat: true
         triggeredOnStart: true
         onTriggered: {
+            temp_value.color = temp_enable? "black" : "red"
+            humi_value.color = humi_enable? "black" : "red"
+            light_panel.warning_opacity = ll_enable? 0 : 0.5
             if(!notifymanager.notifyEnable) {
+                temp_value.color = "black"
+                humi_value.color = "black"
+                light_panel.warning_opacity = 0
                 notifymanager.stopAlertSound()
                 stop()
             }
@@ -80,15 +85,14 @@ Rectangle {
 
             if(tm <= notifymanager.notifyTemp)
                 alertControl.temp_enable = true
-            if(notifymanager.notifyEnable &&
-                    !alertControl.running &&
-                    tm > notifymanager.notifyTemp) {
-                    alertControl.temp_enable = false
+            else {
+                alertControl.temp_enable = false
+                if(notifymanager.notifyEnable && !alertControl.running) {
                     notifymanager.playAlertSound()
                     alertControl.start()
                     console.log("start timer in temp")
+                }
             }
-
             temp_value.text = tm
             temp_gauge.value = tm
         }
@@ -111,31 +115,29 @@ Rectangle {
 
             if(hm <= notifymanager.notifyHumi)
                 alertControl.humi_enable = true
-            if(notifymanager.notifyEnable &&
-                    !alertControl.running &&
-                    hm > notifymanager.notifyHumi) {
-                    alertControl.humi_enable = false
+            else {
+                alertControl.humi_enable = false
+                if(notifymanager.notifyEnable && !alertControl.running) {
                     notifymanager.playAlertSound()
                     alertControl.start()
                     console.log("start timer in humi")
+                }
             }
-
             humi_value.text = hm
             humi_gauge.value = hm
         }
 
         onLightChanged: {
-            if(ll !== notifymanager.notifyLL)
+            if(ll === notifymanager.notifyLL)
                 alertControl.ll_enable = true
-            if(notifymanager.notifyEnable &&
-                    ll === notifymanager.notifyLL &&
-                    !alertControl.running) {
+            else {
                 alertControl.ll_enable = false
-                notifymanager.playAlertSound()
-                alertControl.start()
-                console.log("start timer in ll")
+                if(notifymanager.notifyEnable && !alertControl.running) {
+                    notifymanager.playAlertSound()
+                    alertControl.start()
+                    console.log("start timer in ll")
+                }
             }
-
             switch(ll) {
             case 0:             //LL_HIGH
                 light_img.source = "qrc:/pic/light_h.png"
@@ -180,6 +182,19 @@ Rectangle {
             anchors.top: light_label.bottom
             anchors.topMargin: 25
             source: "qrc:/pic/light_err.png"
+        }
+
+        property alias warning_opacity: light_warning_img.opacity
+        Image {
+            id: light_warning_img
+            width: 100
+            height: 100
+            anchors.left: parent.left
+            anchors.leftMargin: 65
+            anchors.top: light_label.bottom
+            anchors.topMargin: 20
+            opacity: 0
+            source: "qrc:/pic/light_warning.png"
         }
     }
 

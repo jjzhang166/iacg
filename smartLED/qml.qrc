@@ -29,6 +29,7 @@
         <file>pic/light_err.png</file>
         <file>pic/notify.png</file>
         <file>pic/notify_hover.png</file>
-        <file>UI/NotifyWindow.qml</file>
+        <file>pic/light_warning.png</file>
+        <file>UI/NotifyDialog.qml</file>
     </qresource>
 </RCC>

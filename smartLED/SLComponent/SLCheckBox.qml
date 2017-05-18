@@ -11,6 +11,7 @@ import QtQuick.Controls.Styles 1.4
 
 CheckBox {
 	property string fontfamily: "Times New Roman"
+	property string fontcolor: "black"
 	
     style: CheckBoxStyle {
         spacing: 15
@@ -20,7 +21,7 @@ CheckBox {
 
         label: Text {
             text: control.text
-            color: "black"
+            color: fontcolor
 			font.family: fontfamily
         }
         

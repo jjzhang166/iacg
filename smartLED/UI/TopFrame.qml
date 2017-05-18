@@ -83,6 +83,10 @@ Item {
             }
         }
 
+        NotifyDialog {
+            id: nd
+        }
+
         property alias btn_notify_opacity: btn_notify.opacity
         Image {
             id: btn_notify
@@ -99,9 +103,12 @@ Item {
                 onEntered: btn_notify.source = "qrc:/pic/notify_hover.png"
                 onExited: btn_notify.source = "qrc:/pic/notify.png"
                 onClicked: {
+                    nd.open()
+                    /*
                     var notifywin = Qt.createComponent("qrc:/UI/NotifyWindow.qml")
                     if(notifywin.status === Component.Ready)
                         notifywin.createObject()
+                    */
                 }
             }
         }

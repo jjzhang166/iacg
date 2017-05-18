@@ -1,14 +1,20 @@
-﻿#ifndef NOTIFYMANAGER_H
+﻿/****************************************************************************
+**
+** Copyright (C) 2017 dengjunkai.
+** All rights reserved.
+** Contact: linuxlike@foxmail.com
+**
+******************************************************************************/
+#ifndef NOTIFYMANAGER_H
 #define NOTIFYMANAGER_H
 
 #include <QObject>
 #include <QLibrary>
 #include <QSettings>
-#include <limits>
-#include <Windows.h>
 
 class NotifyManager : public QObject {
     Q_OBJECT
+    Q_PROPERTY(bool notifyValid READ notifyValid CONSTANT)
     Q_PROPERTY(bool notifyEnable READ notifyEnable WRITE setNotifyEnable NOTIFY notifyEnableChanged)
     Q_PROPERTY(int notifyHumi READ notifyHumi WRITE setNotifyHumi NOTIFY notifyHumiChanged)
     Q_PROPERTY(int notifyTemp READ notifyTemp WRITE setNotifyTemp NOTIFY notifyTempChanged)
@@ -17,7 +23,6 @@ class NotifyManager : public QObject {
 public:
     explicit NotifyManager(const QString &filepath,
                            const QString &inifile,
-                           const QString &dll = "Winmm.dll",
                            QObject *parent = 0);
     ~NotifyManager();
 
@@ -28,10 +33,12 @@ signals:
     void notifyLLChanged();
 
 public:
+    bool notifyValid() const;
     bool notifyEnable() const;
     int notifyHumi() const;
     int notifyTemp() const;
     int notifyLL() const;
+    void setNotifyValid(const bool nv);
     void setNotifyEnable(const bool ne);
     void setNotifyHumi(const int nh);
     void setNotifyTemp(const int nt);
@@ -42,10 +49,8 @@ public:
     Q_INVOKABLE bool stopAlertSound();
 
 private:
-    typedef MCIERROR(*MediaFunc)(LPCTSTR, LPTSTR, UINT, HANDLE);
-    MediaFunc _mciSendString = nullptr;
-    QLibrary medialib;
     QSettings ini_setting;
+    bool m_notifyValid;
     bool m_notifyEnable;
     int  m_notifyHumi;
     int  m_notifyTemp;

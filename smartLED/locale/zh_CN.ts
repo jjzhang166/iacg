@@ -35,30 +35,30 @@
 <context>
     <name>Application</name>
     <message>
-        <location filename="../app/application.cpp" line="44"/>
+        <location filename="../app/application.cpp" line="45"/>
         <source>info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="44"/>
+        <location filename="../app/application.cpp" line="45"/>
         <source>MailManager:create SMTP object failed</source>
         <translation>MailManager:创建SMTP对象失败</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="56"/>
-        <location filename="../app/application.cpp" line="73"/>
-        <location filename="../app/application.cpp" line="86"/>
+        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="74"/>
+        <location filename="../app/application.cpp" line="87"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="56"/>
-        <location filename="../app/application.cpp" line="73"/>
+        <location filename="../app/application.cpp" line="57"/>
+        <location filename="../app/application.cpp" line="74"/>
         <source>QML:find qml object error</source>
         <translation>QML:搜寻qml对象树时发生错误</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="86"/>
+        <location filename="../app/application.cpp" line="87"/>
         <source>QML:engine load failed</source>
         <translation>QML:引擎装载失败</translation>
     </message>
@@ -221,73 +221,73 @@
         <translation type="vanished">发送邮件错误,请确认你的邮箱配置</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="108"/>
+        <location filename="../UI/CollPanel.qml" line="167"/>
         <source>CurrentLight:</source>
         <translation>当前亮度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="138"/>
+        <location filename="../UI/CollPanel.qml" line="210"/>
         <source>CurrentTemp:</source>
         <translation>当前温度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="149"/>
-        <location filename="../UI/CollPanel.qml" line="199"/>
+        <location filename="../UI/CollPanel.qml" line="221"/>
+        <location filename="../UI/CollPanel.qml" line="271"/>
         <source>0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="173"/>
+        <location filename="../UI/CollPanel.qml" line="245"/>
         <source>℃</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="188"/>
+        <location filename="../UI/CollPanel.qml" line="260"/>
         <source>CurrentHumi:</source>
         <translation>当前湿度：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="227"/>
+        <location filename="../UI/CollPanel.qml" line="299"/>
         <source>%RH</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="244"/>
+        <location filename="../UI/CollPanel.qml" line="316"/>
         <source>SendDelay:</source>
         <translation>发信间隔：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="255"/>
+        <location filename="../UI/CollPanel.qml" line="327"/>
         <source>Default Time</source>
         <translation>默认时间(1分钟)</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="267"/>
+        <location filename="../UI/CollPanel.qml" line="339"/>
         <source>Custom Time:</source>
         <translation>配置时间:</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="286"/>
+        <location filename="../UI/CollPanel.qml" line="358"/>
         <source>5 minute</source>
         <translation>5分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="286"/>
+        <location filename="../UI/CollPanel.qml" line="358"/>
         <source>15 minutes</source>
         <translation>15分钟</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="287"/>
+        <location filename="../UI/CollPanel.qml" line="359"/>
         <source>1 hour</source>
         <translation>1小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="287"/>
+        <location filename="../UI/CollPanel.qml" line="359"/>
         <source>10 hours</source>
         <translation>10小时</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="287"/>
+        <location filename="../UI/CollPanel.qml" line="359"/>
         <source>24 hours</source>
         <translation>24小时</translation>
     </message>
@@ -304,7 +304,7 @@
         <translation type="vanished">光照等级：</translation>
     </message>
     <message>
-        <location filename="../UI/CollPanel.qml" line="294"/>
+        <location filename="../UI/CollPanel.qml" line="366"/>
         <source>OK</source>
         <translation>确定</translation>
     </message>
@@ -449,12 +449,135 @@
     </message>
 </context>
 <context>
+    <name>NotifyDialog</name>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="8"/>
+        <source>alertSetting</source>
+        <translation>提示音设置</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="19"/>
+        <source>EnableNotify</source>
+        <translation>启用提示音</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="34"/>
+        <source>LL_H</source>
+        <translation>光照量高</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="34"/>
+        <source>LL_MH</source>
+        <translation>光照量中高</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="34"/>
+        <source>LL_MEDIUM</source>
+        <translation>光照量中等</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="34"/>
+        <source>LL_LOW</source>
+        <translation>光照量低</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="44"/>
+        <source>temp&apos;s alert value</source>
+        <translation>温度警戒值</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="59"/>
+        <source>humi&apos;s alert value</source>
+        <translation>湿度警戒值</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="73"/>
+        <source>LL_ALERT:</source>
+        <translation>光照强度：</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="78"/>
+        <source>TEMP_ALERT:</source>
+        <translation>环境温度：</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="88"/>
+        <source>HUMI_ALERT:</source>
+        <translation>环境湿度：</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="100"/>
+        <source>Cancel</source>
+        <translation>取消</translation>
+    </message>
+    <message>
+        <location filename="../UI/NotifyDialog.qml" line="111"/>
+        <source>Save</source>
+        <translation>保存</translation>
+    </message>
+</context>
+<context>
+    <name>NotifyManager</name>
+    <message>
+        <location filename="../app/notifymanager.cpp" line="22"/>
+        <source>error</source>
+        <translation>错误</translation>
+    </message>
+</context>
+<context>
+    <name>NotifyWindow</name>
+    <message>
+        <source>alertSetting</source>
+        <translation type="vanished">提示音设置</translation>
+    </message>
+    <message>
+        <source>EnableNotify</source>
+        <translation type="vanished">启用提示音</translation>
+    </message>
+    <message>
+        <source>LL_H</source>
+        <translation type="vanished">光照量高</translation>
+    </message>
+    <message>
+        <source>LL_MH</source>
+        <translation type="vanished">光照量中高</translation>
+    </message>
+    <message>
+        <source>LL_MEDIUM</source>
+        <translation type="vanished">光照量中等</translation>
+    </message>
+    <message>
+        <source>LL_LOW</source>
+        <translation type="vanished">光照量低</translation>
+    </message>
+    <message>
+        <source>temp&apos;s alert value</source>
+        <translation type="vanished">温度警戒值</translation>
+    </message>
+    <message>
+        <source>humi&apos;s alert value</source>
+        <translation type="vanished">湿度警戒值</translation>
+    </message>
+    <message>
+        <source>LL_ALERT:</source>
+        <translation type="vanished">光照强度：</translation>
+    </message>
+    <message>
+        <source>TEMP_ALERT:</source>
+        <translation type="vanished">环境温度：</translation>
+    </message>
+    <message>
+        <source>HUMI_ALERT:</source>
+        <translation type="vanished">环境湿度：</translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../app/fontmanager.cpp" line="11"/>
         <location filename="../app/fontmanager.cpp" line="35"/>
         <location filename="../app/frame.cpp" line="167"/>
-        <location filename="../app/smartled.cpp" line="17"/>
+        <location filename="../app/smartled.cpp" line="18"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
@@ -489,23 +612,23 @@ crate a new file?</source>
         <translation type="obsolete">配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="28"/>
-        <location filename="../app/smartled.cpp" line="32"/>
+        <location filename="../app/application.cpp" line="29"/>
+        <location filename="../app/smartled.cpp" line="33"/>
         <source>info</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../app/application.cpp" line="29"/>
+        <location filename="../app/application.cpp" line="30"/>
         <source>file &apos;frame.ini&apos; is not exist, save the current config?</source>
         <translation>配置文件&quot;frame.ini&quot;不存在，保存当前帧配置吗？</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="18"/>
+        <location filename="../app/smartled.cpp" line="19"/>
         <source>get working path failed</source>
         <translation>获取工作目录失败</translation>
     </message>
     <message>
-        <location filename="../app/smartled.cpp" line="33"/>
+        <location filename="../app/smartled.cpp" line="34"/>
         <source>file &apos;frame.ini&apos; is not exist,do you want to create a new file or use default config.</source>
         <translation>配置文件:&quot;frame.ini&quot;不存在,使用默认数据帧结构可能会导致程序无法通过串口搜集数据.点击&quot;确定&quot;创建一个新配置,否则使用默认的配置初始化.</translation>
     </message>
@@ -587,7 +710,7 @@ crate a new file?</source>
 <context>
     <name>TopFrame</name>
     <message>
-        <location filename="../UI/TopFrame.qml" line="45"/>
+        <location filename="../UI/TopFrame.qml" line="46"/>
         <source>The SmartLED Project</source>
         <translation>电子智能补光系统</translation>
     </message>
@@ -595,48 +718,48 @@ crate a new file?</source>
 <context>
     <name>main</name>
     <message>
-        <location filename="../UI/main.qml" line="82"/>
+        <location filename="../UI/main.qml" line="70"/>
         <source>error</source>
         <translation>错误</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="86"/>
+        <location filename="../UI/main.qml" line="74"/>
         <source>connect error</source>
         <translation>连接失败</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="98"/>
+        <location filename="../UI/main.qml" line="86"/>
         <source>SerialPort:</source>
         <translation>串口号：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="131"/>
+        <location filename="../UI/main.qml" line="119"/>
         <source>BaudRate:</source>
         <translation>波特率：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="156"/>
+        <location filename="../UI/main.qml" line="144"/>
         <source>DataBit:</source>
         <translation>数据位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="180"/>
+        <location filename="../UI/main.qml" line="168"/>
         <source>StopBit:</source>
         <translation>停止位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="214"/>
+        <location filename="../UI/main.qml" line="202"/>
         <source>CheckBit:</source>
         <translation>校验位：</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="278"/>
-        <location filename="../UI/main.qml" line="287"/>
+        <location filename="../UI/main.qml" line="266"/>
+        <location filename="../UI/main.qml" line="275"/>
         <source>Connect</source>
         <translation>连接</translation>
     </message>
     <message>
-        <location filename="../UI/main.qml" line="265"/>
+        <location filename="../UI/main.qml" line="253"/>
         <source>DisConnect</source>
         <translation>断开</translation>
     </message>
