@@ -2,7 +2,7 @@
 
 ; 安装程序初始定义常量
 !define PRODUCT_NAME "smartLED"
-!define PRODUCT_VERSION "1.7"
+!define PRODUCT_VERSION "1.8"
 !define PRODUCT_PUBLISHER "nxlgdjk"
 !define PRODUCT_WEB_SITE "https://git.oschina.net/linuxlike/iacg"
 !define PRODUCT_INSTALL_KEY "Software\${PRODUCT_NAME}"
@@ -16,7 +16,7 @@
 !define BIN_PATH "E:\iacg\bin\smartLED\*.*"
 !define SOURCE_PATH1 "E:\iacg\smartLED\*.*"
 !define SOURCE_PATH2 "E:\iacg\SlaveDataCollection\*.*"
-!define THANKS_PATH "E:\iacg\Thanks.txt"
+!define README_PATH "E:\iacg\README.md"
 
 SetCompressor lzma
 
@@ -46,8 +46,8 @@ var ICONS_GROUP
 ; 安装过程页面
 !insertmacro MUI_PAGE_INSTFILES
 ; 安装完成页面
-!define MUI_FINISHPAGE_SHOWREADME_TEXT "显示致谢信息"
-!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\Thanks.txt"
+!define MUI_FINISHPAGE_SHOWREADME_TEXT "更新日志"
+!define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\README.md"
 !define MUI_FINISHPAGE_RUN_TEXT "访问项目网站"
 !define MUI_FINISHPAGE_RUN "C:\Program Files (x86)\Internet Explorer\iexplore.exe"
 !define MUI_FINISHPAGE_RUN_PARAMETERS "${PRODUCT_WEB_SITE}"
@@ -79,7 +79,7 @@ Section "主程序(必须)" SEC01
   SetOverwrite ifnewer
   File /r "${BIN_PATH}"
   SetOutPath "$INSTDIR"
-  File "${THANKS_PATH}"
+  File "${README_PATH}"
 ; 创建开始菜单快捷方式
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   !insertmacro MUI_STARTMENU_WRITE_END
@@ -92,7 +92,7 @@ Section "源代码" SEC02
   SetOutPath "$INSTDIR\src\stc89c52rc"
   File /r "${SOURCE_PATH2}"
   SetOutPath "$INSTDIR"
-  File "${THANKS_PATH}"
+  File "${README_PATH}"
 ; 创建开始菜单快捷方式
   !insertmacro MUI_STARTMENU_WRITE_BEGIN Application
   !insertmacro MUI_STARTMENU_WRITE_END
@@ -139,7 +139,7 @@ FunctionEnd
 Section Uninstall
   !insertmacro MUI_STARTMENU_GETFOLDER "Application" $ICONS_GROUP
   Delete "$INSTDIR\uninst.exe"
-	Delete "$INSTDIR\Thanks.txt"
+	Delete "$INSTDIR\README.md"
 	Delete "$DESKTOP\smartLED.lnk"
 
   RMDir /r "$INSTDIR\src"
